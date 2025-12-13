@@ -808,16 +808,17 @@
          ======================================== -->
     <section class="hero">
         <div class="hero-content">
-            <h1>{{PARTY_NAME}}</h1>
-            <p class="subtitle">Feiert mit uns ins neue Jahr!</p>
-            <div class="date-badge">{{DATUM}} ab {{UHRZEIT_START}} Uhr</div>
+            <h2 class="subtitle">In loving memory</h2>
+            <h1>R.I.P 2025</h1>
+            <h3 class="subtitle">This year ends on a high note. Funeral Festival 2025</h3>
+            <div class="date-badge">31.12.2025 ab 18:00 Uhr</div>
 
             <!-- COUNTDOWN WRAPPER -->
             <div class="countdown-wrapper">
 
                 <!-- Kleiner Countdown: Party-Start -->
                 <div class="countdown-small" id="party-countdown-container">
-                    <p class="countdown-label">Party startet in...</p>
+                    <p class="countdown-label">Dumm gehen wann?</p>
                     <div class="countdown" id="party-countdown">
                         <div class="countdown-item days-container" id="party-days-container">
                             <div class="number" id="party-days">00</div>
@@ -836,12 +837,12 @@
                             <div class="label">Sekunden</div>
                         </div>
                     </div>
-                    <p class="party-message" id="party-started-message">Die Party läuft!</p>
+                    <p class="party-message" id="party-started-message">Moin, willkommen zur Sause!</p>
                 </div>
 
                 <!-- Großer Countdown: Mitternacht -->
                 <div class="countdown-large" id="midnight-countdown-container">
-                    <p class="countdown-label">Neujahr in...</p>
+                    <p class="countdown-label">End of Service:</p>
                     <div class="countdown" id="midnight-countdown">
                         <div class="countdown-item days-container" id="midnight-days-container">
                             <div class="number" id="midnight-days">00</div>
@@ -860,14 +861,15 @@
                             <div class="label">Sekunden</div>
                         </div>
                     </div>
-                    <p class="party-message" id="new-year-message">Frohes Neues Jahr!</p>
+                    <p class="party-message" id="new-year-message">R.I.P. 2025 :( Moooin 2026!</p>
+                    <p class="party-message" id="new-year-message2">Frohes Neues, gesegnet sei eure Glatze.</p>
                 </div>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
         <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
-            <span>Mehr erfahren</span>
+            <span>Hier klicken für Dumm-Geh-Details</span>
             <div class="arrow">↓</div>
         </div>
     </section>
@@ -877,7 +879,7 @@
          DETAILS SECTION
          ======================================== -->
     <section class="section" id="details">
-        <h2 class="section-title fade-in">Die Details</h2>
+        <h2 class="section-title fade-in">Die Dumm-Geh-Details</h2>
 
         <div class="info-grid">
             <div class="info-card fade-in-left">
@@ -885,25 +887,27 @@
                 <h3>Wo?</h3>
                 <p class="highlight">Bei Uns!</p>
                 <p>Ums Eck</p>
+                <p>Änderungen vorbehalten</p>
             </div>
 
             <div class="info-card fade-in-right">
                 <div class="icon">🕐</div>
                 <h3>Wann?</h3>
                 <p><span class="highlight">31.12.25</span> ab <span class="highlight">16 Uhr</span></p>
-                <p>Open End - wir feiern ins neue Jahr!</p>
+                <p>Open End. Obviously.</p>
             </div>
 
             <div class="info-card fade-in-left">
                 <div class="icon">🍻</div>
                 <h3>Was mitbringen?</h3>
-                <p>{{MITBRINGEN_TEXT}}</p>
+                <p>Packt einen Gegenstand ein, den man normalerweise nicht zum Trinken benutzt!</p>
+                <p>(!TW!) Alkohol, Kräuter   und Natz nach Belieben</p>
             </div>
 
             <div class="info-card fade-in-right">
                 <div class="icon">👔</div>
                 <h3>Dresscode</h3>
-                <p>{{DRESSCODE}}</p>
+                <p>Wie würdest du zu Oma Gertrudes Beerdigung kommen? Show some respect dude. Get your finest (cold season) festival fits out to dance on the grave.</p>
             </div>
         </div>
     </section>
@@ -925,8 +929,8 @@
     <section class="motto-section">
         <div class="motto-card fade-in">
             <div class="motto-icon">🎭</div>
-            <h2>{{MOTTO}}</h2>
-            <p>Lasst euch etwas Kreatives einfallen!</p>
+            <h2>Dehydration Prevention</h2>
+            <p>There will be a cocktail bar. Bring your favourite liquor and mix here.</p>
         </div>
     </section>
 
@@ -935,8 +939,8 @@
          SPOTIFY SECTION
          ======================================== -->
     <section class="spotify-section">
-        <h2 class="section-title fade-in">🎵 Die Playlist</h2>
-        <p class="subtitle fade-in">Fügt eure Lieblingssongs hinzu!</p>
+        <h2 class="section-title fade-in">🎵Für musikalische Übermalung</h2>
+        <p class="subtitle fade-in">Fügt eure Lieblings-Dumm-Geh-Songs hinzu!</p>
 
         <div class="spotify-embed fade-in">
             <iframe
@@ -952,7 +956,7 @@
         </div>
 
         <a href="https://open.spotify.com/playlist/{{SPOTIFY_PLAYLIST_ID}}" target="_blank" rel="noopener" class="spotify-add-btn fade-in">
-            ➕ Song hinzufügen
+            ➕ Sheesh, hier Song hinzufügen
         </a>
     </section>
 
@@ -962,25 +966,25 @@
          ======================================== -->
     <section class="rsvp-section" id="rsvp">
         <h2 class="section-title fade-in">Bist du dabei?</h2>
-        <p class="hint fade-in">Klick auf einen Button – dein Mail-Programm öffnet sich automatisch 📬</p>
+        <p class="hint fade-in">Klick auf einen Button – deine Mutter öffnet sich automatisch 📬</p>
 
         <div class="button-container">
             <a href="mailto:{{EMAIL}}?subject=Silvester%20-%20Ich%20bin%20dabei!&body=Hey!%0A%0AIch%20bin%20dabei!%20🎉%0A%0ABis%20dann!"
                class="rsvp-button btn-yes fade-in"
                onclick="fireConfetti(event, 'yes')">
-                ✅ Ja, ich bin dabei!
+                ✅ Ja, ich liebe euch, ich liebe uns <3
             </a>
 
             <a href="mailto:{{EMAIL}}?subject=Silvester%20-%20Leider%20nicht&body=Hey!%0A%0ALeider%20kann%20ich%20nicht%20kommen.%20😢%0A%0AFeiert%20schön!"
                class="rsvp-button btn-no fade-in"
                onclick="fireConfetti(event, 'no')">
-                ❌ Leider nicht
+                ❌ Ich hasse mich selbst
             </a>
 
             <a href="mailto:{{EMAIL}}?subject=Silvester%20-%20Vielleicht&body=Hey!%0A%0AIch%20bin%20mir%20noch%20nicht%20sicher%2C%20ich%20melde%20mich%20nochmal!%0A%0ABis%20bald!"
                class="rsvp-button btn-maybe fade-in"
                onclick="fireConfetti(event, 'maybe')">
-                🤔 Vielleicht
+                🤔 Vielleicht hasse ich mich selbst (doch nicht so sehr)
             </a>
         </div>
     </section>
@@ -990,7 +994,8 @@
          FOOTER
          ======================================== -->
     <footer>
-        <p>{{FOOTER_TEXT}} <span class="heart">❤️</span></p>
+        <p>When the forest calls, the frogs answer. <span class="heart">❤️</span></p>
+        <p>sponored by your moms child support <span class="heart">🪩</span></p>
     </footer>
 
 
@@ -1004,7 +1009,7 @@
 
         // Party-Start: {{DATUM}} um {{UHRZEIT_START}}
         // Format: 'YYYY-MM-DDTHH:MM:SS'
-        const PARTY_START = new Date('2025-12-31T20:00:00').getTime();
+        const PARTY_START = new Date('2025-12-31T16:00:00').getTime();
 
         // Mitternacht: 01.01.2026 00:00:00
         const MIDNIGHT = new Date('2026-01-01T00:00:00').getTime();
