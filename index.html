@@ -252,11 +252,26 @@
         }
 
         .countdown-small .countdown-label {
-            font-size: 0.85rem;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Kalender-Link Styling */
+        .calendar-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .calendar-link:hover {
+            color: var(--accent-orange);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         .countdown-small .countdown {
@@ -267,23 +282,23 @@
         }
 
         .countdown-small .countdown-item {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 0.75rem;
-            padding: 0.5rem 0.75rem;
-            min-width: 55px;
-            backdrop-filter: blur(var(--glass-blur));
+            padding: 0.75rem 1rem;
+            min-width: 65px;
+            text-align: center;
         }
 
         .countdown-small .number {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-champagne);
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--accent-gold);
             line-height: 1;
         }
 
         .countdown-small .label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--text-muted);
@@ -293,10 +308,11 @@
         /* Großer Mitternachts-Countdown - Zusätzliche Styles */
         .countdown-large .countdown-label {
             font-family: var(--font-heading);
-            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: var(--accent-gold);
             margin-bottom: 1rem;
             letter-spacing: 0.1em;
+            text-align: center;
         }
 
         .countdown-large .countdown {
@@ -307,38 +323,34 @@
         }
 
         .countdown-large .countdown-item {
-            background: linear-gradient(135deg, var(--glass-bg), rgba(255, 215, 0, 0.05));
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 0.75rem;
             padding: 0.75rem 1rem;
             min-width: 70px;
-            backdrop-filter: blur(var(--glass-blur));
-            box-shadow: var(--shadow-glow);
+            text-align: center;
             transition: all 0.3s ease;
         }
 
         .countdown-large .countdown-item:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.4);
-            box-shadow: 0 10px 50px rgba(255, 215, 0, 0.2);
+            transform: translateY(-3px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.15);
         }
 
         .countdown-large .number {
+            font-family: var(--font-heading);
             font-size: clamp(1.8rem, 5vw, 2.5rem);
-            font-weight: 800;
-            background: linear-gradient(180deg, var(--accent-gold), var(--accent-champagne));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent-gold);
             line-height: 1;
         }
 
         .countdown-large .label {
-            font-size: 0.75rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
         }
 
         /* Party Mode Animation */
@@ -366,36 +378,6 @@
         @keyframes messagePulse {
             0% { opacity: 0.8; transform: scale(1); }
             100% { opacity: 1; transform: scale(1.02); }
-        }
-
-        /* ========================================
-           KALENDER BUTTON
-           ======================================== */
-        .calendar-section {
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .calendar-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: linear-gradient(135deg, #4285f4, #34a853);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-family: var(--font-body);
-        }
-
-        .calendar-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(66, 133, 244, 0.4);
         }
 
         /* Scroll Indicator */
@@ -863,11 +845,6 @@
             .motto-card {
                 padding: 2rem 1.5rem;
             }
-
-            .calendar-btn {
-                padding: 0.875rem 1.5rem;
-                font-size: 0.9rem;
-            }
         }
 
         /* ========================================
@@ -910,7 +887,9 @@
 
                 <!-- Kleiner Countdown: Party-Start -->
                 <div class="countdown-small" id="party-countdown-container">
-                    <p class="countdown-label">Dumm gehen wann?</p>
+                    <p class="countdown-label">
+                        <a href="#" onclick="downloadICS(); return false;" class="calendar-link" title="📅 Im Kalender speichern">Dumm gehen wann? 📅</a>
+                    </p>
                     <div class="countdown" id="party-countdown">
                         <div class="countdown-item days-container" id="party-days-container">
                             <div class="number" id="party-days">00</div>
@@ -918,15 +897,15 @@
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="party-hours">00</div>
-                            <div class="label">Stunden</div>
+                            <div class="label">Std</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="party-minutes">00</div>
-                            <div class="label">Minuten</div>
+                            <div class="label">Min</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="party-seconds">00</div>
-                            <div class="label">Sekunden</div>
+                            <div class="label">Sek</div>
                         </div>
                     </div>
                     <p class="party-message" id="party-started-message">Moin, willkommen zur Sause!</p>
@@ -942,27 +921,20 @@
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="midnight-hours">00</div>
-                            <div class="label">Stunden</div>
+                            <div class="label">Std</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="midnight-minutes">00</div>
-                            <div class="label">Minuten</div>
+                            <div class="label">Min</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="midnight-seconds">00</div>
-                            <div class="label">Sekunden</div>
+                            <div class="label">Sek</div>
                         </div>
                     </div>
                     <p class="party-message" id="new-year-message">R.I.P. 2025 :( Moooin 2026!</p>
                     <p class="party-message" id="new-year-message2">Frohes Neues, gesegnet sei eure Glatze.</p>
                 </div>
-            </div>
-
-            <!-- Kalender Button -->
-            <div class="calendar-section">
-                <button class="calendar-btn" onclick="downloadICS()">
-                    📅 Im Kalender speichern
-                </button>
             </div>
         </div>
 
