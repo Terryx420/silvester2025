@@ -14,7 +14,8 @@
          Anleitung: fonts.google.com → Font wählen → Get embed code
          ======================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
     
     <style>
         /* ========================================
@@ -22,7 +23,7 @@
            ======================================== */
         :root {
             /* ANPASSEN: Deine Fonts hier eintragen */
-            --font-heading: 'Bebas Neue', sans-serif;    /* Für Überschriften & Countdown */
+            --font-heading: 'Modak', sans-serif;    /* Für Überschriften & Countdown */
             --font-body: 'Outfit', sans-serif;           /* Für Fließtext */
             
             /* Farben */
@@ -678,20 +679,11 @@
         
         <div class="spotify-embed">
             <!-- ANPASSEN: Ersetze PLAYLIST_ID -->
-            <iframe 
-                style="border-radius:12px" 
-                src="https://open.spotify.com/embed/playlist/PLAYLIST_ID?utm_source=generator&theme=0" 
-                width="100%" 
-                height="352" 
-                frameBorder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
-            </iframe>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3nPa7TmxfcsXsnKpdBupJa?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
         <!-- ANPASSEN: Link zu deiner Playlist -->
-        <a href="https://open.spotify.com/playlist/PLAYLIST_ID" target="_blank" class="spotify-add-btn">
+        <a href="https://open.spotify.com/embed/playlist/3nPa7TmxfcsXsnKpdBupJa" target="_blank" class="spotify-add-btn">
             ➕ Song hinzufügen
         </a>
     </section>
