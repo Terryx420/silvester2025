@@ -251,6 +251,16 @@
             margin-bottom: 0;
         }
 
+        .countdown-small .calendar-hint {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+            text-align: center;
+            opacity: 0.7;
+        }
+
         .countdown-small .countdown-label {
             font-family: var(--font-heading);
             font-size: 1.2rem;
@@ -887,6 +897,7 @@
 
                 <!-- Kleiner Countdown: Party-Start -->
                 <div class="countdown-small" id="party-countdown-container">
+                    <p class="calendar-hint">↓ klicken für Kalender-Download ↓</p>
                     <p class="countdown-label">
                         <a href="#" onclick="downloadICS(); return false;" class="calendar-link" title="📅 Im Kalender speichern">Dumm gehen wann? 📅</a>
                     </p>
