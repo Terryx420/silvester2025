@@ -211,11 +211,44 @@
            ======================================== */
         .countdown-wrapper {
             margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Desktop: Countdowns nebeneinander */
+        @media (min-width: 768px) {
+            .countdown-wrapper {
+                flex-direction: row;
+                justify-content: center;
+                gap: 3rem;
+            }
+        }
+
+        /* Countdown Container Styling */
+        .countdown-small,
+        .countdown-large {
+            flex: 1;
+            max-width: 450px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+            transition: all 0.5s ease;
+        }
+
+        .countdown-small:hover,
+        .countdown-large:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: var(--shadow-glow);
         }
 
         /* Kleiner Party-Countdown */
         .countdown-small {
-            margin-bottom: 2.5rem;
+            margin-bottom: 0;
         }
 
         .countdown-small .countdown-label {
@@ -257,11 +290,7 @@
             margin-top: 0.25rem;
         }
 
-        /* Großer Mitternachts-Countdown */
-        .countdown-large {
-            position: relative;
-        }
-
+        /* Großer Mitternachts-Countdown - Zusätzliche Styles */
         .countdown-large .countdown-label {
             font-family: var(--font-heading);
             font-size: clamp(1rem, 3vw, 1.3rem);
