@@ -261,17 +261,17 @@
 
         .countdown-small .countdown {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .countdown-small .countdown-item {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            min-width: 70px;
+            padding: 0.5rem 0.75rem;
+            min-width: 55px;
             backdrop-filter: blur(var(--glass-blur));
         }
 
@@ -301,17 +301,17 @@
 
         .countdown-large .countdown {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .countdown-large .countdown-item {
             background: linear-gradient(135deg, var(--glass-bg), rgba(255, 215, 0, 0.05));
             border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 1.25rem;
-            padding: 1.25rem 1.5rem;
-            min-width: 100px;
+            border-radius: 1rem;
+            padding: 0.75rem 1rem;
+            min-width: 70px;
             backdrop-filter: blur(var(--glass-blur));
             box-shadow: var(--shadow-glow);
             transition: all 0.3s ease;
@@ -324,7 +324,7 @@
         }
 
         .countdown-large .number {
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             font-weight: 800;
             background: linear-gradient(180deg, var(--accent-gold), var(--accent-champagne));
             -webkit-background-clip: text;
@@ -798,13 +798,28 @@
                 padding: 4rem 1.5rem;
             }
 
+            .countdown-wrapper {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .countdown-small,
+            .countdown-large {
+                max-width: 100%;
+            }
+
+            .countdown-small .countdown,
+            .countdown-large .countdown {
+                flex-wrap: wrap;
+            }
+
             .countdown-large .countdown-item {
-                min-width: 80px;
-                padding: 1rem;
+                min-width: 70px;
+                padding: 0.75rem;
             }
 
             .countdown-large .number {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
             }
 
             .info-grid {
@@ -818,25 +833,21 @@
             }
 
             .countdown-small .countdown-item {
-                min-width: 60px;
-                padding: 0.5rem 0.75rem;
+                min-width: 55px;
+                padding: 0.4rem 0.6rem;
             }
 
             .countdown-small .number {
-                font-size: 1.25rem;
-            }
-
-            .countdown-large .countdown {
-                gap: 0.5rem;
+                font-size: 1.2rem;
             }
 
             .countdown-large .countdown-item {
-                min-width: 70px;
-                padding: 0.75rem;
+                min-width: 60px;
+                padding: 0.6rem;
             }
 
             .countdown-large .number {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
 
             .button-container {
