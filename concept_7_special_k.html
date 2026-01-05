@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Special K CNY 2026 - Dissociate into Prosperity - SATIRE/PARODY">
+    <meta property="og:title" content="Rx: Fire Horse Festival 2026 - Horse Tranquilizer Edition">
+    <title>💊🐴 Rx: FIRE HORSE 2026 | Special K Edition | Dissociate into Prosperity</title>
+
+    <!-- KONZEPT 7: SPECIAL K - HORSE TRANQUILIZER EDITION - Medical/Pharmaceutical Satire, Dark Humor -->
+    <!-- DISCLAIMER: This is SATIRE/PARODY. Not actual medical advice. Please celebrate responsibly. -->
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Roboto:wght@400;500;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --clinical-white: #F8F9FA;
+            --hospital-green: #00D9A3;
+            --medical-blue: #4A90E2;
+            --prescription-beige: #F5E6D3;
+            --neon-pink: #FF006E;
+            --neon-purple: #8338EC;
+            --neon-cyan: #00F5FF;
+            --toxic-green: #39FF14;
+            --rx-blue: #0066CC;
+            --bg-clinical: #1A1A1A;
+            --pill-white: #FFFFFF;
+            --font-rx: 'Courier Prime', 'Courier New', monospace;
+            --font-clean: 'Roboto', sans-serif;
+            --font-chinese: 'Noto Sans SC', sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-clean);
+            background: var(--bg-clinical);
+            color: var(--clinical-white);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Clinical Grid Background */
+        .clinical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                linear-gradient(90deg, rgba(0, 217, 163, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 217, 163, 0.03) 1px, transparent 1px),
+                var(--bg-clinical);
+            background-size: 50px 50px;
+        }
+
+        /* Glitch Overlay */
+        .glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            animation: scanlines 0.1s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 2px; }
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-pink));
+            background-size: 200% 100%;
+            animation: warningSlide 3s linear infinite;
+            padding: 0.75rem;
+            text-align: center;
+            font-family: var(--font-rx);
+            font-size: 0.85rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes warningSlide {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Prescription Pad Style */
+        .rx-pad {
+            background: var(--prescription-beige);
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            color: #333;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .rx-pad::before {
+            content: 'Rx';
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-family: var(--font-rx);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rx-blue);
+        }
+
+        .rx-header {
+            border-bottom: 2px solid #333;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            padding-left: 60px;
+        }
+
+        .rx-header h1 {
+            font-family: var(--font-rx);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .rx-header .subtitle {
+            font-family: var(--font-rx);
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .rx-body {
+            text-align: left;
+            font-family: var(--font-rx);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .rx-body .field {
+            margin-bottom: 0.5rem;
+        }
+
+        .rx-body .field-label {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .rx-body .field-value {
+            color: #555;
+        }
+
+        .rx-body .chinese {
+            font-family: var(--font-chinese);
+            color: var(--neon-pink);
+        }
+
+        .rx-warning {
+            background: rgba(255, 0, 110, 0.1);
+            border: 1px dashed var(--neon-pink);
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .rx-signature {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .rx-signature .doctor {
+            font-style: italic;
+            color: #666;
+        }
+
+        .rx-signature .stamp {
+            background: var(--hospital-green);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            transform: rotate(-5deg);
+        }
+
+        /* Countdown - Medical Monitor Style */
+        .monitor-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        @media (min-width: 768px) {
+            .monitor-wrapper { flex-direction: row; }
+        }
+
+        .monitor-box {
+            flex: 1;
+            background: #111;
+            border: 2px solid var(--hospital-green);
+            border-radius: 10px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .monitor-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--hospital-green), var(--neon-cyan), var(--hospital-green));
+            animation: monitorPulse 2s ease infinite;
+        }
+
+        @keyframes monitorPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .monitor-label {
+            font-family: var(--font-rx);
+            font-size: 0.8rem;
+            color: var(--hospital-green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .monitor-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .monitor-item {
+            background: rgba(0, 217, 163, 0.1);
+            border: 1px solid var(--hospital-green);
+            border-radius: 5px;
+            padding: 0.75rem;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .monitor-item .number {
+            font-family: var(--font-rx);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--hospital-green);
+            text-shadow: 0 0 10px var(--hospital-green);
+        }
+
+        .monitor-item .label {
+            font-size: 0.6rem;
+            color: var(--hospital-green);
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .party-message {
+            display: none;
+            font-family: var(--font-rx);
+            font-size: 1.2rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .party-message.visible { display: block; }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            cursor: pointer;
+            font-family: var(--font-rx);
+            color: var(--hospital-green);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-indicator .arrow {
+            display: block;
+            font-size: 1.5rem;
+            animation: bounce 2s ease infinite;
+            margin-top: 0.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-rx);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            color: var(--hospital-green);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Info Cards - Beipackzettel Style */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card-medical {
+            background: var(--clinical-white);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1.5rem;
+            color: #333;
+            position: relative;
+        }
+
+        .info-card-medical::before {
+            content: '§';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-family: var(--font-rx);
+            font-size: 1.5rem;
+            color: var(--rx-blue);
+            opacity: 0.3;
+        }
+
+        .info-card-medical h3 {
+            font-family: var(--font-rx);
+            font-size: 1rem;
+            color: var(--rx-blue);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .info-card-medical p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card-medical .highlight {
+            color: var(--neon-pink);
+            font-weight: 700;
+        }
+
+        /* Pill Buttons */
+        .pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .pill-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-rx);
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pill-accept {
+            background: linear-gradient(135deg, var(--hospital-green), #00B894);
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 217, 163, 0.3);
+        }
+
+        .pill-accept:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 217, 163, 0.5);
+        }
+
+        .pill-decline {
+            background: linear-gradient(135deg, #666, #444);
+            color: white;
+        }
+
+        .pill-decline:hover {
+            transform: scale(1.05);
+        }
+
+        .pill-maybe {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.3);
+        }
+
+        .pill-maybe:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 0, 110, 0.5);
+        }
+
+        /* Calendar Button */
+        .calendar-btn-medical {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 2px solid var(--hospital-green);
+            color: var(--hospital-green);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-rx);
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .calendar-btn-medical:hover {
+            background: var(--hospital-green);
+            color: var(--bg-clinical);
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .rsvp-hint {
+            font-family: var(--font-rx);
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Spotify Section */
+        .spotify-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .spotify-embed {
+            max-width: 400px;
+            margin: 2rem auto;
+            border: 2px solid var(--hospital-green);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 217, 163, 0.2);
+        }
+
+        /* Footer - Disclaimer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid var(--hospital-green);
+        }
+
+        footer .chinese {
+            font-family: var(--font-chinese);
+            font-size: 1.5rem;
+            color: var(--hospital-green);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            font-family: var(--font-rx);
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer .disclaimer {
+            background: rgba(255, 0, 110, 0.1);
+            border: 1px dashed var(--neon-pink);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* Floating Horse Silhouettes */
+        .floating-horse {
+            position: fixed;
+            font-size: 3rem;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.15;
+            animation: floatHorse 15s ease-in-out infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes floatHorse {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        /* Glitch Text Effect */
+        .glitch-text {
+            position: relative;
+            animation: glitchText 3s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-2px, -2px); }
+            98% { transform: translate(2px, 2px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .monitor-wrapper { flex-direction: column; }
+            .monitor-item { min-width: 60px; }
+            .pill-container { flex-direction: column; align-items: center; }
+            .pill-button { width: 100%; max-width: 280px; justify-content: center; }
+            .rx-pad { padding: 1.5rem; }
+            .rx-header { padding-left: 50px; }
+        }
+
+        .hidden { display: none !important; }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="clinical-bg"></div>
+    <div class="glitch-overlay"></div>
+
+    <div class="content-wrapper">
+        <!-- Warning Banner -->
+        <div class="warning-banner">
+            ⚠️ SATIRE / PARODY / INTERNET MEME ⚠️ Not actual horse tranquilizer. Please celebrate responsibly.
+        </div>
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <!-- Prescription Pad -->
+            <div class="rx-pad">
+                <div class="rx-header">
+                    <h1>FIRE HORSE FESTIVAL 2026</h1>
+                    <div class="subtitle">Special K Edition™ - Dissociate into Prosperity</div>
+                </div>
+
+                <div class="rx-body">
+                    <div class="field">
+                        <span class="field-label">Patient:</span>
+                        <span class="field-value">You (& Friends)</span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Diagnosis:</span>
+                        <span class="field-value">Acute FOMO, Prosperity Deficiency</span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Prescription:</span>
+                        <span class="field-value">One (1) Fire Horse Party</span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Date:</span>
+                        <span class="field-value">17.02.2026 @ 16:00</span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Location:</span>
+                        <span class="field-value">TBA (Classified)</span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Refills:</span>
+                        <span class="field-value">0 (One-time event)</span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Blessing:</span>
+                        <span class="field-value chinese">恭喜发财 💊🐴</span>
+                    </div>
+
+                    <div class="rx-warning">
+                        ⚠️ <strong>WARNING:</strong> Side effects may include extreme happiness, sudden fortune, good vibes, and prosperity. Dissociate responsibly. Not for actual horses.
+                    </div>
+                </div>
+
+                <div class="rx-signature">
+                    <div class="doctor">Dr. Froschteich, MD<br/><small>Specialist in Celebration Medicine</small></div>
+                    <div class="stamp">APPROVED ✓</div>
+                </div>
+            </div>
+
+            <!-- Countdown Monitors -->
+            <div class="monitor-wrapper">
+                <div class="monitor-box">
+                    <p class="monitor-label">💊 Dose 1: Party Start</p>
+                    <div class="monitor-countdown" id="party-countdown">
+                        <div class="monitor-item" id="party-days-container">
+                            <div class="number" id="party-days">00</div>
+                            <div class="label">Days</div>
+                        </div>
+                        <div class="monitor-item">
+                            <div class="number" id="party-hours">00</div>
+                            <div class="label">Hrs</div>
+                        </div>
+                        <div class="monitor-item">
+                            <div class="number" id="party-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="monitor-item">
+                            <div class="number" id="party-seconds">00</div>
+                            <div class="label">Sec</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="party-started-message">DOSE ADMINISTERED ✓</p>
+                </div>
+
+                <div class="monitor-box">
+                    <p class="monitor-label">💊 Dose 2: Midnight Tranq</p>
+                    <div class="monitor-countdown" id="midnight-countdown">
+                        <div class="monitor-item" id="midnight-days-container">
+                            <div class="number" id="midnight-days">00</div>
+                            <div class="label">Days</div>
+                        </div>
+                        <div class="monitor-item">
+                            <div class="number" id="midnight-hours">00</div>
+                            <div class="label">Hrs</div>
+                        </div>
+                        <div class="monitor-item">
+                            <div class="number" id="midnight-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="monitor-item">
+                            <div class="number" id="midnight-seconds">00</div>
+                            <div class="label">Sec</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="new-year-message">K-HOLE TO PROSPERITY ✓</p>
+                </div>
+            </div>
+
+            <button class="calendar-btn-medical" onclick="downloadICS()">
+                📅 Refill Prescription (Download Calendar)
+            </button>
+
+            <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
+                <span>Patient Information Below</span>
+                <span class="arrow">▼</span>
+            </div>
+        </section>
+
+        <!-- DETAILS SECTION -->
+        <section class="section" id="details">
+            <h2 class="section-title fade-in">📋 Patient Information Leaflet</h2>
+
+            <div class="info-grid">
+                <div class="info-card-medical fade-in">
+                    <h3>Indications & Usage</h3>
+                    <p><strong>Location:</strong> <span class="highlight">TBA</span></p>
+                    <p>Exact coordinates will be disclosed to approved patients.</p>
+                </div>
+
+                <div class="info-card-medical fade-in">
+                    <h3>Dosage & Administration</h3>
+                    <p><strong>Date:</strong> <span class="highlight">17.02.2026</span></p>
+                    <p><strong>Time:</strong> <span class="highlight">16:00</span></p>
+                    <p><strong>Duration:</strong> Open End</p>
+                    <p>Administer as needed until desired prosperity is achieved.</p>
+                </div>
+
+                <div class="info-card-medical fade-in">
+                    <h3>Bring With You</h3>
+                    <p>• Jiaozi & traditional luck foods 🥟</p>
+                    <p>• Hongbao (Red Envelope) 🧧</p>
+                    <p>• Mandarins & Oranges 🍊</p>
+                    <p>• Personal Lantern (optional) 🏮</p>
+                    <p>• Preferred beverage</p>
+                    <p>• <span class="highlight">Good vibes (mandatory)</span></p>
+                </div>
+
+                <div class="info-card-medical fade-in">
+                    <h3>Contraindications</h3>
+                    <p><span class="highlight">WEAR RED</span> - Lucky color required!</p>
+                    <p>Horse-themed attire: APPROVED ✓</p>
+                    <p style="color: #999;">Black or White clothing: NOT APPROVED ✗</p>
+                    <p style="color: #999;">Bad energy: CONTRAINDICATED</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPOTIFY SECTION -->
+        <section class="spotify-section">
+            <h2 class="section-title fade-in">🎵 Therapeutic Audio Protocol</h2>
+            <div class="spotify-embed fade-in">
+                <iframe
+                    style="border-radius:12px"
+                    src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5g856aiKiDS?utm_source=generator&theme=0"
+                    width="100%"
+                    height="352"
+                    frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- RSVP SECTION -->
+        <section class="rsvp-section" id="rsvp">
+            <h2 class="section-title fade-in">💊 Prescription Confirmation</h2>
+            <p class="rsvp-hint fade-in">Select your dosage preference below</p>
+
+            <div class="pill-container fade-in">
+                <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Prescription%20Accepted%20%F0%9F%92%8A&body=PRESCRIPTION%20CONFIRMATION%0A%0APatient%20accepts%20the%20Fire%20Horse%20Festival%202026%20prescription.%0A%0AReady%20to%20dissociate%20into%20prosperity!%0A%0A%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%0A%0A%7BPatient%20Name%7D"
+                   class="pill-button pill-accept" onclick="fireConfetti(event, 'yes')">
+                    💊 Accept Prescription
+                </a>
+                <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Prescription%20Declined%20%E2%9A%A0%EF%B8%8F&body=PRESCRIPTION%20DECLINED%0A%0APatient%20reports%20allergy%20to%20good%20times.%0A%0AUnable%20to%20attend.%0A%0A%7BPatient%20Name%7D"
+                   class="pill-button pill-decline" onclick="fireConfetti(event, 'no')">
+                    ⚠️ Decline (Allergic to Fun)
+                </a>
+                <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Consultation%20Required%20%F0%9F%A9%BA&body=CONSULTATION%20REQUIRED%0A%0APatient%20still%20consulting%20their%20K-hole.%0A%0AWill%20confirm%20dosage%20soon.%0A%0A%7BPatient%20Name%7D"
+                   class="pill-button pill-maybe" onclick="fireConfetti(event, 'maybe')">
+                    🩺 Consultation Required
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p class="chinese">马到成功 💊🐴</p>
+            <p>From K-Hole to Prosperity. 恭喜发财!</p>
+            <p style="color: #666;">Special K Edition™ CNY 2026</p>
+
+            <div class="disclaimer">
+                <strong>⚠️ DISCLAIMER:</strong> This is SATIRE/PARODY. Not actual medical advice. Not actual horse tranquilizer. This is a meme-themed party invitation. Please celebrate safely and responsibly. 18+ event. Drink responsibly. 恭喜发财!
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floating Horses -->
+    <div class="floating-horse" style="left: 5%; top: 20%;">🐴</div>
+    <div class="floating-horse" style="right: 10%; top: 60%; animation-delay: -5s;">🐴</div>
+    <div class="floating-horse" style="left: 80%; top: 30%; animation-delay: -10s;">🐴</div>
+
+    <script>
+        // Configuration
+        const PARTY_START = new Date('2026-02-17T16:00:00').getTime();
+        const MIDNIGHT = new Date('2026-02-18T00:00:00').getTime();
+
+        const EVENT = {
+            title: 'Rx: Fire Horse Festival 2026 - Special K Edition',
+            description: 'Dissociate into Prosperity!\\n\\n恭喜发财!\\n\\nDresscode: WEAR RED!\\nBring: Jiaozi, Hongbao, Good Vibes\\n\\nDISCLAIMER: This is satire. Celebrate responsibly.',
+            location: 'TBA (Classified)',
+            startTime: '2026-02-17T16:00:00',
+            endTime: '2026-02-18T04:00:00'
+        };
+
+        // Countdown
+        let partyStarted = false;
+        let newYearReached = false;
+
+        function updateCountdowns() {
+            const now = Date.now();
+
+            const partyDiff = PARTY_START - now;
+            const partyCountdown = document.getElementById('party-countdown');
+            const partyMessage = document.getElementById('party-started-message');
+            const partyDaysContainer = document.getElementById('party-days-container');
+
+            if (partyDiff <= 0) {
+                if (!partyStarted) {
+                    partyStarted = true;
+                    fireNewYearCelebration();
+                }
+                partyCountdown.style.display = 'none';
+                partyMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(partyDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((partyDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((partyDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((partyDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) partyDaysContainer.classList.add('hidden');
+                else {
+                    partyDaysContainer.classList.remove('hidden');
+                    document.getElementById('party-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('party-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('party-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('party-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            const midnightDiff = MIDNIGHT - now;
+            const midnightCountdown = document.getElementById('midnight-countdown');
+            const newYearMessage = document.getElementById('new-year-message');
+            const midnightDaysContainer = document.getElementById('midnight-days-container');
+
+            if (midnightDiff <= 0) {
+                if (!newYearReached) {
+                    newYearReached = true;
+                    fireNewYearCelebration();
+                }
+                midnightCountdown.style.display = 'none';
+                newYearMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(midnightDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((midnightDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((midnightDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((midnightDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) midnightDaysContainer.classList.add('hidden');
+                else {
+                    midnightDaysContainer.classList.remove('hidden');
+                    document.getElementById('midnight-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('midnight-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('midnight-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('midnight-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        updateCountdowns();
+        setInterval(updateCountdowns, 1000);
+
+        // Calendar download
+        function downloadICS() {
+            const formatDate = (dateStr) => {
+                const d = new Date(dateStr);
+                return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            };
+
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CNY 2026 Special K Edition//DE
+BEGIN:VEVENT
+DTSTART:${formatDate(EVENT.startTime)}
+DTEND:${formatDate(EVENT.endTime)}
+SUMMARY:${EVENT.title}
+DESCRIPTION:${EVENT.description}
+LOCATION:${EVENT.location}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'cny-2026-special-k-edition.ics';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#00D9A3', '#FF006E', '#8338EC'] });
+        }
+
+        // Confetti
+        function fireConfetti(event, type) {
+            const colors = {
+                yes: ['#00D9A3', '#00B894'],
+                no: ['#666', '#444'],
+                maybe: ['#FF006E', '#8338EC', '#00F5FF']
+            };
+
+            const rect = event.target.getBoundingClientRect();
+            const x = (rect.left + rect.width / 2) / window.innerWidth;
+            const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { x, y },
+                colors: colors[type]
+            });
+        }
+
+        function fireNewYearCelebration() {
+            const duration = 8000;
+            const end = Date.now() + duration;
+            const colors = ['#00D9A3', '#FF006E', '#8338EC', '#00F5FF', '#39FF14'];
+
+            (function frame() {
+                confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors });
+                confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors });
+                if (Math.random() < 0.3) {
+                    confetti({ particleCount: 60, spread: 360, origin: { x: Math.random(), y: Math.random() * 0.5 }, colors });
+                }
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Easter egg - Type "SPECIALK" or Konami Code
+        let typed = '';
+        document.addEventListener('keydown', (e) => {
+            typed += e.key.toUpperCase();
+            if (typed.includes('SPECIALK') || typed.includes('KETAMINE')) {
+                // K-Hole effect
+                document.body.style.animation = 'none';
+                document.body.style.filter = 'hue-rotate(180deg) blur(2px)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                    fireNewYearCelebration();
+                }, 2000);
+                typed = '';
+            }
+            if (typed.length > 20) typed = typed.slice(-20);
+        });
+
+        // Konami code
+        const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+        let konamiIndex = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.code === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    fireNewYearCelebration();
+                    konamiIndex = 0;
+                }
+            } else if (e.code !== konamiCode[konamiIndex]) {
+                konamiIndex = 0;
+            }
+        });
+    </script>
+</body>
+</html>

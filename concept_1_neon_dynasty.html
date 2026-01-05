@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chinesisches Neujahr 2026 - Jahr des Feuer-Pferdes Feier am 17. Februar">
+    <meta property="og:title" content="🐴🔥 Year of the Fire Horse 2026 - Neon Dynasty">
+    <meta property="og:description" content="Komm zur CNY Feier! 恭喜发财!">
+    <title>🐴🔥 火马年 2026 | NEON DYNASTY | Year of the Fire Horse</title>
+
+    <!-- KONZEPT 1: NEON DYNASTY - Cyberpunk meets Traditional China -->
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-darker: #050508;
+            --neon-red: #ff073a;
+            --neon-gold: #ffd700;
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff00ff;
+            --neon-blue: #0088ff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --font-cyber: 'Orbitron', monospace;
+            --font-chinese: 'Noto Sans SC', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-mono);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cyberpunk Grid Background */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                linear-gradient(90deg, rgba(255, 7, 58, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(255, 7, 58, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(100px); }
+        }
+
+        /* Neon Overlay */
+        .neon-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(255, 7, 58, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 60%);
+            animation: neonPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-cyan);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-red);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            20% { clip: rect(112px, 9999px, 76px, 0); }
+            40% { clip: rect(70px, 9999px, 45px, 0); }
+            60% { clip: rect(10px, 9999px, 122px, 0); }
+            80% { clip: rect(67px, 9999px, 91px, 0); }
+            100% { clip: rect(21px, 9999px, 57px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 119px, 0); }
+            20% { clip: rect(17px, 9999px, 89px, 0); }
+            40% { clip: rect(89px, 9999px, 29px, 0); }
+            60% { clip: rect(34px, 9999px, 77px, 0); }
+            80% { clip: rect(99px, 9999px, 51px, 0); }
+            100% { clip: rect(53px, 9999px, 103px, 0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .system-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--neon-cyan);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: var(--font-cyber);
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--neon-red), var(--neon-gold), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px rgba(255, 7, 58, 0.5);
+        }
+
+        .chinese-title {
+            font-family: var(--font-chinese);
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            color: var(--neon-gold);
+            text-shadow: 0 0 30px var(--neon-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.5em;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--neon-red), var(--neon-gold));
+            padding: 0.75rem 2rem;
+            border-radius: 0;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            font-family: var(--font-cyber);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--bg-dark);
+            margin: 1.5rem 0;
+        }
+
+        /* Countdown Styles */
+        .countdown-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 3rem 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        @media (min-width: 768px) {
+            .countdown-wrapper {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .countdown-box {
+            flex: 1;
+            background: var(--glass-bg);
+            border: 1px solid var(--neon-red);
+            padding: 1.5rem;
+            position: relative;
+            clip-path: polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .countdown-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-red), var(--neon-gold));
+            animation: scanline 2s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .countdown-label {
+            font-family: var(--font-cyber);
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .countdown-item {
+            background: rgba(255, 7, 58, 0.1);
+            border: 1px solid var(--neon-red);
+            padding: 0.75rem 1rem;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .countdown-item .number {
+            font-family: var(--font-cyber);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--neon-gold);
+            text-shadow: 0 0 20px var(--neon-gold);
+        }
+
+        .countdown-item .label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .party-message {
+            display: none;
+            font-family: var(--font-cyber);
+            font-size: 1.5rem;
+            color: var(--neon-gold);
+            animation: neonBlink 1s infinite;
+        }
+
+        .party-message.visible { display: block; }
+
+        @keyframes neonBlink {
+            0%, 100% { opacity: 1; text-shadow: 0 0 20px var(--neon-gold); }
+            50% { opacity: 0.7; text-shadow: 0 0 40px var(--neon-gold); }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            color: var(--neon-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator .arrow {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            display: block;
+            text-align: center;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-cyber);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--neon-red);
+            text-shadow: 0 0 30px var(--neon-red);
+            letter-spacing: 0.1em;
+        }
+
+        .section-title span {
+            color: var(--neon-gold);
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--neon-cyan);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-gold);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .info-card:hover::before { opacity: 1; }
+
+        .info-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px var(--neon-cyan));
+        }
+
+        .info-card h3 {
+            font-family: var(--font-cyber);
+            font-size: 1.2rem;
+            color: var(--neon-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .info-card .highlight {
+            color: var(--neon-cyan);
+            font-weight: 700;
+        }
+
+        /* Spotify Section */
+        .spotify-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .spotify-embed {
+            max-width: 400px;
+            margin: 2rem auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255, 7, 58, 0.3);
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .rsvp-hint {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rsvp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-cyber);
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, var(--neon-red), #dc2626);
+            color: white;
+        }
+
+        .btn-no:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 7, 58, 0.5);
+        }
+
+        .btn-maybe {
+            background: linear-gradient(135deg, var(--neon-gold), #f59e0b);
+            color: var(--bg-dark);
+        }
+
+        .btn-maybe:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Calendar Button */
+        .calendar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .calendar-btn:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-dark);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer .chinese {
+            font-family: var(--font-chinese);
+            color: var(--neon-gold);
+            font-size: 1.2rem;
+        }
+
+        /* Floating Horse Animation */
+        .floating-horse {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: floatHorse 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--neon-red));
+        }
+
+        @keyframes floatHorse {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown-wrapper { flex-direction: column; }
+            .countdown-item { min-width: 60px; padding: 0.5rem; }
+            .button-container { flex-direction: column; align-items: center; }
+            .rsvp-button { width: 100%; max-width: 300px; justify-content: center; }
+        }
+
+        .hidden { display: none !important; }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="neon-overlay"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="system-tag">// SYSTEM REBOOT INITIATED</p>
+            <h1 class="glitch" data-text="FIRE HORSE">FIRE HORSE</h1>
+            <p class="chinese-title">火马年 2026</p>
+            <h2 style="font-family: var(--font-chinese); color: var(--neon-gold); font-size: 1.8rem; margin-bottom: 1rem;">恭喜发财</h2>
+            <div class="date-badge">17.02.2026 // 16:00 HRS</div>
+
+            <div class="countdown-wrapper">
+                <div class="countdown-box">
+                    <p class="countdown-label">&gt; PARTY_START.exe</p>
+                    <div class="countdown" id="party-countdown">
+                        <div class="countdown-item" id="party-days-container">
+                            <div class="number" id="party-days">00</div>
+                            <div class="label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-hours">00</div>
+                            <div class="label">Hrs</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-seconds">00</div>
+                            <div class="label">Sec</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="party-started-message">[ PARTY INITIALIZED ]</p>
+                </div>
+
+                <div class="countdown-box">
+                    <p class="countdown-label">&gt; MIDNIGHT_SEQUENCE</p>
+                    <div class="countdown" id="midnight-countdown">
+                        <div class="countdown-item" id="midnight-days-container">
+                            <div class="number" id="midnight-days">00</div>
+                            <div class="label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-hours">00</div>
+                            <div class="label">Hrs</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-seconds">00</div>
+                            <div class="label">Sec</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="new-year-message">[ NEW YEAR LOADED ]</p>
+                </div>
+            </div>
+
+            <button class="calendar-btn" onclick="downloadICS()">
+                📅 DOWNLOAD_CALENDAR.ics
+            </button>
+        </div>
+
+        <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
+            <span>ACCESS_DATA</span>
+            <span class="arrow">▼</span>
+        </div>
+    </section>
+
+    <!-- DETAILS SECTION -->
+    <section class="section" id="details">
+        <h2 class="section-title fade-in">&lt; <span>PARTY</span>_PROTOCOL /&gt;</h2>
+
+        <div class="info-grid">
+            <div class="info-card fade-in">
+                <div class="icon">📍</div>
+                <h3>LOCATION.dat</h3>
+                <p class="highlight">TBA</p>
+                <p>(wird noch bekannt gegeben)</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">⏰</div>
+                <h3>TIME.exe</h3>
+                <p><span class="highlight">17.02.2026</span></p>
+                <p>ab <span class="highlight">16:00 Uhr</span></p>
+                <p>Open End Protocol</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">📦</div>
+                <h3>CARGO.log</h3>
+                <p>• Jiaozi & Glücksessen 🥟</p>
+                <p>• Hongbao (Roter Umschlag) 🧧</p>
+                <p>• Mandarinen/Orangen 🍊</p>
+                <p>• Optional: Laterne 🏮</p>
+                <p>• Lieblingsgetränk 🍻</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">👔</div>
+                <h3>DRESS.cfg</h3>
+                <p><span class="highlight">ROT TRAGEN!</span> (Glücksfarbe)</p>
+                <p>Pferde-Motiv: APPROVED ✓</p>
+                <p style="color: var(--neon-red);">Schwarz/Weiß: DENIED ✗</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPOTIFY SECTION -->
+    <section class="spotify-section">
+        <h2 class="section-title fade-in">&lt; <span>AUDIO</span>_STREAM /&gt;</h2>
+        <div class="spotify-embed fade-in">
+            <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5g856aiKiDS?utm_source=generator&theme=0"
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section class="rsvp-section" id="rsvp">
+        <h2 class="section-title fade-in">&lt; <span>RSVP</span>_QUERY /&gt;</h2>
+        <p class="rsvp-hint fade-in">// Select your response protocol</p>
+
+        <div class="button-container fade-in">
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20ACCEPT%20%E2%9C%93&body=RESPONSE_CODE%3A%20ACCEPT%0A%0A%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%20I'm%20joining%20the%20Fire%20Horse%20Festival!%0A%0A%2F%2F%20END%20TRANSMISSION%0A%7BNAME%7D"
+               class="rsvp-button btn-yes" onclick="fireConfetti(event, 'yes')">
+                ✓ ACCEPT.exe
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20DECLINE&body=RESPONSE_CODE%3A%20DECLINE%0A%0AERROR%3A%20Cannot%20attend%20Fire%20Horse%20Festival.%0A%0A%2F%2F%20END%20TRANSMISSION%0A%7BNAME%7D"
+               class="rsvp-button btn-no" onclick="fireConfetti(event, 'no')">
+                ✗ DECLINE.exe
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20PENDING&body=RESPONSE_CODE%3A%20PENDING%0A%0ASTATUS%3A%20Awaiting%20confirmation...%0A%0A%2F%2F%20END%20TRANSMISSION%0A%7BNAME%7D"
+               class="rsvp-button btn-maybe" onclick="fireConfetti(event, 'maybe')">
+                ? PENDING.exe
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="chinese">马到成功 🐴🔥</p>
+        <p>When the fire horse gallops, fortune follows.</p>
+        <p style="margin-top: 1rem; font-size: 0.75rem;">// NEON DYNASTY CNY 2026</p>
+    </footer>
+
+    <script>
+        // Configuration
+        const PARTY_START = new Date('2026-02-17T16:00:00').getTime();
+        const MIDNIGHT = new Date('2026-02-18T00:00:00').getTime();
+
+        const EVENT = {
+            title: '🐴🔥 CNY 2026 - Year of the Fire Horse',
+            description: 'Chinesisches Neujahr 2026 - NEON DYNASTY Edition\\n\\n恭喜发财!\\n\\nDresscode: ROT tragen!\\nBring: Jiaozi, Hongbao, Gute Laune',
+            location: 'TBA',
+            startTime: '2026-02-17T16:00:00',
+            endTime: '2026-02-18T04:00:00'
+        };
+
+        // Floating horses
+        function createHorse() {
+            const horse = document.createElement('div');
+            horse.className = 'floating-horse';
+            horse.innerHTML = '🐴';
+            horse.style.left = Math.random() * 100 + '%';
+            horse.style.bottom = '-50px';
+            document.body.appendChild(horse);
+            setTimeout(() => horse.remove(), 8000);
+        }
+        setInterval(createHorse, 3000);
+
+        // Countdown logic
+        let partyStarted = false;
+        let newYearReached = false;
+
+        function updateCountdowns() {
+            const now = Date.now();
+
+            // Party countdown
+            const partyDiff = PARTY_START - now;
+            const partyCountdown = document.getElementById('party-countdown');
+            const partyMessage = document.getElementById('party-started-message');
+            const partyDaysContainer = document.getElementById('party-days-container');
+
+            if (partyDiff <= 0) {
+                if (!partyStarted) {
+                    partyStarted = true;
+                    fireNewYearCelebration();
+                }
+                partyCountdown.style.display = 'none';
+                partyMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(partyDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((partyDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((partyDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((partyDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) {
+                    partyDaysContainer.classList.add('hidden');
+                } else {
+                    partyDaysContainer.classList.remove('hidden');
+                    document.getElementById('party-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('party-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('party-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('party-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            // Midnight countdown
+            const midnightDiff = MIDNIGHT - now;
+            const midnightCountdown = document.getElementById('midnight-countdown');
+            const newYearMessage = document.getElementById('new-year-message');
+            const midnightDaysContainer = document.getElementById('midnight-days-container');
+
+            if (midnightDiff <= 0) {
+                if (!newYearReached) {
+                    newYearReached = true;
+                    fireNewYearCelebration();
+                }
+                midnightCountdown.style.display = 'none';
+                newYearMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(midnightDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((midnightDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((midnightDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((midnightDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) {
+                    midnightDaysContainer.classList.add('hidden');
+                } else {
+                    midnightDaysContainer.classList.remove('hidden');
+                    document.getElementById('midnight-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('midnight-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('midnight-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('midnight-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        updateCountdowns();
+        setInterval(updateCountdowns, 1000);
+
+        // Calendar download
+        function downloadICS() {
+            const formatDate = (dateStr) => {
+                const d = new Date(dateStr);
+                return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            };
+
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CNY 2026 Fire Horse//DE
+BEGIN:VEVENT
+DTSTART:${formatDate(EVENT.startTime)}
+DTEND:${formatDate(EVENT.endTime)}
+SUMMARY:${EVENT.title}
+DESCRIPTION:${EVENT.description}
+LOCATION:${EVENT.location}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'cny-2026-fire-horse.ics';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#ff073a', '#ffd700', '#00ffff'] });
+        }
+
+        // Confetti effects
+        function fireConfetti(event, type) {
+            const colors = {
+                yes: ['#22c55e', '#ffd700', '#00ffff'],
+                no: ['#ff073a', '#dc2626'],
+                maybe: ['#ffd700', '#f59e0b', '#00ffff']
+            };
+
+            const rect = event.target.getBoundingClientRect();
+            const x = (rect.left + rect.width / 2) / window.innerWidth;
+            const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { x, y },
+                colors: colors[type]
+            });
+        }
+
+        function fireNewYearCelebration() {
+            const duration = 8000;
+            const end = Date.now() + duration;
+            const colors = ['#ff073a', '#ffd700', '#00ffff', '#ff00ff'];
+
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Easter egg - Konami code
+        const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+        let konamiIndex = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.code === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    fireNewYearCelebration();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+    </script>
+</body>
+</html>

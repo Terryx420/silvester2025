@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chinesisches Neujahr 2026 - Jahr des Feuer-Pferdes Feier am 17. Februar">
+    <meta property="og:title" content="🏮 Year of the Fire Horse 2026 - Traditionelle Eleganz">
+    <title>🏮 恭喜发财 2026 | Year of Grace and Fire | 火马年</title>
+
+    <!-- KONZEPT 3: TRADWIFE BUT MAKE IT HORSE - Ultra-Traditional with a Twist, Zen Garden Vibes -->
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --crimson: #C8102E;
+            --gold: #D4AF37;
+            --gold-light: #F5E6C8;
+            --cream: #FFF8F0;
+            --ink-black: #1a1a1a;
+            --soft-gray: #8B8680;
+            --paper: #FAF6F0;
+            --jade: #00A86B;
+            --font-chinese: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+            --font-serif: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            --font-chinese-body: 'Noto Serif SC', serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-serif);
+            background: var(--cream);
+            color: var(--ink-black);
+            min-height: 100vh;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Paper Texture Background */
+        .paper-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"),
+                linear-gradient(180deg, var(--cream) 0%, var(--paper) 50%, var(--gold-light) 100%);
+        }
+
+        /* Decorative Border Frame */
+        .decorative-frame {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--gold);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .decorative-frame::before,
+        .decorative-frame::after {
+            content: '福';
+            position: absolute;
+            font-family: var(--font-chinese);
+            font-size: 1.5rem;
+            color: var(--crimson);
+            background: var(--cream);
+            padding: 0 0.5rem;
+        }
+
+        .decorative-frame::before {
+            top: -0.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .decorative-frame::after {
+            bottom: -0.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Floating Lanterns */
+        .floating-lantern {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.6;
+            animation: floatLantern 15s ease-in-out infinite;
+        }
+
+        @keyframes floatLantern {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .calligraphy-title {
+            font-family: var(--font-chinese);
+            font-size: clamp(4rem, 15vw, 10rem);
+            color: var(--ink-black);
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 var(--gold);
+            position: relative;
+        }
+
+        .calligraphy-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+        }
+
+        .english-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--soft-gray);
+            letter-spacing: 0.3em;
+            margin: 2rem 0;
+        }
+
+        .blessing {
+            font-family: var(--font-chinese-body);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--crimson);
+            margin: 1.5rem 0;
+        }
+
+        .date-elegant {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid var(--gold);
+            padding: 1.5rem 3rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .date-elegant::before,
+        .date-elegant::after {
+            content: '✦';
+            position: absolute;
+            color: var(--gold);
+        }
+
+        .date-elegant::before { left: 10px; top: 50%; transform: translateY(-50%); }
+        .date-elegant::after { right: 10px; top: 50%; transform: translateY(-50%); }
+
+        .date-elegant .day {
+            font-family: var(--font-chinese);
+            font-size: 2.5rem;
+            color: var(--crimson);
+        }
+
+        .date-elegant .details {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: var(--soft-gray);
+            letter-spacing: 0.2em;
+        }
+
+        /* Countdown - Scroll Style */
+        .countdown-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 3rem 0;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        @media (min-width: 768px) {
+            .countdown-wrapper {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .countdown-scroll {
+            flex: 1;
+            background: var(--paper);
+            border: 1px solid var(--gold);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .countdown-scroll::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--crimson), var(--gold), var(--crimson));
+        }
+
+        .countdown-label {
+            font-family: var(--font-chinese-body);
+            font-size: 1rem;
+            color: var(--soft-gray);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .countdown-item .number {
+            font-family: var(--font-chinese);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--crimson);
+        }
+
+        .countdown-item .label {
+            font-family: var(--font-chinese-body);
+            font-size: 0.7rem;
+            color: var(--soft-gray);
+        }
+
+        .party-message {
+            display: none;
+            font-family: var(--font-chinese);
+            font-size: 1.5rem;
+            color: var(--crimson);
+            text-align: center;
+        }
+
+        .party-message.visible { display: block; }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .scroll-indicator span {
+            font-family: var(--font-serif);
+            font-size: 0.8rem;
+            color: var(--soft-gray);
+            letter-spacing: 0.2em;
+            display: block;
+        }
+
+        .scroll-indicator .arrow {
+            font-size: 1.5rem;
+            color: var(--gold);
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-chinese);
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--ink-black);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 1rem auto 0;
+        }
+
+        /* Info Cards - Watercolor Style */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid var(--gold-light);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(200, 16, 46, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .info-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-family: var(--font-chinese-body);
+            font-size: 1.3rem;
+            color: var(--crimson);
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            font-family: var(--font-serif);
+            color: var(--ink-black);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .info-card .highlight {
+            color: var(--crimson);
+            font-weight: 600;
+        }
+
+        /* Spotify Section */
+        .spotify-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+        }
+
+        .spotify-embed {
+            max-width: 400px;
+            margin: 2rem auto;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .rsvp-hint {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--soft-gray);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .rsvp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-chinese-body);
+            font-size: 1rem;
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            background: white;
+            color: var(--ink-black);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .rsvp-button:hover::before {
+            left: 100%;
+        }
+
+        .btn-yes {
+            background: var(--crimson);
+            color: white;
+            border-color: var(--crimson);
+        }
+
+        .btn-yes:hover {
+            background: #a00d24;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(200, 16, 46, 0.2);
+        }
+
+        .btn-no:hover {
+            background: var(--paper);
+            transform: translateY(-3px);
+        }
+
+        .btn-maybe {
+            border-color: var(--gold);
+        }
+
+        .btn-maybe:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        /* Calendar Button */
+        .calendar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--soft-gray);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-btn:hover {
+            background: var(--gold-light);
+            color: var(--ink-black);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--gold-light);
+        }
+
+        footer .chinese {
+            font-family: var(--font-chinese);
+            font-size: 2rem;
+            color: var(--crimson);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--soft-gray);
+            font-size: 1rem;
+        }
+
+        /* Ink Splash Decoration */
+        .ink-splash {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .decorative-frame {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+            }
+            .countdown-wrapper { flex-direction: column; }
+            .button-container { flex-direction: column; align-items: center; }
+            .rsvp-button { width: 100%; max-width: 280px; justify-content: center; }
+        }
+
+        .hidden { display: none !important; }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="paper-bg"></div>
+    <div class="decorative-frame"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="calligraphy-title">火马年</h1>
+            <p class="english-title">The Year of Grace and Fire</p>
+            <p class="blessing">恭喜发财</p>
+
+            <div class="date-elegant">
+                <span class="day">十七日 二月</span>
+                <span class="details">17. FEBRUAR 2026 · AB 16 UHR</span>
+            </div>
+
+            <div class="countdown-wrapper">
+                <div class="countdown-scroll">
+                    <p class="countdown-label">距离聚会开始 · Bis zur Feier</p>
+                    <div class="countdown" id="party-countdown">
+                        <div class="countdown-item" id="party-days-container">
+                            <div class="number" id="party-days">00</div>
+                            <div class="label">天 Tage</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-hours">00</div>
+                            <div class="label">时 Std</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-minutes">00</div>
+                            <div class="label">分 Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-seconds">00</div>
+                            <div class="label">秒 Sek</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="party-started-message">欢迎光临 · Willkommen</p>
+                </div>
+
+                <div class="countdown-scroll">
+                    <p class="countdown-label">距离午夜 · Bis Mitternacht</p>
+                    <div class="countdown" id="midnight-countdown">
+                        <div class="countdown-item" id="midnight-days-container">
+                            <div class="number" id="midnight-days">00</div>
+                            <div class="label">天 Tage</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-hours">00</div>
+                            <div class="label">时 Std</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-minutes">00</div>
+                            <div class="label">分 Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-seconds">00</div>
+                            <div class="label">秒 Sek</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="new-year-message">新年快乐 · Frohes Neues Jahr</p>
+                </div>
+            </div>
+
+            <button class="calendar-btn" onclick="downloadICS()">
+                📅 Im Kalender speichern
+            </button>
+        </div>
+
+        <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
+            <span>Mehr erfahren</span>
+            <div class="arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- DETAILS SECTION -->
+    <section class="section" id="details">
+        <h2 class="section-title fade-in">宴会详情</h2>
+
+        <div class="info-grid">
+            <div class="info-card fade-in">
+                <div class="icon">🏮</div>
+                <h3>地点 · Ort</h3>
+                <p class="highlight">Wird noch bekannt gegeben</p>
+                <p>Die Einladung folgt mit genauer Adresse.</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">🕐</div>
+                <h3>时间 · Zeit</h3>
+                <p><span class="highlight">17. Februar 2026</span></p>
+                <p>Ab 16:00 Uhr</p>
+                <p style="font-style: italic;">Open End</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">🎁</div>
+                <h3>礼物 · Mitbringen</h3>
+                <p>• Jiaozi oder traditionelles Glücksessen 🥟</p>
+                <p>• Hongbao (Roter Umschlag) 🧧</p>
+                <p>• Mandarinen & Orangen 🍊</p>
+                <p>• Eigene Laterne (optional) 🏮</p>
+                <p>• Lieblingsgetränk</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">👘</div>
+                <h3>着装 · Dresscode</h3>
+                <p><span class="highlight">Rot tragen</span> – die Farbe des Glücks</p>
+                <p>Pferde-Motiv willkommen 🐴</p>
+                <p style="color: var(--crimson);">Bitte Schwarz & Weiß vermeiden</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPOTIFY SECTION -->
+    <section class="spotify-section">
+        <h2 class="section-title fade-in">音乐 · Musik</h2>
+        <div class="spotify-embed fade-in">
+            <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5g856aiKiDS?utm_source=generator&theme=0"
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section class="rsvp-section" id="rsvp">
+        <h2 class="section-title fade-in">请回复 · Antwort erbeten</h2>
+        <p class="rsvp-hint fade-in">Wir freuen uns auf Ihre Nachricht</p>
+
+        <div class="button-container fade-in">
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Zusage%20%E2%9C%93&body=%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%0A%0AMit%20Freude%20nehme%20ich%20die%20Einladung%20zur%20Feier%20des%20Jahres%20des%20Feuer-Pferdes%20an.%0A%0A%E9%A9%AC%E5%88%B0%E6%88%90%E5%8A%9F!%0A%0AMit%20herzlichen%20Gr%C3%BC%C3%9Fen%2C%0A%7BIhr%20Name%7D"
+               class="rsvp-button btn-yes" onclick="fireConfetti(event, 'yes')">
+                来 · Ja, ich komme
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Absage&body=Mit%20Bedauern%20muss%20ich%20mitteilen%2C%20dass%20ich%20an%20der%20Feier%20leider%20nicht%20teilnehmen%20kann.%0A%0AIch%20w%C3%BCnsche%20allen%20ein%20gl%C3%BCckliches%20neues%20Jahr!%0A%0A%E6%96%B0%E5%B9%B4%E5%BF%AB%E4%B9%90!%0A%0A%7BIhr%20Name%7D"
+               class="rsvp-button btn-no" onclick="fireConfetti(event, 'no')">
+                遗憾 · Leider nicht
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Vielleicht&body=Vielen%20Dank%20f%C3%BCr%20die%20Einladung.%0A%0AIch%20bin%20mir%20noch%20unsicher%20und%20werde%20mich%20noch%20melden.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A%7BIhr%20Name%7D"
+               class="rsvp-button btn-maybe" onclick="fireConfetti(event, 'maybe')">
+                也许 · Vielleicht
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="chinese">马到成功</p>
+        <p>Möge das Pferd Erfolg und Wohlstand bringen.</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">恭喜发财 · Gong Xi Fa Cai · 2026</p>
+    </footer>
+
+    <script>
+        // Configuration
+        const PARTY_START = new Date('2026-02-17T16:00:00').getTime();
+        const MIDNIGHT = new Date('2026-02-18T00:00:00').getTime();
+
+        const EVENT = {
+            title: '🏮 CNY 2026 - Jahr des Feuer-Pferdes',
+            description: '恭喜发财!\\n\\nChinesisches Neujahr 2026\\nJahr des Feuer-Pferdes\\n\\nDresscode: Rot tragen (Glücksfarbe)\\nMitbringen: Jiaozi, Hongbao, gute Wünsche',
+            location: 'TBA',
+            startTime: '2026-02-17T16:00:00',
+            endTime: '2026-02-18T04:00:00'
+        };
+
+        // Floating Lanterns
+        function createLanterns() {
+            const positions = [
+                { left: '5%', top: '10%' },
+                { left: '95%', top: '15%' },
+                { left: '10%', top: '60%' },
+                { left: '90%', top: '70%' },
+                { left: '50%', top: '85%' }
+            ];
+
+            positions.forEach((pos, i) => {
+                const lantern = document.createElement('div');
+                lantern.className = 'floating-lantern';
+                lantern.innerHTML = '🏮';
+                lantern.style.left = pos.left;
+                lantern.style.top = pos.top;
+                lantern.style.animationDelay = (i * 2) + 's';
+                document.body.appendChild(lantern);
+            });
+        }
+        createLanterns();
+
+        // Countdown
+        let partyStarted = false;
+        let newYearReached = false;
+
+        function updateCountdowns() {
+            const now = Date.now();
+
+            // Party countdown
+            const partyDiff = PARTY_START - now;
+            const partyCountdown = document.getElementById('party-countdown');
+            const partyMessage = document.getElementById('party-started-message');
+            const partyDaysContainer = document.getElementById('party-days-container');
+
+            if (partyDiff <= 0) {
+                if (!partyStarted) {
+                    partyStarted = true;
+                    fireNewYearCelebration();
+                }
+                partyCountdown.style.display = 'none';
+                partyMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(partyDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((partyDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((partyDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((partyDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) partyDaysContainer.classList.add('hidden');
+                else {
+                    partyDaysContainer.classList.remove('hidden');
+                    document.getElementById('party-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('party-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('party-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('party-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            // Midnight countdown
+            const midnightDiff = MIDNIGHT - now;
+            const midnightCountdown = document.getElementById('midnight-countdown');
+            const newYearMessage = document.getElementById('new-year-message');
+            const midnightDaysContainer = document.getElementById('midnight-days-container');
+
+            if (midnightDiff <= 0) {
+                if (!newYearReached) {
+                    newYearReached = true;
+                    fireNewYearCelebration();
+                }
+                midnightCountdown.style.display = 'none';
+                newYearMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(midnightDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((midnightDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((midnightDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((midnightDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) midnightDaysContainer.classList.add('hidden');
+                else {
+                    midnightDaysContainer.classList.remove('hidden');
+                    document.getElementById('midnight-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('midnight-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('midnight-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('midnight-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        updateCountdowns();
+        setInterval(updateCountdowns, 1000);
+
+        // Calendar download
+        function downloadICS() {
+            const formatDate = (dateStr) => {
+                const d = new Date(dateStr);
+                return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            };
+
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CNY 2026 Fire Horse//DE
+BEGIN:VEVENT
+DTSTART:${formatDate(EVENT.startTime)}
+DTEND:${formatDate(EVENT.endTime)}
+SUMMARY:${EVENT.title}
+DESCRIPTION:${EVENT.description}
+LOCATION:${EVENT.location}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'cny-2026-fire-horse.ics';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 }, colors: ['#C8102E', '#D4AF37', '#00A86B'] });
+        }
+
+        // Confetti - Elegant version
+        function fireConfetti(event, type) {
+            const colors = {
+                yes: ['#C8102E', '#D4AF37'],
+                no: ['#8B8680', '#C8102E'],
+                maybe: ['#D4AF37', '#F5E6C8']
+            };
+
+            const rect = event.target.getBoundingClientRect();
+            const x = (rect.left + rect.width / 2) / window.innerWidth;
+            const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: { x, y },
+                colors: colors[type],
+                gravity: 0.8
+            });
+        }
+
+        function fireNewYearCelebration() {
+            const duration = 6000;
+            const end = Date.now() + duration;
+            const colors = ['#C8102E', '#D4AF37', '#00A86B'];
+
+            (function frame() {
+                confetti({ particleCount: 2, angle: 60, spread: 40, origin: { x: 0 }, colors, gravity: 0.7 });
+                confetti({ particleCount: 2, angle: 120, spread: 40, origin: { x: 1 }, colors, gravity: 0.7 });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Easter egg - Type 恭喜发财
+        let typed = '';
+        document.addEventListener('keydown', (e) => {
+            typed += e.key;
+            if (typed.includes('gxfc') || typed.includes('GXFC')) {
+                fireNewYearCelebration();
+                typed = '';
+            }
+            if (typed.length > 10) typed = typed.slice(-10);
+        });
+    </script>
+</body>
+</html>
