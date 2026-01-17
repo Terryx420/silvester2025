@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CNY 2026 - Year of the Fire Horse - Brutalist Edition">
+    <title>CNY 2026 / FIRE HORSE / BRUTALIST</title>
+
+    <!-- KONZEPT 10: BRUTALIST MINIMAL - Bold, Stark, Raw Design -->
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-mono: 'Space Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+
+            --black: #000000;
+            --white: #ffffff;
+            --red: #ff0000;
+            --gray: #888888;
+
+            --border-width: 3px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--white);
+            color: var(--black);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            border-bottom: var(--border-width) solid var(--black);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-sans);
+            font-size: clamp(3rem, 15vw, 12rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+        }
+
+        .chinese-big {
+            font-size: clamp(2rem, 10vw, 6rem);
+            font-weight: 900;
+            margin: 1rem 0;
+        }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Countdown */
+        .countdown-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-wrapper { grid-template-columns: 1fr; }
+        }
+
+        .countdown-box {
+            border: var(--border-width) solid var(--black);
+            padding: 2rem;
+        }
+
+        .countdown-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .countdown-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .countdown-item .number {
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .countdown-item .label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .party-message {
+            display: none;
+            font-family: var(--font-sans);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--red);
+        }
+
+        .party-message.visible { display: block; }
+
+        /* Calendar button */
+        .calendar-btn {
+            display: inline-block;
+            background: transparent;
+            border: var(--border-width) solid var(--black);
+            color: var(--black);
+            padding: 1rem 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .calendar-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .scroll-indicator span {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: var(--border-width) solid var(--black);
+        }
+
+        .section-title {
+            font-family: var(--font-sans);
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            letter-spacing: -0.03em;
+        }
+
+        /* Info cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border: var(--border-width) solid var(--black);
+        }
+
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+        }
+
+        .info-card {
+            padding: 2rem;
+            border-bottom: var(--border-width) solid var(--black);
+            border-right: var(--border-width) solid var(--black);
+        }
+
+        .info-card:nth-child(2n) { border-right: none; }
+        .info-card:nth-last-child(-n+2) { border-bottom: none; }
+
+        @media (max-width: 768px) {
+            .info-card { border-right: none; }
+            .info-card:last-child { border-bottom: none; }
+            .info-card:nth-last-child(2) { border-bottom: var(--border-width) solid var(--black); }
+        }
+
+        .info-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .info-card .highlight {
+            font-weight: 600;
+        }
+
+        .info-card .red { color: var(--red); }
+
+        /* Spotify section */
+        .spotify-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: var(--border-width) solid var(--black);
+        }
+
+        .spotify-embed {
+            max-width: 400px;
+            margin: 2rem 0;
+            border: var(--border-width) solid var(--black);
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rsvp-hint {
+            font-family: var(--font-mono);
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
+        .rsvp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem 2.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: var(--border-width) solid var(--black);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: -3px;
+        }
+
+        .btn-yes {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-yes:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-no {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-no:hover {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+
+        .btn-maybe {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-maybe:hover {
+            background: var(--gray);
+            color: var(--white);
+            border-color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .button-container { flex-direction: column; }
+            .rsvp-button { margin-right: 0; margin-bottom: -3px; width: 100%; justify-content: center; }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: var(--border-width) solid var(--black);
+        }
+
+        footer p {
+            font-family: var(--font-mono);
+            color: var(--gray);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        footer .chinese-footer {
+            font-size: 2rem;
+            color: var(--black);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hidden { display: none !important; }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="tag">Year of the Fire Horse</p>
+            <h1>FIRE<br><span>HORSE</span><br>2026</h1>
+            <p class="chinese-big">恭喜发财</p>
+            <p class="subtitle">Chinese New Year Celebration</p>
+
+            <div class="date-badge">
+                17.02.2026 / 16:00
+            </div>
+
+            <div class="countdown-wrapper">
+                <div class="countdown-box">
+                    <p class="countdown-label">Party Starts</p>
+                    <div class="countdown" id="party-countdown">
+                        <div class="countdown-item" id="party-days-container">
+                            <div class="number" id="party-days">00</div>
+                            <div class="label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-hours">00</div>
+                            <div class="label">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-seconds">00</div>
+                            <div class="label">Sec</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="party-started-message">NOW</p>
+                </div>
+
+                <div class="countdown-box">
+                    <p class="countdown-label">Midnight</p>
+                    <div class="countdown" id="midnight-countdown">
+                        <div class="countdown-item" id="midnight-days-container">
+                            <div class="number" id="midnight-days">00</div>
+                            <div class="label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-hours">00</div>
+                            <div class="label">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-seconds">00</div>
+                            <div class="label">Sec</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="new-year-message">2026</p>
+                </div>
+            </div>
+
+            <button class="calendar-btn" onclick="downloadICS()">
+                Save to Calendar →
+            </button>
+        </div>
+
+        <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
+            <span>Scroll ↓</span>
+        </div>
+    </section>
+
+    <!-- DETAILS SECTION -->
+    <section class="section" id="details">
+        <h2 class="section-title fade-in">Details</h2>
+
+        <div class="info-grid">
+            <div class="info-card fade-in">
+                <div class="icon">📍</div>
+                <h3>Location</h3>
+                <p class="highlight">TBA</p>
+                <p>Address coming soon</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">⏰</div>
+                <h3>Time</h3>
+                <p><span class="highlight">17.02.2026</span></p>
+                <p>From <span class="highlight">16:00</span></p>
+                <p>Open end</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">🎒</div>
+                <h3>Bring</h3>
+                <p>Jiaozi / Dumplings</p>
+                <p>Hongbao / Red Envelope</p>
+                <p>Oranges</p>
+                <p>Drinks</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">👔</div>
+                <h3>Dress Code</h3>
+                <p><span class="highlight red">WEAR RED</span></p>
+                <p>Horse costume = bonus</p>
+                <p class="red">No black / white</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPOTIFY SECTION -->
+    <section class="spotify-section">
+        <h2 class="section-title fade-in">Playlist</h2>
+        <div class="spotify-embed fade-in">
+            <iframe
+                style="border-radius:0"
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5g856aiKiDS?utm_source=generator&theme=0"
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section class="rsvp-section" id="rsvp">
+        <h2 class="section-title fade-in">RSVP</h2>
+        <p class="rsvp-hint fade-in">Click to send email</p>
+
+        <div class="button-container fade-in">
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Ich%20bin%20dabei&body=Ich%20bin%20dabei.%0A%0A%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2%0A%0A%7BName%7D"
+               class="rsvp-button btn-yes" onclick="fireConfetti(event, 'yes')">
+                Yes →
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Absage&body=Leider%20nicht.%0A%0A%7BName%7D"
+               class="rsvp-button btn-no" onclick="fireConfetti(event, 'no')">
+                No →
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Vielleicht&body=Vielleicht.%0A%0A%7BName%7D"
+               class="rsvp-button btn-maybe" onclick="fireConfetti(event, 'maybe')">
+                Maybe →
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="chinese-footer">马到成功</p>
+        <p>BRUTALIST CNY 2026</p>
+    </footer>
+
+    <script>
+        const PARTY_START = new Date('2026-02-17T16:00:00').getTime();
+        const MIDNIGHT = new Date('2026-02-18T00:00:00').getTime();
+
+        const EVENT = {
+            title: 'CNY 2026 - Fire Horse',
+            description: 'Year of the Fire Horse\\n\\n恭喜发财\\n\\nDresscode: Red\\nBring: Jiaozi, Hongbao, Drinks',
+            location: 'TBA',
+            startTime: '2026-02-17T16:00:00',
+            endTime: '2026-02-18T04:00:00'
+        };
+
+        let partyStarted = false;
+        let newYearReached = false;
+
+        function updateCountdowns() {
+            const now = Date.now();
+
+            const partyDiff = PARTY_START - now;
+            const partyCountdown = document.getElementById('party-countdown');
+            const partyMessage = document.getElementById('party-started-message');
+            const partyDaysContainer = document.getElementById('party-days-container');
+
+            if (partyDiff <= 0) {
+                if (!partyStarted) {
+                    partyStarted = true;
+                    fireNewYearCelebration();
+                }
+                partyCountdown.style.display = 'none';
+                partyMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(partyDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((partyDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((partyDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((partyDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) partyDaysContainer.classList.add('hidden');
+                else {
+                    partyDaysContainer.classList.remove('hidden');
+                    document.getElementById('party-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('party-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('party-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('party-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            const midnightDiff = MIDNIGHT - now;
+            const midnightCountdown = document.getElementById('midnight-countdown');
+            const newYearMessage = document.getElementById('new-year-message');
+            const midnightDaysContainer = document.getElementById('midnight-days-container');
+
+            if (midnightDiff <= 0) {
+                if (!newYearReached) {
+                    newYearReached = true;
+                    fireNewYearCelebration();
+                }
+                midnightCountdown.style.display = 'none';
+                newYearMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(midnightDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((midnightDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((midnightDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((midnightDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) midnightDaysContainer.classList.add('hidden');
+                else {
+                    midnightDaysContainer.classList.remove('hidden');
+                    document.getElementById('midnight-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('midnight-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('midnight-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('midnight-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        updateCountdowns();
+        setInterval(updateCountdowns, 1000);
+
+        function downloadICS() {
+            const formatDate = (dateStr) => {
+                const d = new Date(dateStr);
+                return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            };
+
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CNY 2026 Brutalist//DE
+BEGIN:VEVENT
+DTSTART:${formatDate(EVENT.startTime)}
+DTEND:${formatDate(EVENT.endTime)}
+SUMMARY:${EVENT.title}
+DESCRIPTION:${EVENT.description}
+LOCATION:${EVENT.location}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'cny-2026-brutalist.ics';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            fireNewYearCelebration();
+        }
+
+        function fireConfetti(event, type) {
+            const colors = {
+                yes: ['#000000', '#333333', '#666666'],
+                no: ['#ff0000', '#cc0000', '#990000'],
+                maybe: ['#888888', '#aaaaaa', '#cccccc']
+            };
+
+            const rect = event.target.getBoundingClientRect();
+            const x = (rect.left + rect.width / 2) / window.innerWidth;
+            const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+            confetti({
+                particleCount: 60,
+                spread: 50,
+                origin: { x, y },
+                colors: colors[type],
+                startVelocity: 25
+            });
+        }
+
+        function fireNewYearCelebration() {
+            const duration = 5000;
+            const end = Date.now() + duration;
+            const colors = ['#000000', '#ff0000', '#888888'];
+
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 40, origin: { x: 0 }, colors });
+                confetti({ particleCount: 3, angle: 120, spread: 40, origin: { x: 1 }, colors });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+        let konamiIndex = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.code === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    fireNewYearCelebration();
+                    alert('BRUTAL.');
+                    konamiIndex = 0;
+                }
+            } else konamiIndex = 0;
+        });
+    </script>
+</body>
+</html>

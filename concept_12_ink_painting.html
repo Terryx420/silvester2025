@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CNY 2026 - Year of the Fire Horse - Chinese Ink Painting Edition">
+    <title>🎨 CNY 2026 - 水墨画 - Fire Horse 🐴</title>
+
+    <!-- KONZEPT 12: CHINESE INK PAINTING - Traditional Ink Wash Aesthetic -->
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-chinese: 'Noto Serif SC', serif;
+            --font-western: 'Cormorant Garamond', serif;
+
+            --ink-black: #1a1a1a;
+            --ink-gray: #4a4a4a;
+            --ink-light: #8a8a8a;
+            --paper-cream: #f5f0e8;
+            --paper-warm: #ebe3d5;
+            --vermillion: #c23b22;
+            --gold: #b8860b;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-western);
+            background: var(--paper-cream);
+            color: var(--ink-black);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Paper texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Ink splatter decorations */
+        .ink-splatter {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(ellipse at center, var(--ink-light) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        /* Decorative border */
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--ink-light);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .ink-tag {
+            font-family: var(--font-western);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--ink-light);
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-chinese);
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 700;
+            color: var(--ink-black);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--vermillion);
+        }
+
+        .subtitle-western {
+            font-family: var(--font-western);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-style: italic;
+            color: var(--ink-gray);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle-chinese {
+            font-family: var(--font-chinese);
+            font-size: 1.2rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: var(--vermillion);
+            color: var(--paper-cream);
+            padding: 0.75rem 2rem;
+            font-family: var(--font-chinese);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Countdown */
+        .countdown-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        @media (min-width: 768px) {
+            .countdown-wrapper { flex-direction: row; }
+        }
+
+        .countdown-box {
+            flex: 1;
+            background: var(--paper-warm);
+            border: 1px solid var(--ink-light);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .countdown-box::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--ink-light);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .countdown-label {
+            font-family: var(--font-chinese);
+            font-size: 0.9rem;
+            color: var(--ink-gray);
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .countdown-item .number {
+            font-family: var(--font-chinese);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--ink-black);
+            line-height: 1;
+        }
+
+        .countdown-item .label {
+            font-family: var(--font-chinese);
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            margin-top: 0.5rem;
+        }
+
+        .party-message {
+            display: none;
+            font-family: var(--font-chinese);
+            font-size: 2rem;
+            color: var(--vermillion);
+        }
+
+        .party-message.visible { display: block; }
+
+        /* Calendar button */
+        .calendar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--ink-black);
+            color: var(--ink-black);
+            padding: 1rem 2rem;
+            font-family: var(--font-chinese);
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-btn:hover {
+            background: var(--ink-black);
+            color: var(--paper-cream);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            cursor: pointer;
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            font-family: var(--font-chinese);
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-chinese);
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            text-align: center;
+            color: var(--ink-black);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--vermillion);
+            margin: 1rem auto 0;
+        }
+
+        /* Info cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--paper-warm);
+            border: 1px solid var(--ink-light);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--ink-light);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .info-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-family: var(--font-chinese);
+            font-size: 1.1rem;
+            color: var(--ink-black);
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p {
+            font-family: var(--font-western);
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--ink-gray);
+        }
+
+        .info-card .highlight {
+            color: var(--vermillion);
+            font-weight: 600;
+        }
+
+        /* Spotify section */
+        .spotify-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .spotify-embed {
+            max-width: 400px;
+            margin: 2rem auto;
+            border: 1px solid var(--ink-light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .rsvp-hint {
+            font-family: var(--font-western);
+            font-style: italic;
+            color: var(--ink-light);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .rsvp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-chinese);
+            font-size: 1rem;
+            text-decoration: none;
+            border: 1px solid;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-yes {
+            border-color: var(--ink-black);
+            color: var(--ink-black);
+            background: transparent;
+        }
+
+        .btn-yes:hover {
+            background: var(--ink-black);
+            color: var(--paper-cream);
+        }
+
+        .btn-no {
+            border-color: var(--vermillion);
+            color: var(--vermillion);
+            background: transparent;
+        }
+
+        .btn-no:hover {
+            background: var(--vermillion);
+            color: var(--paper-cream);
+        }
+
+        .btn-maybe {
+            border-color: var(--ink-light);
+            color: var(--ink-light);
+            background: transparent;
+        }
+
+        .btn-maybe:hover {
+            background: var(--ink-light);
+            color: var(--paper-cream);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--ink-light);
+        }
+
+        footer p {
+            font-family: var(--font-western);
+            font-style: italic;
+            color: var(--ink-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer .chinese-footer {
+            font-family: var(--font-chinese);
+            font-size: 2rem;
+            color: var(--ink-black);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown-wrapper { flex-direction: column; }
+            .countdown-item { min-width: 50px; }
+            .button-container { flex-direction: column; align-items: center; }
+            .rsvp-button { width: 100%; max-width: 280px; justify-content: center; }
+        }
+
+        .hidden { display: none !important; }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="ink-tag">Year of the Fire Horse</p>
+            <h1><span>火</span>马</h1>
+            <p class="subtitle-western">Fire Horse 2026</p>
+            <p class="subtitle-chinese">恭喜发财 · 马到成功</p>
+
+            <div class="date-badge">
+                二〇二六年二月十七日 · 16:00
+            </div>
+
+            <div class="countdown-wrapper">
+                <div class="countdown-box">
+                    <p class="countdown-label">宴会开始</p>
+                    <div class="countdown" id="party-countdown">
+                        <div class="countdown-item" id="party-days-container">
+                            <div class="number" id="party-days">00</div>
+                            <div class="label">日</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-hours">00</div>
+                            <div class="label">时</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-minutes">00</div>
+                            <div class="label">分</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-seconds">00</div>
+                            <div class="label">秒</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="party-started-message">欢迎光临</p>
+                </div>
+
+                <div class="countdown-box">
+                    <p class="countdown-label">子时</p>
+                    <div class="countdown" id="midnight-countdown">
+                        <div class="countdown-item" id="midnight-days-container">
+                            <div class="number" id="midnight-days">00</div>
+                            <div class="label">日</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-hours">00</div>
+                            <div class="label">时</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-minutes">00</div>
+                            <div class="label">分</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-seconds">00</div>
+                            <div class="label">秒</div>
+                        </div>
+                    </div>
+                    <p class="party-message" id="new-year-message">新年快乐</p>
+                </div>
+            </div>
+
+            <button class="calendar-btn" onclick="downloadICS()">
+                📅 保存日期
+            </button>
+        </div>
+
+        <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
+            <span>向下滚动 ↓</span>
+        </div>
+    </section>
+
+    <!-- DETAILS SECTION -->
+    <section class="section" id="details">
+        <h2 class="section-title fade-in">详情</h2>
+
+        <div class="info-grid">
+            <div class="info-card fade-in">
+                <div class="icon">📍</div>
+                <h3>地点</h3>
+                <p class="highlight">待定</p>
+                <p>Details coming soon</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">⏰</div>
+                <h3>时间</h3>
+                <p><span class="highlight">17.02.2026</span></p>
+                <p>Ab <span class="highlight">16:00 Uhr</span></p>
+                <p>Open end</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">🎁</div>
+                <h3>携带</h3>
+                <p>🥟 饺子 Jiaozi</p>
+                <p>🧧 红包 Hongbao</p>
+                <p>🍊 橘子 Oranges</p>
+                <p>🏮 灯笼 Laterne</p>
+                <p>🍹 饮料 Drinks</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <div class="icon">👔</div>
+                <h3>着装</h3>
+                <p><span class="highlight">穿红色！</span></p>
+                <p>Horse outfit = welcome</p>
+                <p style="color: var(--vermillion);">No black/white</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPOTIFY SECTION -->
+    <section class="spotify-section">
+        <h2 class="section-title fade-in">🎵 音乐</h2>
+        <div class="spotify-embed fade-in">
+            <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5g856aiKiDS?utm_source=generator&theme=0"
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section class="rsvp-section" id="rsvp">
+        <h2 class="section-title fade-in">回复</h2>
+        <p class="rsvp-hint fade-in">Click to send response</p>
+
+        <div class="button-container fade-in">
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20%E6%88%91%E6%9D%A5!&body=%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%0A%0AIch%20bin%20dabei!%0A%0ABis%20bald%2C%0A%7BName%7D"
+               class="rsvp-button btn-yes" onclick="fireConfetti(event, 'yes')">
+                ✅ 我来
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20%E4%B8%8D%E8%83%BD%E6%9D%A5&body=Leider%20kann%20ich%20nicht%20kommen.%0A%0AViel%20Spa%C3%9F!%0A%7BName%7D"
+               class="rsvp-button btn-no" onclick="fireConfetti(event, 'no')">
+                ❌ 不能来
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20%E5%8F%AF%E8%83%BD&body=Ich%20bin%20noch%20unsicher...%0A%0A%7BName%7D"
+               class="rsvp-button btn-maybe" onclick="fireConfetti(event, 'maybe')">
+                🤔 可能
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="chinese-footer">马到成功 🐴</p>
+        <p>水墨画 · Ink Painting Edition · CNY 2026</p>
+    </footer>
+
+    <script>
+        const PARTY_START = new Date('2026-02-17T16:00:00').getTime();
+        const MIDNIGHT = new Date('2026-02-18T00:00:00').getTime();
+
+        const EVENT = {
+            title: 'CNY 2026 - 火马 Fire Horse 🐴',
+            description: 'Year of the Fire Horse\\n\\n恭喜发财!\\n\\nDresscode: 红色 / Red\\nBring: 饺子, 红包, Drinks',
+            location: 'TBA',
+            startTime: '2026-02-17T16:00:00',
+            endTime: '2026-02-18T04:00:00'
+        };
+
+        // Ink splatters
+        function createInkSplatter() {
+            const splatter = document.createElement('div');
+            splatter.className = 'ink-splatter';
+            splatter.style.left = Math.random() * 100 + '%';
+            splatter.style.top = Math.random() * 100 + '%';
+            splatter.style.transform = `scale(${0.5 + Math.random()})`;
+            document.body.appendChild(splatter);
+        }
+        for (let i = 0; i < 5; i++) createInkSplatter();
+
+        let partyStarted = false;
+        let newYearReached = false;
+
+        function updateCountdowns() {
+            const now = Date.now();
+
+            const partyDiff = PARTY_START - now;
+            const partyCountdown = document.getElementById('party-countdown');
+            const partyMessage = document.getElementById('party-started-message');
+            const partyDaysContainer = document.getElementById('party-days-container');
+
+            if (partyDiff <= 0) {
+                if (!partyStarted) {
+                    partyStarted = true;
+                    fireNewYearCelebration();
+                }
+                partyCountdown.style.display = 'none';
+                partyMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(partyDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((partyDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((partyDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((partyDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) partyDaysContainer.classList.add('hidden');
+                else {
+                    partyDaysContainer.classList.remove('hidden');
+                    document.getElementById('party-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('party-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('party-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('party-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            const midnightDiff = MIDNIGHT - now;
+            const midnightCountdown = document.getElementById('midnight-countdown');
+            const newYearMessage = document.getElementById('new-year-message');
+            const midnightDaysContainer = document.getElementById('midnight-days-container');
+
+            if (midnightDiff <= 0) {
+                if (!newYearReached) {
+                    newYearReached = true;
+                    fireNewYearCelebration();
+                }
+                midnightCountdown.style.display = 'none';
+                newYearMessage.classList.add('visible');
+            } else {
+                const days = Math.floor(midnightDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((midnightDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((midnightDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((midnightDiff % (1000 * 60)) / 1000);
+
+                if (days === 0) midnightDaysContainer.classList.add('hidden');
+                else {
+                    midnightDaysContainer.classList.remove('hidden');
+                    document.getElementById('midnight-days').textContent = String(days).padStart(2, '0');
+                }
+                document.getElementById('midnight-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('midnight-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('midnight-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        updateCountdowns();
+        setInterval(updateCountdowns, 1000);
+
+        function downloadICS() {
+            const formatDate = (dateStr) => {
+                const d = new Date(dateStr);
+                return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            };
+
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CNY 2026 Ink Painting//DE
+BEGIN:VEVENT
+DTSTART:${formatDate(EVENT.startTime)}
+DTEND:${formatDate(EVENT.endTime)}
+SUMMARY:${EVENT.title}
+DESCRIPTION:${EVENT.description}
+LOCATION:${EVENT.location}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'cny-2026-ink-painting.ics';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            fireNewYearCelebration();
+        }
+
+        function fireConfetti(event, type) {
+            const colors = {
+                yes: ['#1a1a1a', '#4a4a4a', '#8a8a8a'],
+                no: ['#c23b22', '#a02d1a', '#d4483a'],
+                maybe: ['#8a8a8a', '#aaaaaa', '#cccccc']
+            };
+
+            const rect = event.target.getBoundingClientRect();
+            const x = (rect.left + rect.width / 2) / window.innerWidth;
+            const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+            confetti({
+                particleCount: 60,
+                spread: 50,
+                origin: { x, y },
+                colors: colors[type],
+                startVelocity: 25
+            });
+        }
+
+        function fireNewYearCelebration() {
+            const duration = 5000;
+            const end = Date.now() + duration;
+            const colors = ['#1a1a1a', '#c23b22', '#b8860b'];
+
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 45, origin: { x: 0 }, colors });
+                confetti({ particleCount: 3, angle: 120, spread: 45, origin: { x: 1 }, colors });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+        let konamiIndex = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.code === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    fireNewYearCelebration();
+                    alert('恭喜发财! 🐴');
+                    konamiIndex = 0;
+                }
+            } else konamiIndex = 0;
+        });
+    </script>
+</body>
+</html>

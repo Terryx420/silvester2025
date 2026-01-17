@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="yoo cny 2026 fire horse party no cap fr fr">
-    <title>💀🐴 CNY 2026 FIRE HORSE no cap 💯🔥</title>
+    <meta name="description" content="CNY 2026 - Year of the Fire Horse - Retro Arcade Edition">
+    <title>🕹️ CNY 2026 - RETRO ARCADE - Fire Horse 🐴</title>
 
-    <!-- KONZEPT 4: SHITPOST SUPREME - Meme Chaos, Gen Z Humor (FIXED VERSION) -->
+    <!-- KONZEPT 8: RETRO ARCADE - 80s Arcade Game Aesthetic -->
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --impact: 'Impact', 'Arial Black', sans-serif;
-            --comic: 'Comic Neue', 'Comic Sans MS', cursive;
-            --bangers: 'Bangers', cursive;
+            --pixel: 'Press Start 2P', monospace;
             --body: 'Outfit', sans-serif;
 
-            --neon-green: #39ff14;
-            --hot-pink: #ff1493;
-            --electric-blue: #00bfff;
-            --warning-orange: #ff6600;
-            --chaos-yellow: #ffff00;
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --neon-yellow: #ffff00;
+            --arcade-red: #ff3366;
+            --arcade-green: #00ff88;
+            --coin-gold: #ffd700;
 
-            --bg-dark: #1a0a1a;
-            --glass-bg: rgba(0, 0, 0, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.15);
+            --bg-dark: #0a0a1a;
+            --glass-bg: rgba(10, 10, 30, 0.85);
+            --glass-border: rgba(0, 255, 255, 0.2);
         }
 
         *, *::before, *::after {
@@ -41,58 +40,64 @@
 
         body {
             font-family: var(--body);
-            background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%);
+            background: var(--bg-dark);
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* Animated rainbow border */
-        body::before {
+        /* Scanline effect */
+        body::after {
             content: '';
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--hot-pink), var(--chaos-yellow), var(--neon-green), var(--electric-blue), var(--hot-pink));
-            background-size: 200% 100%;
-            animation: rainbowSlide 3s linear infinite;
-            z-index: 100;
-        }
-
-        @keyframes rainbowSlide {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
-        }
-
-        /* Flying emoji background */
-        .flying-emoji {
-            position: fixed;
-            font-size: 2rem;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 3px
+            );
             pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-            animation: floatEmoji 8s ease-in-out infinite;
+            z-index: 1000;
         }
 
-        @keyframes floatEmoji {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
+        /* Grid background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(var(--neon-magenta) 1px, transparent 1px),
+                linear-gradient(90deg, var(--neon-magenta) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.05;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
         }
 
-        /* Sparkle effect */
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(60px); }
+        }
+
+        /* Sparkle */
         .sparkle {
             position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--chaos-yellow);
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
             animation: sparkleFloat 3s ease-in-out infinite;
-            box-shadow: 0 0 10px var(--chaos-yellow);
+            box-shadow: 0 0 8px var(--neon-cyan);
         }
 
         @keyframes sparkleFloat {
@@ -117,65 +122,76 @@
         .hero-content {
             max-width: 900px;
             background: var(--glass-bg);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             border: 2px solid var(--glass-border);
-            border-radius: 1.5rem;
+            border-radius: 0;
             padding: 3rem 2rem;
             position: relative;
-            z-index: 1;
         }
 
-        .bruh-tag {
-            font-family: var(--comic);
-            font-size: 1.2rem;
-            color: var(--neon-green);
-            margin-bottom: 0.5rem;
-            animation: shake 2s ease-in-out infinite;
+        .hero-content::before {
+            content: 'INSERT COIN ▶';
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--pixel);
+            font-size: 0.6rem;
+            color: var(--coin-gold);
+            animation: blink 1s step-start infinite;
+            white-space: nowrap;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .pixel-tag {
+            font-family: var(--pixel);
+            font-size: 0.6rem;
+            color: var(--arcade-green);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
         }
 
         .hero h1 {
-            font-family: var(--bangers);
-            font-size: clamp(2.5rem, 10vw, 5rem);
-            color: white;
-            text-shadow:
-                3px 3px 0 var(--hot-pink),
-                -2px -2px 0 var(--electric-blue);
-            line-height: 1.1;
+            font-family: var(--pixel);
+            font-size: clamp(1rem, 5vw, 2rem);
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+            line-height: 1.8;
             margin-bottom: 1rem;
         }
 
         .chinese-big {
             font-size: clamp(2rem, 8vw, 4rem);
-            color: var(--warning-orange);
-            text-shadow: 2px 2px 0 #000;
-            margin-bottom: 0.5rem;
+            color: var(--arcade-red);
+            text-shadow: 0 0 20px var(--arcade-red);
+            margin: 1rem 0;
         }
 
-        .subtitle-meme {
-            font-family: var(--comic);
-            font-size: 1.2rem;
-            color: var(--neon-green);
+        .subtitle {
+            font-family: var(--body);
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1.5rem;
         }
 
-        .date-badge-meme {
+        .date-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--hot-pink), var(--warning-orange));
-            color: white;
-            padding: 1rem 2rem;
-            font-family: var(--bangers);
-            font-size: 1.3rem;
-            border-radius: 0;
-            border: 3px solid black;
-            box-shadow: 5px 5px 0 black;
+            background: transparent;
+            border: 2px solid var(--neon-yellow);
+            color: var(--neon-yellow);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--pixel);
+            font-size: 0.7rem;
             margin-bottom: 2rem;
-            transform: rotate(-2deg);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 10px var(--neon-yellow); }
+            50% { box-shadow: 0 0 25px var(--neon-yellow); }
         }
 
         /* Countdown */
@@ -195,19 +211,16 @@
         .countdown-box {
             flex: 1;
             background: rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--hot-pink);
-            border-radius: 1rem;
+            border: 2px solid var(--neon-cyan);
             padding: 1.5rem;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
         }
 
         .countdown-label {
-            font-family: var(--bangers);
-            font-size: 1rem;
-            color: var(--chaos-yellow);
-            text-transform: uppercase;
+            font-family: var(--pixel);
+            font-size: 0.5rem;
+            color: var(--neon-cyan);
             margin-bottom: 1rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
         }
 
         .countdown {
@@ -218,43 +231,42 @@
         }
 
         .countdown-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border: 2px solid var(--neon-green);
-            border-radius: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--neon-magenta);
             padding: 0.75rem;
             min-width: 65px;
             text-align: center;
         }
 
         .countdown-item .number {
-            font-family: var(--bangers);
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: var(--neon-green);
-            text-shadow: 0 0 10px var(--neon-green);
-            line-height: 1;
+            font-family: var(--pixel);
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--neon-magenta);
+            text-shadow: 0 0 10px var(--neon-magenta);
+            line-height: 1.2;
         }
 
         .countdown-item .label {
-            font-family: var(--comic);
-            font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            margin-top: 0.25rem;
+            font-family: var(--pixel);
+            font-size: 0.4rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.5rem;
         }
 
         .party-message {
             display: none;
-            font-family: var(--bangers);
-            font-size: 1.8rem;
-            color: var(--neon-green);
-            animation: partyPulse 0.5s ease-in-out infinite alternate;
+            font-family: var(--pixel);
+            font-size: 0.8rem;
+            color: var(--arcade-green);
+            text-shadow: 0 0 15px var(--arcade-green);
+            animation: textPulse 0.5s ease-in-out infinite alternate;
         }
 
         .party-message.visible { display: block; }
 
-        @keyframes partyPulse {
-            0% { transform: scale(1); color: var(--neon-green); }
-            100% { transform: scale(1.05); color: var(--hot-pink); }
+        @keyframes textPulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
         }
 
         /* Calendar button */
@@ -262,21 +274,21 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--electric-blue);
-            border: 3px solid black;
-            box-shadow: 4px 4px 0 black;
-            color: white;
+            background: transparent;
+            border: 2px solid var(--arcade-green);
+            color: var(--arcade-green);
             padding: 1rem 1.5rem;
-            font-family: var(--bangers);
-            font-size: 1rem;
+            font-family: var(--pixel);
+            font-size: 0.6rem;
             cursor: pointer;
             margin-top: 1.5rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .calendar-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 black;
+            background: var(--arcade-green);
+            color: black;
+            box-shadow: 0 0 20px var(--arcade-green);
         }
 
         /* Scroll indicator */
@@ -285,13 +297,12 @@
             bottom: 2rem;
             cursor: pointer;
             animation: bounce 2s infinite;
-            z-index: 1;
         }
 
         .scroll-indicator span {
-            font-family: var(--comic);
-            color: white;
-            font-size: 1rem;
+            font-family: var(--pixel);
+            font-size: 0.5rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         @keyframes bounce {
@@ -304,22 +315,18 @@
             padding: 5rem 2rem;
             max-width: 1000px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
         }
 
         .section-title {
-            font-family: var(--bangers);
-            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-family: var(--pixel);
+            font-size: clamp(0.8rem, 3vw, 1.2rem);
             text-align: center;
-            color: white;
-            text-shadow:
-                3px 3px 0 var(--hot-pink),
-                -2px -2px 0 var(--electric-blue);
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px var(--neon-cyan);
             margin-bottom: 2.5rem;
         }
 
-        /* Info cards - MS Paint style */
+        /* Info cards */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -327,60 +334,50 @@
         }
 
         .info-card {
-            background: white;
-            border: 4px solid black;
-            box-shadow: 6px 6px 0 black;
-            padding: 1.5rem;
-            transform: rotate(var(--rotation, 0deg));
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            padding: 2rem;
             transition: all 0.3s ease;
         }
 
-        .info-card:nth-child(1) { --rotation: -1deg; }
-        .info-card:nth-child(2) { --rotation: 1deg; }
-        .info-card:nth-child(3) { --rotation: -0.5deg; }
-        .info-card:nth-child(4) { --rotation: 1.5deg; }
-
         .info-card:hover {
-            transform: rotate(0deg) scale(1.02);
+            border-color: var(--neon-magenta);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
         }
 
         .info-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
         .info-card h3 {
-            font-family: var(--bangers);
-            font-size: 1.5rem;
-            color: var(--hot-pink);
-            margin-bottom: 0.5rem;
+            font-family: var(--pixel);
+            font-size: 0.7rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
         }
 
         .info-card p {
             font-family: var(--body);
             font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .info-card .highlight {
-            color: var(--hot-pink);
-            font-weight: 600;
+            color: var(--neon-yellow);
         }
 
         /* Spotify section */
         .spotify-section {
             padding: 5rem 2rem;
             text-align: center;
-            position: relative;
-            z-index: 1;
         }
 
         .spotify-embed {
             max-width: 400px;
             margin: 2rem auto;
-            border: 4px solid black;
-            box-shadow: 6px 6px 0 black;
+            border: 2px solid var(--neon-magenta);
             border-radius: 12px;
             overflow: hidden;
         }
@@ -389,14 +386,12 @@
         .rsvp-section {
             padding: 5rem 2rem;
             text-align: center;
-            position: relative;
-            z-index: 1;
         }
 
         .rsvp-hint {
-            font-family: var(--comic);
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
+            font-family: var(--body);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
             margin-bottom: 2rem;
         }
 
@@ -411,64 +406,72 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 1.25rem 2rem;
-            font-family: var(--bangers);
-            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            font-family: var(--pixel);
+            font-size: 0.6rem;
             text-decoration: none;
-            border: 4px solid black;
-            box-shadow: 5px 5px 0 black;
+            border: 2px solid;
             cursor: pointer;
-            transition: all 0.15s ease;
-            transform: rotate(var(--btn-rotation, 0deg));
-        }
-
-        .rsvp-button:hover {
-            transform: rotate(0deg) translate(-2px, -2px);
-            box-shadow: 7px 7px 0 black;
-        }
-
-        .rsvp-button:active {
-            transform: translate(3px, 3px);
-            box-shadow: 2px 2px 0 black;
+            transition: all 0.3s ease;
         }
 
         .btn-yes {
-            background: var(--neon-green);
+            border-color: var(--arcade-green);
+            color: var(--arcade-green);
+        }
+
+        .btn-yes:hover {
+            background: var(--arcade-green);
             color: black;
-            --btn-rotation: -2deg;
+            box-shadow: 0 0 20px var(--arcade-green);
         }
 
         .btn-no {
-            background: var(--hot-pink);
+            border-color: var(--arcade-red);
+            color: var(--arcade-red);
+        }
+
+        .btn-no:hover {
+            background: var(--arcade-red);
             color: white;
-            --btn-rotation: 2deg;
+            box-shadow: 0 0 20px var(--arcade-red);
         }
 
         .btn-maybe {
-            background: var(--warning-orange);
+            border-color: var(--neon-yellow);
+            color: var(--neon-yellow);
+        }
+
+        .btn-maybe:hover {
+            background: var(--neon-yellow);
             color: black;
-            --btn-rotation: -1deg;
+            box-shadow: 0 0 20px var(--neon-yellow);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 1;
+            border-top: 1px solid var(--glass-border);
         }
 
         footer p {
-            font-family: var(--comic);
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
+            font-family: var(--body);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
             margin-bottom: 0.5rem;
         }
 
         footer .chinese-footer {
-            font-size: 2rem;
-            color: var(--neon-green);
+            font-size: 1.5rem;
+            color: var(--arcade-red);
+        }
+
+        footer .credit {
+            font-family: var(--pixel);
+            font-size: 0.5rem;
+            color: var(--neon-cyan);
+            margin-top: 1rem;
         }
 
         /* Responsive */
@@ -492,153 +495,124 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Marquee */
-        .marquee {
-            background: black;
-            padding: 0.75rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            z-index: 10;
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-            font-family: var(--bangers);
-            color: var(--neon-green);
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100vw); }
-            100% { transform: translateX(-100%); }
-        }
     </style>
 </head>
 <body>
-    <!-- Marquee Banner -->
-    <div class="marquee">
-        <span class="marquee-content">
-            🔥 FIRE HORSE 2026 NO CAP 💯 恭喜发财 FR FR 🐴 YEAR OF THE HORSE 🏮 ITS GIVING PROSPERITY 🧧 LOWKEY BUSSIN 🔥 FIRE HORSE 2026 NO CAP 💯 恭喜发财 FR FR 🐴
-        </span>
-    </div>
+    <div class="grid-bg"></div>
 
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <p class="bruh-tag">bruh... its that time again 💀</p>
-            <h1>FIRE HORSE 2026 🐴🔥</h1>
-            <p class="chinese-big">恭喜发财 no cap 💯</p>
-            <p class="subtitle-meme">we finna celebrate CNY fr fr 🔥</p>
+            <p class="pixel-tag">PLAYER 1 READY</p>
+            <h1>FIRE HORSE 2026<br>ARCADE EDITION</h1>
+            <p class="chinese-big">恭喜发财</p>
+            <p class="subtitle">Year of the Fire Horse - Level Up Your Luck!</p>
 
-            <div class="date-badge-meme">
-                📅 17.02.2026 // 16:00 UHR // BE THERE 📅
+            <div class="date-badge">
+                17.02.2026 // 16:00 UHR // START
             </div>
 
             <div class="countdown-wrapper">
                 <div class="countdown-box">
-                    <p class="countdown-label">⏰ Party starts in ⏰</p>
+                    <p class="countdown-label">⏰ GAME STARTS IN</p>
                     <div class="countdown" id="party-countdown">
                         <div class="countdown-item" id="party-days-container">
                             <div class="number" id="party-days">00</div>
-                            <div class="label">Days</div>
+                            <div class="label">DAYS</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="party-hours">00</div>
-                            <div class="label">Hrs</div>
+                            <div class="label">HRS</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="party-minutes">00</div>
-                            <div class="label">Min</div>
+                            <div class="label">MIN</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="party-seconds">00</div>
-                            <div class="label">Sec</div>
+                            <div class="label">SEC</div>
                         </div>
                     </div>
-                    <p class="party-message" id="party-started-message">LETS GOOOO 🔥🔥🔥</p>
+                    <p class="party-message" id="party-started-message">GAME ON!</p>
                 </div>
 
                 <div class="countdown-box">
-                    <p class="countdown-label">🌙 Midnight hits in 🌙</p>
+                    <p class="countdown-label">🌙 BONUS ROUND IN</p>
                     <div class="countdown" id="midnight-countdown">
                         <div class="countdown-item" id="midnight-days-container">
                             <div class="number" id="midnight-days">00</div>
-                            <div class="label">Days</div>
+                            <div class="label">DAYS</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="midnight-hours">00</div>
-                            <div class="label">Hrs</div>
+                            <div class="label">HRS</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="midnight-minutes">00</div>
-                            <div class="label">Min</div>
+                            <div class="label">MIN</div>
                         </div>
                         <div class="countdown-item">
                             <div class="number" id="midnight-seconds">00</div>
-                            <div class="label">Sec</div>
+                            <div class="label">SEC</div>
                         </div>
                     </div>
-                    <p class="party-message" id="new-year-message">SHEEEESH 2026 🎉</p>
+                    <p class="party-message" id="new-year-message">HIGH SCORE!</p>
                 </div>
             </div>
 
             <button class="calendar-btn" onclick="downloadICS()">
-                📅 Save to Calendar (real ones only)
+                📅 SAVE GAME
             </button>
         </div>
 
         <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
-            <span>scroll down bestie 👇💀👇</span>
+            <span>SCROLL DOWN ▼</span>
         </div>
     </section>
 
     <!-- DETAILS SECTION -->
     <section class="section" id="details">
-        <h2 class="section-title fade-in">THE DEETS FR FR 📝</h2>
+        <h2 class="section-title fade-in">GAME INFO</h2>
 
         <div class="info-grid">
             <div class="info-card fade-in">
                 <div class="icon">📍</div>
-                <h3>WHERE THO?</h3>
-                <p class="highlight">TBA (trust the process)</p>
-                <p>Location dropping soon no cap 👀</p>
+                <h3>LOCATION</h3>
+                <p class="highlight">TBA</p>
+                <p>Map loading... Check back soon!</p>
             </div>
 
             <div class="info-card fade-in">
                 <div class="icon">⏰</div>
-                <h3>WHEN BESTIE?</h3>
+                <h3>TIME</h3>
                 <p><span class="highlight">17.02.2026</span></p>
                 <p>Starts at <span class="highlight">16:00 Uhr</span></p>
-                <p>Open end (we dont stop)</p>
+                <p>Open end - No time limit!</p>
             </div>
 
             <div class="info-card fade-in">
                 <div class="icon">🎒</div>
-                <h3>WHAT 2 BRING</h3>
-                <p>🥟 Jiaozi (dumplings)</p>
-                <p>🧧 Hongbao (red envelope)</p>
-                <p>🍊 Mandarins/Oranges</p>
-                <p>🏮 Laterne (optional)</p>
-                <p>🍻 Your fav drink</p>
+                <h3>POWER-UPS</h3>
+                <p>🥟 Jiaozi (+50 HP)</p>
+                <p>🧧 Hongbao (+100 Gold)</p>
+                <p>🍊 Oranges (+Luck)</p>
+                <p>🏮 Laterne (Light Bonus)</p>
+                <p>🍻 Drinks (Mana Potion)</p>
             </div>
 
             <div class="info-card fade-in">
                 <div class="icon">👔</div>
-                <h3>DRIP CHECK</h3>
-                <p><span class="highlight">WEAR RED!</span> (lucky fr)</p>
-                <p>Horse fit = W 🐴</p>
-                <p style="color: #dc2626;">No black/white (bad luck)</p>
+                <h3>CHARACTER SKIN</h3>
+                <p><span class="highlight">RED = +50% Luck</span></p>
+                <p>Horse costume = LEGENDARY</p>
+                <p style="color: #ff3366;">Black/White = DEBUFF</p>
             </div>
         </div>
     </section>
 
     <!-- SPOTIFY SECTION -->
     <section class="spotify-section">
-        <h2 class="section-title fade-in">🎵 BANGER PLAYLIST 🎵</h2>
+        <h2 class="section-title fade-in">🎵 SOUNDTRACK</h2>
         <div class="spotify-embed fade-in">
             <iframe
                 style="border-radius:12px"
@@ -655,30 +629,30 @@
 
     <!-- RSVP SECTION -->
     <section class="rsvp-section" id="rsvp">
-        <h2 class="section-title fade-in">U COMING OR NAH? 🤔</h2>
-        <p class="rsvp-hint fade-in">click = auto email (its lowkey magic)</p>
+        <h2 class="section-title fade-in">JOIN GAME?</h2>
+        <p class="rsvp-hint fade-in">Select your response - Auto-mail activated</p>
 
         <div class="button-container fade-in">
-            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20say%20less%20im%20there%20%F0%9F%94%A5&body=yooo%20%F0%9F%94%A5%F0%9F%90%B4%0A%0Aim%20pulling%20up%20no%20cap%20fr%20fr%0A%0A%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%0A%0Asee%20u%20there%20bestie%0A%7BNAME%7D"
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Ich%20bin%20dabei!&body=Player%20joined%20the%20game!%20%F0%9F%8E%AE%F0%9F%90%B4%0A%0AIch%20bin%20dabei!%0A%0A%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%0A%0ABis%20bald%2C%0A%7BName%7D"
                class="rsvp-button btn-yes" onclick="fireConfetti(event, 'yes')">
-                ✅ SAY LESS IM THERE 🔥
+                ✅ JOIN GAME
             </a>
-            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20nah%20i%20cant%20%F0%9F%92%80&body=bruh%20im%20so%20sorry%20%F0%9F%98%AD%0A%0Ai%20cant%20make%20it%20this%20is%20actually%20so%20sad%0A%0Ahave%20fun%20without%20me%20ig%20%F0%9F%92%94%0A%7BNAME%7D"
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Leider%20nicht&body=Player%20disconnected%20%F0%9F%98%AD%0A%0ALeider%20kann%20ich%20nicht%20kommen.%0A%0AViel%20Spa%C3%9F%20euch!%0A%7BName%7D"
                class="rsvp-button btn-no" onclick="fireConfetti(event, 'no')">
-                ❌ NAH I CANT 💀
+                ❌ GAME OVER
             </a>
-            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20maybe%20idk%20yet%20%F0%9F%A4%94&body=hmm%20idk%20yet%20%F0%9F%A4%94%0A%0Aim%20thinking%20about%20it%20fr%0A%0Aill%20lyk%20soon%20bestie%0A%7BNAME%7D"
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20Vielleicht&body=Player%20status%3A%20AFK%20%F0%9F%A4%94%0A%0AIch%20bin%20noch%20unsicher...%0A%0AIch%20melde%20mich%20nochmal!%0A%7BName%7D"
                class="rsvp-button btn-maybe" onclick="fireConfetti(event, 'maybe')">
-                🤔 MAYBE IDK YET
+                🤔 MAYBE LATER
             </a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <p class="chinese-footer">马到成功 🐴💯</p>
-        <p>no cap this party gonna be bussin fr fr</p>
-        <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.6;">SHITPOST SUPREME CNY 2026 💀🔥</p>
+        <p class="chinese-footer">马到成功 🐴</p>
+        <p>May your luck level up this year!</p>
+        <p class="credit">RETRO ARCADE CNY 2026</p>
     </footer>
 
     <script>
@@ -687,28 +661,14 @@
         const MIDNIGHT = new Date('2026-02-18T00:00:00').getTime();
 
         const EVENT = {
-            title: 'CNY 2026 Fire Horse Party 🐴🔥',
-            description: 'Fire Horse Party no cap fr fr\\n\\n恭喜发财!\\n\\nDrip: wear RED\\nBring: jiaozi, hongbao, vibes',
+            title: 'CNY 2026 - Retro Arcade Edition 🕹️🐴',
+            description: 'Year of the Fire Horse Party\\n\\n恭喜发财!\\n\\nDresscode: ROT tragen!\\nMitbringen: Jiaozi, Hongbao, Getränke',
             location: 'TBA',
             startTime: '2026-02-17T16:00:00',
             endTime: '2026-02-18T04:00:00'
         };
 
-        // Create floating emojis
-        const emojis = ['🐴', '🔥', '💀', '💯', '🧧', '🏮', '✨'];
-        function createFloatingEmoji() {
-            const emoji = document.createElement('div');
-            emoji.className = 'flying-emoji';
-            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-            emoji.style.left = Math.random() * 100 + '%';
-            emoji.style.top = Math.random() * 100 + '%';
-            emoji.style.animationDelay = Math.random() * 5 + 's';
-            emoji.style.animationDuration = (6 + Math.random() * 4) + 's';
-            document.body.appendChild(emoji);
-        }
-        for (let i = 0; i < 8; i++) createFloatingEmoji();
-
-        // Create sparkles
+        // Sparkles
         function createSparkle() {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
@@ -718,7 +678,7 @@
             document.body.appendChild(sparkle);
             setTimeout(() => sparkle.remove(), 3000);
         }
-        setInterval(createSparkle, 1000);
+        setInterval(createSparkle, 800);
 
         // Countdown
         let partyStarted = false;
@@ -727,7 +687,6 @@
         function updateCountdowns() {
             const now = Date.now();
 
-            // Party countdown
             const partyDiff = PARTY_START - now;
             const partyCountdown = document.getElementById('party-countdown');
             const partyMessage = document.getElementById('party-started-message');
@@ -756,7 +715,6 @@
                 document.getElementById('party-seconds').textContent = String(seconds).padStart(2, '0');
             }
 
-            // Midnight countdown
             const midnightDiff = MIDNIGHT - now;
             const midnightCountdown = document.getElementById('midnight-countdown');
             const newYearMessage = document.getElementById('new-year-message');
@@ -798,7 +756,7 @@
 
             const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//CNY 2026 Shitpost Supreme//DE
+PRODID:-//CNY 2026 Retro Arcade//DE
 BEGIN:VEVENT
 DTSTART:${formatDate(EVENT.startTime)}
 DTEND:${formatDate(EVENT.endTime)}
@@ -811,7 +769,7 @@ END:VCALENDAR`;
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'cny-2026-fire-horse.ics';
+            link.download = 'cny-2026-retro-arcade.ics';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -821,9 +779,9 @@ END:VCALENDAR`;
         // Confetti
         function fireConfetti(event, type) {
             const colors = {
-                yes: ['#39ff14', '#00ff00', '#7fff00'],
-                no: ['#ff1493', '#ff00ff', '#ff6600'],
-                maybe: ['#ff6600', '#ffff00', '#00bfff']
+                yes: ['#00ff88', '#00ffff', '#00ff00'],
+                no: ['#ff3366', '#ff00ff', '#ff6666'],
+                maybe: ['#ffff00', '#ffd700', '#ff6600']
             };
 
             const rect = event.target.getBoundingClientRect();
@@ -832,23 +790,23 @@ END:VCALENDAR`;
 
             confetti({
                 particleCount: 100,
-                spread: 80,
+                spread: 70,
                 origin: { x, y },
                 colors: colors[type],
-                startVelocity: 35
+                startVelocity: 30
             });
         }
 
         function fireNewYearCelebration() {
             const duration = 6000;
             const end = Date.now() + duration;
-            const colors = ['#39ff14', '#ff1493', '#00bfff', '#ff6600', '#ffff00'];
+            const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ff88', '#ff3366'];
 
             (function frame() {
-                confetti({ particleCount: 5, angle: 60, spread: 70, origin: { x: 0 }, colors });
-                confetti({ particleCount: 5, angle: 120, spread: 70, origin: { x: 1 }, colors });
+                confetti({ particleCount: 4, angle: 60, spread: 60, origin: { x: 0 }, colors });
+                confetti({ particleCount: 4, angle: 120, spread: 60, origin: { x: 1 }, colors });
                 if (Math.random() < 0.3) {
-                    confetti({ particleCount: 50, spread: 360, origin: { x: Math.random(), y: Math.random() * 0.5 }, colors, startVelocity: 40 });
+                    confetti({ particleCount: 40, spread: 360, origin: { x: Math.random(), y: Math.random() * 0.5 }, colors, startVelocity: 35 });
                 }
                 if (Date.now() < end) requestAnimationFrame(frame);
             })();
@@ -866,7 +824,7 @@ END:VCALENDAR`;
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Easter egg - Konami code
+        // Easter egg
         const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
         let konamiIndex = 0;
         document.addEventListener('keydown', (e) => {
@@ -874,7 +832,7 @@ END:VCALENDAR`;
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
                     fireNewYearCelebration();
-                    alert('sheeeesh you found the easter egg no cap 💀🔥');
+                    alert('🎮 CHEAT CODE ACTIVATED! 30 LIVES! 🐴');
                     konamiIndex = 0;
                 }
             } else konamiIndex = 0;

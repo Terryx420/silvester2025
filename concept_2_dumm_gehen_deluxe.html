@@ -7,12 +7,12 @@
     <meta property="og:title" content="🎰 JACKPOT! Year of the Fire Horse 2026">
     <title>🎰💰 DUMM GEHEN DELUXE | CNY 2026 JACKPOT EDITION 💎🐴</title>
 
-    <!-- KONZEPT 2: DUMM GEHEN DELUXE - Las Vegas Casino meets Hong Kong Night Market -->
+    <!-- KONZEPT 2: DUMM GEHEN DELUXE - Las Vegas Casino meets Hong Kong Night Market (FIXED) -->
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Bungee&family=Noto+Sans+SC:wght@700;900&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Outfit:wght@400;600;700&family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -20,88 +20,65 @@
             --casino-red: #ff0000;
             --casino-green: #00ff00;
             --casino-purple: #9400d3;
-            --casino-pink: #ff1493;
-            --casino-black: #1a0a0a;
-            --neon-yellow: #ffff00;
+            --bg-dark: #1a0a0a;
             --text-white: #ffffff;
-            --font-lucky: 'Luckiest Guy', cursive;
-            --font-bungee: 'Bungee', cursive;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 215, 0, 0.3);
+            --font-heading: 'Modak', cursive;
+            --font-body: 'Outfit', sans-serif;
             --font-chinese: 'Noto Sans SC', sans-serif;
-            --font-comic: 'Comic Neue', cursive;
         }
 
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-comic);
-            background: var(--casino-black);
+            font-family: var(--font-body);
+            background: var(--bg-dark);
             color: var(--text-white);
             min-height: 100vh;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Casino Light Border */
-        .casino-border {
+        /* Video Background Replacement - Casino Gradient */
+        .video-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 1000;
-            border: 15px solid transparent;
-            background:
-                linear-gradient(var(--casino-black), var(--casino-black)) padding-box,
-                repeating-linear-gradient(90deg,
-                    var(--casino-gold) 0px, var(--casino-gold) 30px,
-                    var(--casino-red) 30px, var(--casino-red) 60px,
-                    var(--casino-green) 60px, var(--casino-green) 90px,
-                    var(--casino-purple) 90px, var(--casino-purple) 120px
-                ) border-box;
-            animation: borderLights 1s linear infinite;
-        }
-
-        @keyframes borderLights {
-            0% { filter: brightness(1); }
-            50% { filter: brightness(1.3); }
-            100% { filter: brightness(1); }
-        }
-
-        /* Slot Machine Background */
-        .slot-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -2;
             background:
-                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.3) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(148, 0, 211, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(148, 0, 211, 0.08) 0%, transparent 50%),
                 linear-gradient(180deg, #2a0a1a 0%, #1a0505 50%, #0a0a1a 100%);
         }
 
-        /* Blinking Lights */
-        .blink-light {
+        .video-overlay {
             position: fixed;
-            width: 20px;
-            height: 20px;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        /* Sparkle Animation */
+        .sparkle {
+            position: fixed;
+            width: 8px; height: 8px;
+            background: var(--casino-gold);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
-            animation: blink 0.5s ease-in-out infinite alternate;
+            animation: sparkleFloat 3s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--casino-gold);
         }
 
-        @keyframes blink {
-            0% { opacity: 0.3; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(0); opacity: 0; }
         }
 
         /* Hero Section */
@@ -116,178 +93,67 @@
             position: relative;
         }
 
+        .hero-content { max-width: 900px; }
+
         .jackpot-banner {
+            display: inline-block;
             background: linear-gradient(90deg, var(--casino-gold), var(--casino-red), var(--casino-gold));
+            background-size: 200% 100%;
+            animation: bannerShine 2s linear infinite;
             padding: 0.5rem 2rem;
-            font-family: var(--font-bungee);
-            font-size: 1rem;
-            color: var(--casino-black);
-            animation: flashBanner 0.3s ease infinite alternate;
-            transform: rotate(-2deg);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: #000;
+            border-radius: 5px;
             margin-bottom: 1rem;
         }
 
-        @keyframes flashBanner {
+        @keyframes bannerShine {
             0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .hero h1 {
-            font-family: var(--font-lucky);
+            font-family: var(--font-heading);
             font-size: clamp(3rem, 12vw, 8rem);
             background: linear-gradient(180deg, var(--casino-gold) 0%, #ffaa00 50%, var(--casino-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 50px var(--casino-gold);
-            animation: goldShine 2s ease-in-out infinite;
-            letter-spacing: 0.05em;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+            line-height: 1.1;
         }
 
-        @keyframes goldShine {
-            0%, 100% { filter: brightness(1) drop-shadow(0 0 20px var(--casino-gold)); }
-            50% { filter: brightness(1.3) drop-shadow(0 0 40px var(--casino-gold)); }
-        }
-
-        .chinese-jackpot {
-            font-family: var(--font-chinese);
-            font-size: clamp(2rem, 6vw, 4rem);
-            color: var(--casino-red);
-            text-shadow:
-                0 0 10px var(--casino-red),
-                0 0 20px var(--casino-red),
-                0 0 30px var(--casino-red);
-            animation: redPulse 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes redPulse {
-            0% { opacity: 0.8; }
-            100% { opacity: 1; }
-        }
-
-        .subtitle-crazy {
-            font-family: var(--font-bungee);
+        .hero .subtitle {
             font-size: clamp(1rem, 3vw, 1.5rem);
-            color: var(--neon-yellow);
-            margin: 1rem 0;
-            animation: rainbow 3s linear infinite;
+            color: var(--casino-red);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px var(--casino-red);
         }
 
-        @keyframes rainbow {
-            0% { color: var(--casino-gold); }
-            25% { color: var(--casino-red); }
-            50% { color: var(--casino-green); }
-            75% { color: var(--casino-purple); }
-            100% { color: var(--casino-gold); }
-        }
-
-        .date-badge-casino {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            background: linear-gradient(135deg, var(--casino-red), #8b0000);
-            border: 4px solid var(--casino-gold);
-            border-radius: 10px;
-            padding: 1rem 2rem;
-            font-family: var(--font-lucky);
-            font-size: 1.3rem;
+        .hero .chinese-title {
+            font-family: var(--font-chinese);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             color: var(--casino-gold);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            animation: bounce 0.5s ease infinite alternate;
-        }
-
-        @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-5px); }
-        }
-
-        /* Slot Machine Countdown */
-        .slot-machine {
-            background: linear-gradient(180deg, #333 0%, #1a1a1a 50%, #333 100%);
-            border: 8px solid var(--casino-gold);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow:
-                0 0 30px var(--casino-gold),
-                inset 0 0 50px rgba(0,0,0,0.5);
-            max-width: 800px;
-            width: 100%;
-        }
-
-        .slot-label {
-            font-family: var(--font-bungee);
-            color: var(--casino-gold);
-            font-size: 1.2rem;
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px var(--casino-gold);
         }
 
-        .countdown-slots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .slot-item {
-            background: linear-gradient(180deg, #000 0%, #222 50%, #000 100%);
+        .hero .date-badge {
+            display: inline-block;
+            background: var(--glass-bg);
             border: 3px solid var(--casino-gold);
-            border-radius: 10px;
-            padding: 1rem;
-            min-width: 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slot-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: slotShine 2s ease-in-out infinite;
-        }
-
-        @keyframes slotShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .slot-item .number {
-            font-family: var(--font-lucky);
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--casino-green);
-            text-shadow: 0 0 20px var(--casino-green);
-        }
-
-        .slot-item .label {
-            font-family: var(--font-comic);
-            font-size: 0.7rem;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-size: 1.2rem;
             color: var(--casino-gold);
-            text-transform: uppercase;
-        }
-
-        .party-message {
-            display: none;
-            font-family: var(--font-lucky);
-            font-size: 2rem;
-            color: var(--casino-gold);
-            animation: winPulse 0.5s ease infinite alternate;
-        }
-
-        .party-message.visible { display: block; }
-
-        @keyframes winPulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
         /* Countdown Wrapper */
         .countdown-wrapper {
+            margin: 2rem 0;
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -296,335 +162,299 @@
         }
 
         @media (min-width: 768px) {
-            .countdown-wrapper {
-                flex-direction: row;
-            }
+            .countdown-wrapper { flex-direction: row; justify-content: center; gap: 3rem; }
+        }
+
+        .countdown-small, .countdown-large {
+            flex: 1;
+            max-width: 450px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 2px solid var(--casino-gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .countdown-small .countdown-label, .countdown-large .countdown-label {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--casino-gold);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .countdown { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: nowrap; }
+
+        .countdown-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--casino-gold);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .countdown-item .number {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--casino-green);
+            text-shadow: 0 0 20px var(--casino-green);
+        }
+
+        .countdown-item .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--casino-gold);
+        }
+
+        .party-message {
+            display: none;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--casino-gold);
+            animation: winPulse 1s infinite alternate;
+        }
+
+        .party-message.visible { display: block; }
+
+        @keyframes winPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* Calendar Link */
+        .calendar-link {
+            color: var(--casino-gold);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-link:hover {
+            color: var(--casino-green);
+            text-shadow: 0 0 10px var(--casino-green);
         }
 
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
-            font-family: var(--font-bungee);
-            color: var(--casino-gold);
-            animation: bounceArrow 1s ease infinite;
+            left: 50%;
+            transform: translateX(-50%);
             cursor: pointer;
+            color: var(--casino-gold);
+            text-align: center;
         }
 
-        @keyframes bounceArrow {
+        .scroll-indicator span { font-size: 0.9rem; }
+
+        .scroll-indicator .arrow {
+            font-size: 2rem;
+            animation: scrollBounce 2s infinite;
+            display: block;
+        }
+
+        @keyframes scrollBounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(15px); }
+            50% { transform: translateY(10px); }
         }
 
         /* Sections */
         .section {
             padding: 5rem 2rem;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-family: var(--font-lucky);
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             color: var(--casino-gold);
-            text-shadow:
-                3px 3px 0 var(--casino-red),
-                0 0 30px var(--casino-gold);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
         }
 
-        /* Info Cards - Playing Cards Style */
+        /* Info Cards */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .info-card {
-            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
-            border: 4px solid var(--casino-gold);
-            border-radius: 15px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
             padding: 2rem;
-            color: var(--casino-black);
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .info-card::before {
-            content: '♠ ♥ ♦ ♣';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 0.8rem;
-            color: var(--casino-red);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
         }
 
         .info-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+            transform: translateY(-8px);
+            border-color: var(--casino-gold);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
         }
 
-        .info-card .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
+        .info-card .icon { font-size: 2rem; margin-bottom: 1rem; }
 
         .info-card h3 {
-            font-family: var(--font-lucky);
-            font-size: 1.5rem;
-            color: var(--casino-red);
-            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--casino-gold);
         }
 
-        .info-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
+        .info-card p { color: rgba(255, 255, 255, 0.8); font-size: 1rem; line-height: 1.7; }
+        .info-card .highlight { color: var(--casino-green); font-weight: 600; }
 
-        .info-card .highlight {
-            color: var(--casino-red);
-            font-weight: 700;
+        /* Spotify Section */
+        .spotify-section { padding: 5rem 2rem; text-align: center; }
+
+        .spotify-embed {
+            max-width: 450px;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--casino-gold);
         }
 
         /* RSVP Section */
-        .rsvp-section {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: linear-gradient(180deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-        }
+        .rsvp-section { padding: 5rem 2rem; text-align: center; }
 
-        .rsvp-hint {
-            font-family: var(--font-comic);
-            color: var(--casino-gold);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
+        .rsvp-section .hint { color: rgba(255, 255, 255, 0.6); margin-bottom: 2.5rem; }
 
         .button-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .rsvp-button {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.75rem;
             padding: 1.25rem 2.5rem;
-            font-family: var(--font-lucky);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
-            border: 4px solid var(--casino-gold);
-            cursor: pointer;
+            border-radius: 60px;
             transition: all 0.3s ease;
-            animation: buttonPulse 2s ease infinite;
-        }
-
-        @keyframes buttonPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
-        }
-
-        .btn-yes {
-            background: linear-gradient(135deg, #00cc00, #009900);
-            color: white;
-        }
-
-        .btn-yes:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #00ff00, #00cc00);
-        }
-
-        .btn-no {
-            background: linear-gradient(135deg, #cc0000, #990000);
-            color: white;
-        }
-
-        .btn-no:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-        }
-
-        .btn-maybe {
-            background: linear-gradient(135deg, var(--casino-gold), #cc9900);
-            color: var(--casino-black);
-        }
-
-        .btn-maybe:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #ffff00, var(--casino-gold));
-        }
-
-        /* Calendar Button */
-        .calendar-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: linear-gradient(135deg, var(--casino-purple), #6a0dad);
-            border: 3px solid var(--casino-gold);
-            color: white;
-            padding: 1rem 2rem;
-            font-family: var(--font-lucky);
-            font-size: 1rem;
-            border-radius: 50px;
+            min-width: 180px;
+            border: none;
             cursor: pointer;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
         }
 
-        .calendar-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px var(--casino-purple);
-        }
+        .btn-yes { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
+        .btn-yes:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(34, 197, 94, 0.4); }
 
-        /* Spotify Section */
-        .spotify-section {
-            padding: 4rem 2rem;
-            text-align: center;
-        }
+        .btn-no { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+        .btn-no:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4); }
 
-        .spotify-embed {
-            max-width: 400px;
-            margin: 2rem auto;
-            border: 5px solid var(--casino-gold);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-        }
+        .btn-maybe { background: linear-gradient(135deg, var(--casino-gold), #f59e0b); color: #000; }
+        .btn-maybe:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4); }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(255, 215, 0, 0.1));
+            border-top: 1px solid var(--glass-border);
         }
 
-        footer p {
-            font-family: var(--font-lucky);
-            color: var(--casino-gold);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        footer .chinese {
-            font-family: var(--font-chinese);
-            font-size: 2rem;
-            color: var(--casino-red);
-            text-shadow: 0 0 20px var(--casino-red);
-        }
-
-        /* Flying Coins */
-        .flying-coin {
-            position: fixed;
-            font-size: 2rem;
-            pointer-events: none;
-            z-index: 100;
-            animation: coinFly 3s ease-out forwards;
-        }
-
-        @keyframes coinFly {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
+        footer p { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; }
+        footer .chinese { font-family: var(--font-chinese); color: var(--casino-gold); font-size: 1.5rem; margin-bottom: 0.5rem; }
+        footer .heart { color: var(--casino-red); }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .casino-border { border-width: 8px; }
-            .countdown-wrapper { flex-direction: column; }
-            .slot-item { min-width: 65px; padding: 0.75rem; }
+            .countdown-wrapper { flex-direction: column; gap: 1.5rem; }
+            .countdown-item { min-width: 60px; padding: 0.5rem; }
             .button-container { flex-direction: column; align-items: center; }
-            .rsvp-button { width: 100%; max-width: 300px; justify-content: center; }
+            .rsvp-button { width: 100%; max-width: 300px; }
         }
 
         .hidden { display: none !important; }
 
-        /* Fade animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Fade Animations */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <div class="casino-border"></div>
-    <div class="slot-bg"></div>
+    <div class="video-background"></div>
+    <div class="video-overlay"></div>
 
     <!-- HERO SECTION -->
     <section class="hero">
-        <div class="jackpot-banner">🎰 JACKPOT ALERT! 🎰</div>
+        <div class="hero-content">
+            <div class="jackpot-banner">🎰 JACKPOT ALERT! 🎰</div>
+            <h2 class="subtitle">DUMM GEHEN DELUXE EDITION</h2>
+            <h1>FIRE HORSE 2026</h1>
+            <p class="chinese-title">恭喜发财 💰</p>
+            <div class="date-badge">🎲 17.02.2026 ab 16:00 Uhr 🎲</div>
 
-        <h1>FIRE HORSE</h1>
-        <p class="chinese-jackpot">恭喜发财 💰</p>
-        <p class="subtitle-crazy">🎰 DUMM GEHEN DELUXE EDITION 🎰</p>
-
-        <div class="date-badge-casino">
-            🎲 17.02.2026 🎲 AB 16:00 🎲
-        </div>
-
-        <div class="countdown-wrapper">
-            <div class="slot-machine">
-                <p class="slot-label">🎰 BIS ZUM JACKPOT (PARTY START) 🎰</p>
-                <div class="countdown-slots" id="party-countdown">
-                    <div class="slot-item" id="party-days-container">
-                        <div class="number" id="party-days">00</div>
-                        <div class="label">Tage</div>
+            <div class="countdown-wrapper">
+                <div class="countdown-small">
+                    <p class="countdown-label">
+                        <a href="#" onclick="downloadICS(); return false;" class="calendar-link">🎰 BIS ZUM JACKPOT 📅</a>
+                    </p>
+                    <div class="countdown" id="party-countdown">
+                        <div class="countdown-item" id="party-days-container">
+                            <div class="number" id="party-days">00</div>
+                            <div class="label">Tage</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-hours">00</div>
+                            <div class="label">Std</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="party-seconds">00</div>
+                            <div class="label">Sek</div>
+                        </div>
                     </div>
-                    <div class="slot-item">
-                        <div class="number" id="party-hours">00</div>
-                        <div class="label">Std</div>
-                    </div>
-                    <div class="slot-item">
-                        <div class="number" id="party-minutes">00</div>
-                        <div class="label">Min</div>
-                    </div>
-                    <div class="slot-item">
-                        <div class="number" id="party-seconds">00</div>
-                        <div class="label">Sek</div>
-                    </div>
+                    <p class="party-message" id="party-started-message">🎰 JACKPOT! PARTY TIME! 🎰</p>
                 </div>
-                <p class="party-message" id="party-started-message">🎰 JACKPOT! PARTY STARTED! 🎰</p>
-            </div>
 
-            <div class="slot-machine">
-                <p class="slot-label">💎 BIS MITTERNACHT 💎</p>
-                <div class="countdown-slots" id="midnight-countdown">
-                    <div class="slot-item" id="midnight-days-container">
-                        <div class="number" id="midnight-days">00</div>
-                        <div class="label">Tage</div>
+                <div class="countdown-large">
+                    <p class="countdown-label">💎 BIS MITTERNACHT 💎</p>
+                    <div class="countdown" id="midnight-countdown">
+                        <div class="countdown-item" id="midnight-days-container">
+                            <div class="number" id="midnight-days">00</div>
+                            <div class="label">Tage</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-hours">00</div>
+                            <div class="label">Std</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-minutes">00</div>
+                            <div class="label">Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="number" id="midnight-seconds">00</div>
+                            <div class="label">Sek</div>
+                        </div>
                     </div>
-                    <div class="slot-item">
-                        <div class="number" id="midnight-hours">00</div>
-                        <div class="label">Std</div>
-                    </div>
-                    <div class="slot-item">
-                        <div class="number" id="midnight-minutes">00</div>
-                        <div class="label">Min</div>
-                    </div>
-                    <div class="slot-item">
-                        <div class="number" id="midnight-seconds">00</div>
-                        <div class="label">Sek</div>
-                    </div>
+                    <p class="party-message" id="new-year-message">🏆 MEGA WIN! 新年快乐! 🏆</p>
                 </div>
-                <p class="party-message" id="new-year-message">🏆 MEGA WIN! HAPPY NEW YEAR! 🏆</p>
             </div>
         </div>
-
-        <button class="calendar-btn" onclick="downloadICS()">
-            📅 CALENDAR DOWNLOAD (FREE SPIN!)
-        </button>
 
         <div class="scroll-indicator" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})">
-            <div style="font-size: 1rem;">SCROLL FOR MORE WINS</div>
-            <div style="font-size: 2rem;">👇💰👇</div>
+            <span>SCROLL FOR MORE WINS</span>
+            <span class="arrow">👇💰👇</span>
         </div>
     </section>
 
@@ -638,14 +468,12 @@
                 <h3>LOCATION</h3>
                 <p class="highlight">TBA - TOP SECRET!</p>
                 <p>Wird noch bekannt gegeben... 🤫</p>
-                <p>(Nur für VIPs!)</p>
             </div>
 
             <div class="info-card fade-in">
                 <div class="icon">⏰</div>
                 <h3>SHOWTIME</h3>
-                <p><span class="highlight">17.02.2026</span></p>
-                <p>Einlass ab <span class="highlight">16:00 Uhr</span></p>
+                <p><span class="highlight">17.02.2026</span> ab <span class="highlight">16:00</span></p>
                 <p>Open End = UNLIMITED SPINS!</p>
             </div>
 
@@ -656,7 +484,7 @@
                 <p>🧧 Hongbao (Roter Umschlag)</p>
                 <p>🍊 Mandarinen/Orangen</p>
                 <p>🏮 Laterne (optional)</p>
-                <p>🍻 Dein Lieblingsgetränk!</p>
+                <p>🍻 Lieblingsgetränk</p>
             </div>
 
             <div class="info-card fade-in">
@@ -664,7 +492,7 @@
                 <h3>DRESSCODE</h3>
                 <p><span class="highlight">ROT = LUCKY!</span></p>
                 <p>Pferde-Motiv = JACKPOT! 🐴</p>
-                <p style="color: #cc0000;">❌ Schwarz/Weiß = BUST!</p>
+                <p style="color: #ef4444;">❌ Schwarz/Weiß = BUST!</p>
             </div>
         </div>
     </section>
@@ -673,241 +501,143 @@
     <section class="spotify-section">
         <h2 class="section-title fade-in">🎵 CASINO BEATS 🎵</h2>
         <div class="spotify-embed fade-in">
-            <iframe
-                style="border-radius:12px"
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5g856aiKiDS?utm_source=generator&theme=0"
-                width="100%"
-                height="352"
-                frameBorder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-            </iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX5g856aiKiDS?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     </section>
 
     <!-- RSVP SECTION -->
     <section class="rsvp-section" id="rsvp">
         <h2 class="section-title fade-in">🎲 PLACE YOUR BET! 🎲</h2>
-        <p class="rsvp-hint fade-in">Klick = Auto-Email! Es ist wie Lotto, nur besser! 💌</p>
+        <p class="hint fade-in">Klick = Auto-Email! Es ist wie Lotto, nur besser! 💌</p>
 
         <div class="button-container fade-in">
-            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20ALL%20IN!%20%F0%9F%8E%B0&body=JACKPOT!%20%F0%9F%8E%B0%F0%9F%92%B0%0A%0AIch%20bin%20ALL%20IN%20f%C3%BCr%20die%20Fire%20Horse%20Party!%0A%0A%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%0A%0ALet%27s%20get%20this%20bread!%20%F0%9F%A5%96%F0%9F%92%B8%0A%7BNAME%7D"
-               class="rsvp-button btn-yes" onclick="fireConfetti(event, 'yes')">
-                ✅ ALL IN! ICH KOMME! 🎰
-            </a>
-            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20FOLD%20%E2%9D%8C&body=Ich%20muss%20leider%20folden...%20%F0%9F%98%AD%0A%0AKann%20nicht%20kommen%2C%20aber%20mein%20Herz%20ist%20bei%20euch!%0A%0A%7BNAME%7D"
-               class="rsvp-button btn-no" onclick="fireConfetti(event, 'no')">
-                ❌ FOLD... LEIDER NICHT
-            </a>
-            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20CHECK%20%F0%9F%A4%94&body=Hmm...%20ich%20%C3%BCberlege%20noch...%20%F0%9F%8E%B2%0A%0AVielleicht%20komme%20ich%2C%20vielleicht%20nicht.%0AEs%20ist%20wie%20Roulette!%0A%0A%7BNAME%7D"
-               class="rsvp-button btn-maybe" onclick="fireConfetti(event, 'maybe')">
-                🤔 CHECK... VIELLEICHT
-            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20ALL%20IN!&body=JACKPOT!%20Ich%20bin%20ALL%20IN%20f%C3%BCr%20die%20Fire%20Horse%20Party!%0A%0A%E6%81%AD%E5%96%9C%E5%8F%91%E8%B4%A2!%0A%0A%7BNAME%7D" class="rsvp-button btn-yes" onclick="fireConfetti(event, 'yes')">✅ ALL IN! ICH KOMME!</a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20FOLD&body=Ich%20muss%20leider%20folden...%20Kann%20nicht%20kommen.%0A%0A%7BNAME%7D" class="rsvp-button btn-no" onclick="fireConfetti(event, 'no')">❌ FOLD... LEIDER NICHT</a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20-%20CHECK&body=Ich%20%C3%BCberlege%20noch...%20Vielleicht%20komme%20ich!%0A%0A%7BNAME%7D" class="rsvp-button btn-maybe" onclick="fireConfetti(event, 'maybe')">🤔 CHECK... VIELLEICHT</a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <p class="chinese">马到成功 🐴💰</p>
-        <p>THE HOUSE ALWAYS WINS... AND SO DO YOU!</p>
-        <p style="font-size: 0.9rem; color: #888;">DUMM GEHEN DELUXE CNY 2026</p>
+        <p>THE HOUSE ALWAYS WINS... AND SO DO YOU! <span class="heart">❤️</span></p>
+        <p>DUMM GEHEN DELUXE CNY 2026</p>
     </footer>
 
     <script>
-        // Configuration
         const PARTY_START = new Date('2026-02-17T16:00:00').getTime();
         const MIDNIGHT = new Date('2026-02-18T00:00:00').getTime();
 
         const EVENT = {
-            title: '🎰💰 CNY 2026 - DUMM GEHEN DELUXE',
-            description: 'JACKPOT ALERT! Fire Horse Party!\\n\\n恭喜发财!\\n\\nDresscode: ROT = LUCKY!\\nBring: Jiaozi, Hongbao, Gute Laune!',
-            location: 'TBA - VIP Location',
+            title: '🎰 CNY 2026 - DUMM GEHEN DELUXE',
+            description: 'JACKPOT! Fire Horse Party!\\n\\n恭喜发财!\\n\\nDresscode: ROT!\\nBring: Jiaozi, Hongbao, Gute Laune!',
+            location: 'TBA',
             startTime: '2026-02-17T16:00:00',
             endTime: '2026-02-18T04:00:00'
         };
 
-        // Blinking lights
-        function createBlinkingLights() {
-            const colors = ['#ffd700', '#ff0000', '#00ff00', '#9400d3', '#ff1493'];
-            for (let i = 0; i < 30; i++) {
-                const light = document.createElement('div');
-                light.className = 'blink-light';
-                light.style.left = Math.random() * 100 + '%';
-                light.style.top = Math.random() * 100 + '%';
-                light.style.background = colors[Math.floor(Math.random() * colors.length)];
-                light.style.animationDelay = Math.random() * 2 + 's';
-                light.style.boxShadow = `0 0 20px ${light.style.background}`;
-                document.body.appendChild(light);
-            }
+        // Sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.bottom = '0';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkle.style.background = ['#ffd700', '#ff0000', '#00ff00', '#9400d3'][Math.floor(Math.random() * 4)];
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 3000);
         }
-        createBlinkingLights();
-
-        // Flying coins
-        function createCoin() {
-            const coin = document.createElement('div');
-            coin.className = 'flying-coin';
-            coin.innerHTML = ['💰', '🪙', '💎', '🎰'][Math.floor(Math.random() * 4)];
-            coin.style.left = Math.random() * 100 + '%';
-            coin.style.bottom = '0';
-            document.body.appendChild(coin);
-            setTimeout(() => coin.remove(), 3000);
-        }
-        setInterval(createCoin, 2000);
+        setInterval(createSparkle, 500);
 
         // Countdown
-        let partyStarted = false;
-        let newYearReached = false;
+        let partyStarted = false, newYearReached = false, celebrationFired = false;
 
         function updateCountdowns() {
             const now = Date.now();
 
-            // Party countdown
             const partyDiff = PARTY_START - now;
             const partyCountdown = document.getElementById('party-countdown');
             const partyMessage = document.getElementById('party-started-message');
             const partyDaysContainer = document.getElementById('party-days-container');
 
             if (partyDiff <= 0) {
-                if (!partyStarted) {
-                    partyStarted = true;
-                    fireNewYearCelebration();
-                }
+                if (!partyStarted) { partyStarted = true; }
                 partyCountdown.style.display = 'none';
                 partyMessage.classList.add('visible');
             } else {
-                const days = Math.floor(partyDiff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((partyDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((partyDiff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((partyDiff % (1000 * 60)) / 1000);
-
-                if (days === 0) partyDaysContainer.classList.add('hidden');
-                else {
-                    partyDaysContainer.classList.remove('hidden');
-                    document.getElementById('party-days').textContent = String(days).padStart(2, '0');
-                }
-                document.getElementById('party-hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('party-minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('party-seconds').textContent = String(seconds).padStart(2, '0');
+                const d = Math.floor(partyDiff / 86400000);
+                const h = Math.floor((partyDiff % 86400000) / 3600000);
+                const m = Math.floor((partyDiff % 3600000) / 60000);
+                const s = Math.floor((partyDiff % 60000) / 1000);
+                if (d === 0) partyDaysContainer.classList.add('hidden');
+                else { partyDaysContainer.classList.remove('hidden'); document.getElementById('party-days').textContent = String(d).padStart(2, '0'); }
+                document.getElementById('party-hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('party-minutes').textContent = String(m).padStart(2, '0');
+                document.getElementById('party-seconds').textContent = String(s).padStart(2, '0');
             }
 
-            // Midnight countdown
             const midnightDiff = MIDNIGHT - now;
             const midnightCountdown = document.getElementById('midnight-countdown');
             const newYearMessage = document.getElementById('new-year-message');
             const midnightDaysContainer = document.getElementById('midnight-days-container');
 
             if (midnightDiff <= 0) {
-                if (!newYearReached) {
-                    newYearReached = true;
-                    fireNewYearCelebration();
-                }
+                if (!newYearReached) { newYearReached = true; if (!celebrationFired) { celebrationFired = true; fireNewYearCelebration(); } }
                 midnightCountdown.style.display = 'none';
                 newYearMessage.classList.add('visible');
             } else {
-                const days = Math.floor(midnightDiff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((midnightDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((midnightDiff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((midnightDiff % (1000 * 60)) / 1000);
-
-                if (days === 0) midnightDaysContainer.classList.add('hidden');
-                else {
-                    midnightDaysContainer.classList.remove('hidden');
-                    document.getElementById('midnight-days').textContent = String(days).padStart(2, '0');
-                }
-                document.getElementById('midnight-hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('midnight-minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('midnight-seconds').textContent = String(seconds).padStart(2, '0');
+                const d = Math.floor(midnightDiff / 86400000);
+                const h = Math.floor((midnightDiff % 86400000) / 3600000);
+                const m = Math.floor((midnightDiff % 3600000) / 60000);
+                const s = Math.floor((midnightDiff % 60000) / 1000);
+                if (d === 0) midnightDaysContainer.classList.add('hidden');
+                else { midnightDaysContainer.classList.remove('hidden'); document.getElementById('midnight-days').textContent = String(d).padStart(2, '0'); }
+                document.getElementById('midnight-hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('midnight-minutes').textContent = String(m).padStart(2, '0');
+                document.getElementById('midnight-seconds').textContent = String(s).padStart(2, '0');
             }
         }
-
         updateCountdowns();
         setInterval(updateCountdowns, 1000);
 
-        // Calendar download
         function downloadICS() {
-            const formatDate = (dateStr) => {
-                const d = new Date(dateStr);
-                return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-            };
-
-            const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//CNY 2026 Dumm Gehen Deluxe//DE
-BEGIN:VEVENT
-DTSTART:${formatDate(EVENT.startTime)}
-DTEND:${formatDate(EVENT.endTime)}
-SUMMARY:${EVENT.title}
-DESCRIPTION:${EVENT.description}
-LOCATION:${EVENT.location}
-END:VEVENT
-END:VCALENDAR`;
-
-            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const formatDate = (d) => new Date(d).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//CNY 2026//DE\nBEGIN:VEVENT\nDTSTART:${formatDate(EVENT.startTime)}\nDTEND:${formatDate(EVENT.endTime)}\nSUMMARY:${EVENT.title}\nDESCRIPTION:${EVENT.description}\nLOCATION:${EVENT.location}\nEND:VEVENT\nEND:VCALENDAR`;
+            const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'cny-2026-dumm-gehen-deluxe.ics';
+            link.download = 'cny-2026-dumm-gehen.ics';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
-            confetti({ particleCount: 100, spread: 100, origin: { y: 0.6 }, colors: ['#ffd700', '#ff0000', '#00ff00'] });
+            confetti({ particleCount: 80, spread: 70, origin: { y: 0.7 }, colors: ['#ffd700', '#ff0000', '#00ff00'] });
         }
 
-        // Confetti
         function fireConfetti(event, type) {
-            const colors = {
-                yes: ['#00ff00', '#ffd700', '#00cc00'],
-                no: ['#ff0000', '#cc0000'],
-                maybe: ['#ffd700', '#ffff00', '#f59e0b']
-            };
-
+            const colors = { yes: ['#22c55e', '#ffd700'], no: ['#ef4444'], maybe: ['#ffd700', '#f59e0b'] };
             const rect = event.target.getBoundingClientRect();
-            const x = (rect.left + rect.width / 2) / window.innerWidth;
-            const y = (rect.top + rect.height / 2) / window.innerHeight;
-
-            confetti({ particleCount: 150, spread: 100, origin: { x, y }, colors: colors[type] });
+            confetti({ particleCount: 100, spread: 70, origin: { x: (rect.left + rect.width / 2) / window.innerWidth, y: (rect.top + rect.height / 2) / window.innerHeight }, colors: colors[type] });
         }
 
         function fireNewYearCelebration() {
-            const duration = 10000;
-            const end = Date.now() + duration;
-            const colors = ['#ffd700', '#ff0000', '#00ff00', '#9400d3', '#ff1493'];
-
+            const end = Date.now() + 10000;
+            const colors = ['#ffd700', '#ff0000', '#00ff00', '#9400d3'];
             (function frame() {
-                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors });
-                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors });
-                if (Math.random() < 0.3) {
-                    confetti({ particleCount: 80, spread: 360, origin: { x: Math.random(), y: Math.random() * 0.5 }, colors });
-                }
+                confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors });
+                confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors });
+                if (Math.random() < 0.3) confetti({ particleCount: 50, spread: 360, origin: { x: Math.random(), y: Math.random() * 0.5 }, colors });
                 if (Date.now() < end) requestAnimationFrame(frame);
             })();
         }
 
-        // Scroll animations
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Easter egg
         const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
-        let konamiIndex = 0;
-        document.addEventListener('keydown', (e) => {
-            if (e.code === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    fireNewYearCelebration();
-                    konamiIndex = 0;
-                }
-            } else konamiIndex = 0;
-        });
+        let ki = 0;
+        document.addEventListener('keydown', (e) => { if (e.code === konamiCode[ki]) { ki++; if (ki === konamiCode.length) { fireNewYearCelebration(); ki = 0; } } else ki = 0; });
     </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 **Projekt**: Chinesisches Neujahr 2026 - Year of the Fire Horse
 **Datum**: 17. Februar 2026, ab 16:00 Uhr
-**Status**: Design Exploration Phase - 7 Konzepte erstellt
+**Status**: Design Exploration Phase - 12 Konzepte erstellt
 
 ---
 
@@ -17,6 +17,11 @@
 | 5 | Corporate Memphis | 🚀 Startup | ⭐⭐⭐ | ⭐⭐ | ✅ | `concept_5_corporate_memphis.html` |
 | 6 | Y2K Nostalgia | 💕 2000s | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✅ | `concept_6_y2k_nostalgia.html` |
 | 7 | Special K Edition | 💊 Medical Satire | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ | `concept_7_special_k.html` |
+| 8 | Retro Arcade | 🕹️ 80s Gaming | ⭐⭐⭐ | ⭐⭐⭐ | ✅ | `concept_8_retro_arcade.html` |
+| 9 | Kawaii Pastel | 🌸 Cute Japanese | ⭐⭐⭐ | ⭐⭐ | ✅ | `concept_9_kawaii_pastel.html` |
+| 10 | Brutalist Minimal | ⬛ Stark Design | ⭐⭐ | ⭐ | ✅ | `concept_10_brutalist.html` |
+| 11 | Vaporwave Sunset | 🌅 80s/90s Aesthetic | ⭐⭐⭐ | ⭐⭐⭐ | ✅ | `concept_11_vaporwave.html` |
+| 12 | Chinese Ink Painting | 🎨 Traditional Art | ⭐⭐⭐ | ⭐⭐ | ✅ | `concept_12_ink_painting.html` |
 
 ---
 
@@ -303,8 +308,131 @@ Für verschiedene Zielgruppen:
 
 ---
 
-**Version**: 1.0
+---
+
+## Konzept 8: "Retro Arcade" 🕹️
+
+**Vibe**: 80s Arcade Gaming Aesthetic - Neon Grids, Pixel Fonts, Gaming References
+
+**Key Features**:
+- Press Start 2P pixel font
+- Scanline CRT effect overlay
+- Perspective grid background
+- Gaming-inspired countdown labels
+- Cyan/Magenta neon color scheme
+
+**Farbpalette**:
+- Neon Cyan (#00ffff)
+- Neon Magenta (#ff00ff)
+- Arcade Red (#ff3366)
+- Coin Gold (#ffd700)
+
+**Pros**:
+- Nostalgic for gamers
+- Unique visual style
+- Clean structure closer to original
+
+---
+
+## Konzept 9: "Kawaii Pastel" 🌸
+
+**Vibe**: Cute Japanese Aesthetic - Soft Colors, Rounded Elements, Friendly
+
+**Key Features**:
+- Quicksand font (rounded, friendly)
+- Pastel gradient backgrounds
+- Floating hearts and stars
+- Soft shadows and rounded corners
+- Bubble-like UI elements
+
+**Farbpalette**:
+- Pastel Pink (#FFB7C5)
+- Pastel Lavender (#E6E6FA)
+- Pastel Mint (#98FB98)
+- Pastel Peach (#FFDAB9)
+
+**Pros**:
+- Very approachable and friendly
+- Good mobile experience
+- Clean and readable
+
+---
+
+## Konzept 10: "Brutalist Minimal" ⬛
+
+**Vibe**: Raw, Bold, Stark Design - Swiss Typography, No Frills
+
+**Key Features**:
+- Space Mono + Inter fonts
+- Black, white, and red only
+- Bold grid-based layout
+- Heavy borders, no rounded corners
+- Maximum contrast
+
+**Farbpalette**:
+- Black (#000000)
+- White (#ffffff)
+- Red (#ff0000)
+- Gray (#888888)
+
+**Pros**:
+- Maximum readability
+- Fastest loading
+- Timeless design
+
+---
+
+## Konzept 11: "Vaporwave Sunset" 🌅
+
+**Vibe**: 80s/90s Aesthetic - Sunset Gradients, Retro Future, Nostalgia
+
+**Key Features**:
+- Full-width aesthetic text
+- Sunset gradient background
+- Animated perspective grid floor
+- Retro sun element
+- Glowing neon accents
+
+**Farbpalette**:
+- Sunset Orange (#ff6b35)
+- Sunset Pink (#ff3f8e)
+- Sunset Purple (#8b5cf6)
+- Neon Cyan (#00ffff)
+
+**Pros**:
+- Highly atmospheric
+- Trendy aesthetic
+- Good visual depth
+
+---
+
+## Konzept 12: "Chinese Ink Painting" 🎨
+
+**Vibe**: Traditional Ink Wash Aesthetic - Elegant, Cultural, Artistic
+
+**Key Features**:
+- Noto Serif SC + Cormorant Garamond fonts
+- Paper texture background
+- Minimal color palette (ink + vermillion)
+- Subtle ink splatter decorations
+- Chinese calligraphy style labels
+
+**Farbpalette**:
+- Ink Black (#1a1a1a)
+- Paper Cream (#f5f0e8)
+- Vermillion Red (#c23b22)
+- Gold (#b8860b)
+
+**Pros**:
+- Most culturally authentic
+- Elegant and refined
+- Excellent readability
+
+---
+
+**Version**: 2.0
 **Erstellt**: 05.01.2026
-**Konzepte**: 7
+**Aktualisiert**: 17.01.2026
+**Konzepte**: 12
 
 马到成功! 🐴🔥
