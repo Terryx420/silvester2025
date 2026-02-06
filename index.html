@@ -126,7 +126,8 @@
             display: inline-block;
             animation: scroll 15s linear infinite;
             font-family: 'Bangers', cursive;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
+            /* Bigger marquee */
             color: var(--chaos-yellow);
             text-shadow: 2px 2px 0 red;
         }
@@ -156,8 +157,10 @@
         .pill-rack {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 2rem 0;
+            gap: 40px;
+            /* Wider gap for desktop */
+            margin: 3rem 0;
+            /* More vertical separation */
             z-index: 50;
             position: relative;
         }
@@ -167,7 +170,8 @@
             border-radius: 50px;
             border: 4px solid #fff;
             font-family: 'Bangers', cursive;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            /* Bigger pills */
             cursor: pointer;
             transition: transform 0.2s;
             text-transform: uppercase;
@@ -219,15 +223,27 @@
 
         /* --- RX PAD --- */
         .rx-pad {
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 1000px;
+            /* Wider for desktop */
+            margin: 4rem auto;
+            /* More vertical space */
             background: #fdf6e3;
             color: #333;
-            border: 4px solid black;
-            padding: 2rem;
+            border: 6px solid black;
+            /* Thicker border */
+            padding: 3rem;
+            /* More breathing room */
             transform: rotate(-1deg);
-            box-shadow: 10px 10px 0 var(--neon-pink);
+            box-shadow: 15px 15px 0 var(--neon-pink);
+            /* Bigger shadow */
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .rx-pad:hover {
+            transform: rotate(0deg) scale(1.02);
+            /* Interactive feel on desktop */
+            box-shadow: 20px 20px 0 var(--neon-green);
         }
 
         .mode-red .rx-pad {
@@ -263,8 +279,10 @@
 
         .field-row {
             display: flex;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            /* More spacing */
+            font-size: 1.5rem;
+            /* Larger text */
             align-items: baseline;
         }
 
@@ -323,7 +341,93 @@
         [v-cloak] {
             display: none;
         }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+                overflow-x: hidden;
+            }
+
+            .marquee span {
+                font-size: 1rem;
+            }
+
+            .pill-rack {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            .pill {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+                flex: 1 1 auto;
+                text-align: center;
+                min-width: 120px;
+            }
+
+            .rx-pad {
+                width: 85%;
+                margin: 1rem auto;
+                padding: 1rem;
+                transform: rotate(0deg) !important;
+                border-width: 2px;
+            }
+
+            .rx-header {
+                flex-direction: row;
+                /* Keep header concise */
+            }
+
+            .rx-logo {
+                font-size: 2.5rem;
+            }
+
+            .field-row {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 0.8rem;
+                border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+                padding-bottom: 0.5rem;
+            }
+
+            .label {
+                font-size: 0.9rem;
+                color: #666;
+                margin-bottom: 2px;
+            }
+
+            .handwritten {
+                font-size: 1.1rem;
+                transform: rotate(-1deg);
+            }
+
+            /* Specific fix for the diagnosis/prescription long text */
+            .handwritten[style*="font-size: 1.5rem"] {
+                font-size: 1.2rem !important;
+            }
+
+            button.action-btn {
+                font-size: 1.5rem;
+                padding: 0.8rem;
+            }
+
+            iframe {
+                height: 80px;
+                /* Smaller spotify */
+            }
+
+            /* Adjust horses to not block view */
+            .horse-float {
+                font-size: 3rem;
+                z-index: 1;
+                /* Move behind text if possible, but they are fixed */
+                opacity: 0.5;
+            }
+        }
     </style>
+
 </head>
 
 <body :class="'mode-' + currentMode">
@@ -347,7 +451,7 @@
         <section class="rx-pad">
             <div class="rx-header">
                 <div style="font-family: 'Bangers'; font-size: 2rem;">
-                    {{ currentMode === 'red' ? 'MATRIX.SYS' : 'DR. HORSE M.D.' }}
+                    {{ currentMode === 'red' ? 'MATRIX.SYS' : 'DR. HORSE MAD.' }}
                 </div>
                 <div class="rx-logo">Rx</div>
             </div>
@@ -375,7 +479,7 @@
 
             <div class="field-row">
                 <span class="label">DATE:</span>
-                <span class="handwritten">17.02.2026 @ 16:00 (NO CAP)</span>
+                <span class="handwritten">17.02.2026 @ 16:00</span>
             </div>
 
             <div class="field-row">
@@ -434,14 +538,14 @@
 
             <!-- DUMB RSVP BUTTONS -->
             <div style="margin-top: 3rem; text-align: center; border-top: 2px dotted #000; padding-top: 2rem;">
-                <h3>👇 REPLY TO MATRIX 👇</h3>
+                <h3>👇 REPLY TO HORSE 👇</h3>
                 <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20SAY%20LESS%20IM%20THERE%20%F0%9F%92%8A"
+                    <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20SAY%20LESS%20IM%20THERE%20%F0%9F%92%8A&body=YO%20FROSCHTEICH%20FAM%20%F0%9F%90%B8%0D%0A%0AICH%20BIN%20BEREIT%20ZUM%20GALOPPIEREN.%0D%0ABitte%20bereitet%20mein%20K-Loch%20vor.%0D%0AIch%20bringe%20mit%3A%0D%0A%5B%20%5D%20Gute%20Vibes%0D%0A%5B%20%5D%20Meine%20Mama%0D%0A%5B%20%5D%20Eine%20einzelne%20Kartoffel%0D%0A%0AKANN%20ES%20KAUM%20ERWARTEN%20ZU%20DISSOZIIEREN%20%F0%9F%91%81%EF%B8%8F%F0%9F%91%84%F0%9F%91%81%EF%B8%8F%0D%0A%0AXOXO%2C%0D%0ADer%20Hauptcharakter"
                         class="pill"
                         style="background: var(--neon-green); font-size: 1rem; text-decoration: none; color: black;">
                         SAY LESS (YES) 💊
                     </a>
-                    <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20NAH%20I%20CANT%20%F0%9F%92%80"
+                    <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20NAH%20I%20CANT%20%F0%9F%92%80&body=Sehr%20geehrter%20Dr.%20Pferd%2C%0D%0A%0AIch%20habe%20beschlossen%20reinzuschei%C3%9Fen.%20%F0%9F%93%89%0D%0AGrund%3A%0D%0A%5BX%5D%20Kein%20Rizz%0D%0A%5BX%5D%20Besseres%20Angebot%20(gelogen)%0D%0A%5BX%5D%20Angst%20vor%20Pferden%0D%0A%0ABitte%20vergeben%20Sie%20meine%20S%C3%BCnden.%0D%0A%0AHochachtungsvoll%2C%0D%0AEin%20NPC"
                         class="pill" style="background: red; font-size: 1rem; text-decoration: none; color: white;">
                         NAH (LAME) 💀
                     </a>
@@ -468,17 +572,18 @@
                     accepted: false,
                     songRequest: '',
                     horses: [],
+                    isMobile: false,
                     slangDict: [
-                        "NO CAP", "BUSSIN", "FR FR", "SHEESH", "LITERALLY GOATED", "MAIN CHARACTER ENERGY", "SKIBIDI?", "TYPE SHIT"
+                        "BUSSIN", "FR FR", "SHEESH", "LITERALLY GOATED", "MAIN CHARACTER ENERGY", "SKIBIDI?", "TYPE SHIT"
                     ]
                 }
             },
             computed: {
                 marqueeText() {
                     const base = "🐎 YEAR OF THE HORSE 2026 🐎 ";
-                    if (this.currentMode === 'red') return "MATRIX.SYS // WAKE UP NEO // FOLLOW THE WHITE HORSE // COMPILING PARTY.EXE...";
-                    if (this.currentMode === 'purple') return "🥴 SYSTEM FAILURE 🥴 HORSE TRANQUILITY OVERLOAD 🥴 WHO AM I? 🥴 WHERE IS THE FLOOR? 🥴";
-                    return base + "PRESCRIBED BY DR. DRE (JUST KIDDING) 💀 " + this.getRandomSlang() + " 🔥 YOU ARE INVITED!!!";
+                    if (this.currentMode === 'red') return "MATRIX.SYS // WAKE UP NEO // FOLLOW THE WHITE HORSE // CREATING PARTY.EXE...";
+                    if (this.currentMode === 'purple') return "🥴 HORSE FAILURE 🥴 HORSE TRANQUILITY OVERLOAD 🥴 WHO AM I? 🥴 WHERE IS THE FLOOR? 🥴";
+                    return base + "PRESCRIBED BY DR. HORSE (JUST KIDDING) 💀 " + this.getRandomSlang() + " 🔥 YOU ARE INVITED!!!";
                 },
                 diagnosis() {
                     if (this.currentMode === 'red') return "CRITICAL REALITY FAILURE (ERR_SOBER_404)";
@@ -517,8 +622,8 @@ VERSION:2.0
 BEGIN:VEVENT
 DTSTART:20260217T150000Z
 DTEND:20260218T030000Z
-SUMMARY:HORSE KETA PARTY 2026 💊🐴
-DESCRIPTION:BRING KARTOFFELSALAT AND VIBES. NO CAP.
+SUMMARY:HORSE PARTY 2026 💊🐴
+DESCRIPTION:BRING Pferdestärken AND VIBES.
 LOCATION:THE STABLE (TBA)
 END:VEVENT
 END:VCALENDAR`;
@@ -540,13 +645,16 @@ END:VCALENDAR`;
 
                     // ACTUAL FUNCTIONALITY: Open Mailto
                     const subject = encodeURIComponent("SONG REQUEST: " + song);
-                    const body = encodeURIComponent(`Yo DJ,\n\nPlay this banger or I leave: "${song}"\n\nNo cap.`);
+                    const body = encodeURIComponent(`Yo DJ,\n\nPlay this banger or I leave: "${song}"\n\n`);
                     window.location.href = `mailto:froschteichandfriends@gmail.com?subject=${subject}&body=${body}`;
 
                     this.songRequest = '';
                 },
                 spawnHorses(count) {
-                    for (let i = 0; i < count; i++) {
+                    // Reduce chaos on mobile
+                    const finalCount = this.isMobile ? Math.ceil(count / 2) : count;
+
+                    for (let i = 0; i < finalCount; i++) {
                         const id = Date.now() + i;
                         this.horses.push({
                             id: id,
@@ -581,7 +689,8 @@ END:VCALENDAR`;
                     canvas.height = window.innerHeight;
 
                     const letters = '01HORSE2026FIRE';
-                    const fontSize = 16;
+                    // Larger font on mobile for readability/performance
+                    const fontSize = this.isMobile ? 20 : 16;
                     const columns = canvas.width / fontSize;
                     const drops = Array(Math.floor(columns)).fill(1);
 
@@ -601,10 +710,18 @@ END:VCALENDAR`;
                         requestAnimationFrame(draw);
                     };
                     draw();
+                },
+                checkMobile() {
+                    this.isMobile = window.innerWidth <= 600;
                 }
             },
             mounted() {
+                this.checkMobile();
+                window.addEventListener('resize', this.checkMobile);
                 console.log("RX LOADED: VIBES OPTIMIZED");
+            },
+            beforeUnmount() {
+                window.removeEventListener('resize', this.checkMobile);
             }
         }).mount('#app');
     </script>
