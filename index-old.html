@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦄 HORSE YEAR 2026 - RX: STUPID 💀</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&family=Orbitron:wght@400;900&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-green: #39ff14;
+            --chaos-yellow: #ffff00;
+            --matrix-green: #00ff41;
+            --rx-blue: #00ffff;
+            --bg-dark: #050505;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Comic Neue', cursive;
+            margin: 0;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="28" font-size="28">💊</text></svg>'), auto;
+            transition: all 0.5s ease;
+        }
+
+        /* --- MODES CSS --- */
+        body.mode-green {
+            background: radial-gradient(circle, #1a0a2e 0%, #000 100%);
+        }
+
+        body.mode-red {
+            background: #000;
+            color: var(--matrix-green);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        body.mode-purple {
+            background: #000;
+            animation: bg-strobe 0.2s infinite;
+        }
+
+        @keyframes bg-strobe {
+            0% {
+                background: #1a001a;
+            }
+
+            50% {
+                background: #000;
+            }
+
+            100% {
+                background: #1a0000;
+            }
+        }
+
+        /* --- MATRIX RAIN --- */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* --- GLITCH OVERLAY --- */
+        .glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(255, 0, 0, 0.2) 3px);
+            pointer-events: none;
+            z-index: 1000;
+            mix-blend-mode: exclusion;
+            animation: glitch-anim 0.1s infinite;
+            display: none;
+        }
+
+        .mode-purple .glitch-overlay {
+            display: block;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-5px, 5px);
+            }
+
+            40% {
+                transform: translate(5px, -5px);
+            }
+
+            60% {
+                transform: translate(-5px, -5px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        /* --- MARQUEE --- */
+        .marquee {
+            background: linear-gradient(90deg, #000, var(--neon-pink), #000);
+            padding: 10px 0;
+            border-bottom: 2px dashed var(--chaos-yellow);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            /* Bigger marquee */
+            color: var(--chaos-yellow);
+            text-shadow: 2px 2px 0 red;
+        }
+
+        .mode-red .marquee {
+            background: #001100;
+            border-color: var(--matrix-green);
+        }
+
+        .mode-red .marquee span {
+            color: var(--matrix-green);
+            text-shadow: 0 0 5px var(--matrix-green);
+            font-family: 'Share Tech Mono';
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100vw);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* --- PILL CONTAINER --- */
+        .pill-rack {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            /* Wider gap for desktop */
+            margin: 3rem 0;
+            /* More vertical separation */
+            z-index: 50;
+            position: relative;
+        }
+
+        .pill {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 4px solid #fff;
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            /* Bigger pills */
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-transform: uppercase;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .pill:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .pill:active {
+            transform: translateY(2px) scale(0.95);
+        }
+
+        .pill-green {
+            background: var(--neon-green);
+            color: black;
+            border-color: black;
+        }
+
+        .pill-red {
+            background: red;
+            color: white;
+            border-color: pink;
+        }
+
+        .pill-purple {
+            background: var(--neon-pink);
+            color: white;
+            border-color: cyan;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        /* --- RX PAD --- */
+        .rx-pad {
+            max-width: 1000px;
+            /* Wider for desktop */
+            margin: 4rem auto;
+            /* More vertical space */
+            background: #fdf6e3;
+            color: #333;
+            border: 6px solid black;
+            /* Thicker border */
+            padding: 3rem;
+            /* More breathing room */
+            transform: rotate(-1deg);
+            box-shadow: 15px 15px 0 var(--neon-pink);
+            /* Bigger shadow */
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .rx-pad:hover {
+            transform: rotate(0deg) scale(1.02);
+            /* Interactive feel on desktop */
+            box-shadow: 20px 20px 0 var(--neon-green);
+        }
+
+        .mode-red .rx-pad {
+            background: alpha(0, 0, 0, 0.9);
+            background-color: #000;
+            border: 2px solid var(--matrix-green);
+            color: var(--matrix-green);
+            box-shadow: 0 0 20px var(--matrix-green);
+            transform: none;
+        }
+
+        .mode-purple .rx-pad {
+            background: #000;
+            color: var(--neon-pink);
+            border: 5px double var(--rx-blue);
+            transform: rotate(180deg);
+            transition: transform 3s;
+        }
+
+        .rx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #999;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .rx-logo {
+            font-size: 4rem;
+            animation: pulse 1s infinite alternate;
+        }
+
+        .field-row {
+            display: flex;
+            margin-bottom: 1.5rem;
+            /* More spacing */
+            font-size: 1.5rem;
+            /* Larger text */
+            align-items: baseline;
+        }
+
+        .label {
+            font-weight: bold;
+            margin-right: 10px;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .handwritten {
+            font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+            color: blue;
+            font-weight: bold;
+            transform: rotate(-2deg);
+            display: inline-block;
+        }
+
+        .mode-red .handwritten {
+            color: var(--matrix-green);
+            font-family: 'Share Tech Mono';
+            transform: none;
+        }
+
+        .mode-purple .handwritten {
+            color: var(--chaos-yellow);
+            text-shadow: 2px 2px 0 red;
+        }
+
+        /* --- CHAOS ELEMENTS --- */
+        .horse-float {
+            position: fixed;
+            font-size: 5rem;
+            pointer-events: none;
+            z-index: 100;
+            transition: all 1s;
+        }
+
+        button.action-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: black;
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+
+        button.action-btn:hover {
+            background: var(--neon-green);
+            color: black;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+                overflow-x: hidden;
+            }
+
+            .marquee span {
+                font-size: 1rem;
+            }
+
+            .pill-rack {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            .pill {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+                flex: 1 1 auto;
+                text-align: center;
+                min-width: 120px;
+            }
+
+            .rx-pad {
+                width: 85%;
+                margin: 1rem auto;
+                padding: 1rem;
+                transform: rotate(0deg) !important;
+                border-width: 2px;
+            }
+
+            .rx-header {
+                flex-direction: row;
+                /* Keep header concise */
+            }
+
+            .rx-logo {
+                font-size: 2.5rem;
+            }
+
+            .field-row {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 0.8rem;
+                border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+                padding-bottom: 0.5rem;
+            }
+
+            .label {
+                font-size: 0.9rem;
+                color: #666;
+                margin-bottom: 2px;
+            }
+
+            .handwritten {
+                font-size: 1.1rem;
+                transform: rotate(-1deg);
+            }
+
+            /* Specific fix for the diagnosis/prescription long text */
+            .handwritten[style*="font-size: 1.5rem"] {
+                font-size: 1.2rem !important;
+            }
+
+            button.action-btn {
+                font-size: 1.5rem;
+                padding: 0.8rem;
+            }
+
+            iframe {
+                height: 80px;
+                /* Smaller spotify */
+            }
+
+            /* Adjust horses to not block view */
+            .horse-float {
+                font-size: 3rem;
+                z-index: 1;
+                /* Move behind text if possible, but they are fixed */
+                opacity: 0.5;
+            }
+        }
+    </style>
+
+</head>
+
+<body :class="'mode-' + currentMode">
+    <div id="app" v-cloak>
+        <canvas id="matrix-canvas" v-show="currentMode === 'red'"></canvas>
+        <div class="glitch-overlay" v-if="currentMode === 'purple'"></div>
+
+        <!-- MARQUEE -->
+        <div class="marquee">
+            <span>{{ marqueeText }}</span>
+        </div>
+
+        <!-- PILL SWITCHER -->
+        <div class="pill-rack">
+            <div class="pill pill-green" @click="setMode('green')">🐴 STABLE PILL</div>
+            <div class="pill pill-red" @click="setMode('red')">💊 MATRIX PILL</div>
+            <div class="pill pill-purple" @click="setMode('purple')">🥴 K-HOLE PILL</div>
+        </div>
+
+        <!-- RX PAD UI -->
+        <section class="rx-pad">
+            <div class="rx-header">
+                <div style="font-family: 'Bangers'; font-size: 2rem;">
+                    {{ currentMode === 'red' ? 'MATRIX.SYS' : 'DR. HORSE MAD.' }}
+                </div>
+                <div class="rx-logo">Rx</div>
+            </div>
+
+            <div class="field-row">
+                <span class="label">PATIENT:</span>
+                <span class="handwritten" contenteditable spellcheck="false">
+                    {{ patientName }}
+                </span>
+            </div>
+
+            <div class="field-row">
+                <span class="label">DIAGNOSIS:</span>
+                <span class="handwritten">
+                    {{ diagnosis }}
+                </span>
+            </div>
+
+            <div class="field-row">
+                <span class="label">PRESCRIPTION:</span>
+                <span class="handwritten" style="font-size: 1.5rem; border-bottom: 2px solid red;">
+                    1x FIRE HORSE PARTY 🐴🔥
+                </span>
+            </div>
+
+            <div class="field-row">
+                <span class="label">DATE:</span>
+                <span class="handwritten">17.02.2026 @ 16:00</span>
+            </div>
+
+            <div class="field-row">
+                <span class="label">DOSAGE:</span>
+                <span class="handwritten">{{ dosage }}</span>
+            </div>
+
+            <div style="margin-top: 2rem; border: 2px solid currentColor; padding: 1rem; text-align: center;">
+                <div style="font-weight: bold; font-family: 'Courier New';">⚠️ SIDE EFFECTS INCLUDES:</div>
+                <div class="handwritten" style="font-size: 1rem;">
+                    {{ sideEffects }}
+                </div>
+            </div>
+
+            <button class="action-btn" @click="acceptPrescription">
+                {{ actionBtnText }}
+            </button>
+            <p v-if="accepted"
+                style="text-align: center; font-size: 1.5rem; margin-top: 10px; color: var(--neon-pink);">
+                {{ successMsg }}
+            </p>
+            <!-- MISSING FEATURES: SPOTIFY & CALENDAR -->
+            <div style="margin-top: 3rem; text-align: center;">
+                <div style="font-family: 'Bangers'; font-size: 1.5rem; margin-bottom: 10px;">🎵 AUDIO THERAPY 🎵</div>
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1581130707&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                <div
+                    style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                    <a href="https://soundcloud.com/m4tsch1" title="m4tsch1" target="_blank"
+                        style="color: #cccccc; text-decoration: none;">m4tsch1</a> · <a
+                        href="https://soundcloud.com/m4tsch1/wir-freuen-uns-atzewinrad-ft"
+                        title="wir freuen uns | atzewinrad ft m4tsch1 (free dl)" target="_blank"
+                        style="color: #cccccc; text-decoration: none;">
+                        wir freuen uns | atzewinrad ft m4tsch1
+                    </a>
+                </div>
+
+                <br><br>
+
+                <button @click="downloadICS" style="
+                    background: transparent; 
+                    border: 2px dashed black; 
+                    padding: 10px; 
+                    cursor: pointer; 
+                    font-family: 'Comic Neue'; 
+                    font-weight: bold;">
+                    📅 ADD TO CALENDAR (REAL ONES ONLY) 📅
+                </button>
+
+                <!-- SONG REQUEST FEATURE -->
+                <div style="margin-top: 2rem; border-top: 2px dashed var(--neon-pink); padding-top: 1rem;">
+                    <div style="font-family: 'Bangers'; font-size: 1.2rem; color: var(--chaos-yellow);">📢 REQUEST A
+                        BANGER 📢</div>
+                    <div
+                        style="display: flex; gap: 5px; justify-content: center; margin-top: 10px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                        <input v-model="songRequest" type="text" placeholder="ENTER SONG NAME..."
+                            style="flex: 1; padding: 10px; border: 2px solid black; background: white; font-family: 'Courier New';">
+                        <button @click="submitSong"
+                            style="background: black; color: white; border: none; padding: 10px; font-family: 'Bangers'; cursor: pointer;">
+                            SEND 🚀
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DUMB RSVP BUTTONS -->
+            <div style="margin-top: 3rem; text-align: center; border-top: 2px dotted #000; padding-top: 2rem;">
+                <h3>👇 REPLY TO HORSE 👇</h3>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20SAY%20LESS%20IM%20THERE%20%F0%9F%92%8A&body=YO%20FROSCHTEICH%20FAM%20%F0%9F%90%B8%0D%0A%0AICH%20BIN%20BEREIT%20ZUM%20GALOPPIEREN.%0D%0ABitte%20bereitet%20mein%20K-Loch%20vor.%0D%0AIch%20bringe%20mit%3A%0D%0A%5B%20%5D%20Gute%20Vibes%0D%0A%5B%20%5D%20Meine%20Mama%0D%0A%5B%20%5D%20Eine%20einzelne%20Kartoffel%0D%0A%0AKANN%20ES%20KAUM%20ERWARTEN%20ZU%20DISSOZIIEREN%20%F0%9F%91%81%EF%B8%8F%F0%9F%91%84%F0%9F%91%81%EF%B8%8F%0D%0A%0AXOXO%2C%0D%0ADer%20Hauptcharakter"
+                        class="pill"
+                        style="background: var(--neon-green); font-size: 1rem; text-decoration: none; color: black;">
+                        SAY LESS (YES) 💊
+                    </a>
+                    <a href="mailto:froschteichandfriends@gmail.com?subject=CNY%202026%20NAH%20I%20CANT%20%F0%9F%92%80&body=Sehr%20geehrter%20Dr.%20Pferd%2C%0D%0A%0AIch%20habe%20beschlossen%20reinzuschei%C3%9Fen.%20%F0%9F%93%89%0D%0AGrund%3A%0D%0A%5BX%5D%20Kein%20Rizz%0D%0A%5BX%5D%20Besseres%20Angebot%20(gelogen)%0D%0A%5BX%5D%20Angst%20vor%20Pferden%0D%0A%0ABitte%20vergeben%20Sie%20meine%20S%C3%BCnden.%0D%0A%0AHochachtungsvoll%2C%0D%0AEin%20NPC"
+                        class="pill" style="background: red; font-size: 1rem; text-decoration: none; color: white;">
+                        NAH (LAME) 💀
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RANDOM ELEMENTS -->
+        <div v-for="h in horses" :key="h.id" class="horse-float" :style="h.style">
+            {{ h.char }}
+        </div>
+
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    currentMode: 'green',
+                    patientName: 'U (AND THE SQUAD)',
+                    accepted: false,
+                    songRequest: '',
+                    horses: [],
+                    isMobile: false,
+                    slangDict: [
+                        "BUSSIN", "FR FR", "SHEESH", "LITERALLY GOATED", "MAIN CHARACTER ENERGY", "SKIBIDI?", "TYPE SHIT"
+                    ]
+                }
+            },
+            computed: {
+                marqueeText() {
+                    const base = "🐎 YEAR OF THE HORSE 2026 🐎 ";
+                    if (this.currentMode === 'red') return "MATRIX.SYS // WAKE UP NEO // FOLLOW THE WHITE HORSE // CREATING PARTY.EXE...";
+                    if (this.currentMode === 'purple') return "🥴 HORSE FAILURE 🥴 HORSE TRANQUILITY OVERLOAD 🥴 WHO AM I? 🥴 WHERE IS THE FLOOR? 🥴";
+                    return base + "PRESCRIBED BY DR. HORSE (JUST KIDDING) 💀 " + this.getRandomSlang() + " 🔥 YOU ARE INVITED!!!";
+                },
+                diagnosis() {
+                    if (this.currentMode === 'red') return "CRITICAL REALITY FAILURE (ERR_SOBER_404)";
+                    if (this.currentMode === 'purple') return "K-HOLE DEFICIENCY & VIBE RECESSION";
+                    return "MID-YEAR CRISIS + ACUTE FOMO";
+                },
+                dosage() {
+                    if (this.currentMode === 'red') return "TAKE RED PILL DAILY UNTIL EGO DEATH";
+                    if (this.currentMode === 'purple') return "UNKNOWN (MEASURED IN LIGHTYEARS)";
+                    return "UNLIMITED (UNTIL YOU PASS OUT)";
+                },
+                sideEffects() {
+                    if (this.currentMode === 'red') return "Glitching through walls, understanding binary, dodging bullets.";
+                    if (this.currentMode === 'purple') return "Becoming a polygon, tasting colors, buying a horse.";
+                    return "Uncontrollable neighing, main character syndrome, waking up in a stable.";
+                },
+                actionBtnText() {
+                    return this.accepted ? "PRESCRIPTION FILLED ✅" : "FILL PRESCRIPTION 💊";
+                },
+                successMsg() {
+                    return "PHARMACY CONFIRMED: SEE YOU IN THE STABLE 🐎";
+                }
+            },
+            methods: {
+                setMode(mode) {
+                    this.currentMode = mode;
+                    this.spawnHorses(5);
+                    if (mode === 'red') this.initMatrix();
+                },
+                getRandomSlang() {
+                    return this.slangDict[Math.floor(Math.random() * this.slangDict.length)];
+                },
+                downloadICS() {
+                    const c = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:20260217T150000Z
+DTEND:20260218T030000Z
+SUMMARY:HORSE PARTY 2026 💊🐴
+DESCRIPTION:BRING Pferdestärken AND VIBES.
+LOCATION:THE STABLE (TBA)
+END:VEVENT
+END:VCALENDAR`;
+                    const b = new Blob([c], { type: 'text/calendar' });
+                    const l = document.createElement('a');
+                    l.href = URL.createObjectURL(b);
+                    l.download = 'horse_party_2026.ics';
+                    l.click();
+                },
+                submitSong() {
+                    if (!this.songRequest) {
+                        alert("⚠️ ERROR: SONG.EXE NOT FOUND. PLEASE TYPE SOMETHING. ⚠️");
+                        return;
+                    }
+                    const song = this.songRequest;
+
+                    // MEME VISUAL CONFIRMATION
+                    alert(`✅ REQUEST SENT TO THE VOID: "${song}"\n(Just kidding via Email now)`);
+
+                    // ACTUAL FUNCTIONALITY: Open Mailto
+                    const subject = encodeURIComponent("SONG REQUEST: " + song);
+                    const body = encodeURIComponent(`Yo DJ,\n\nPlay this banger or I leave: "${song}"\n\n`);
+                    window.location.href = `mailto:froschteichandfriends@gmail.com?subject=${subject}&body=${body}`;
+
+                    this.songRequest = '';
+                },
+                spawnHorses(count) {
+                    // Reduce chaos on mobile
+                    const finalCount = this.isMobile ? Math.ceil(count / 2) : count;
+
+                    for (let i = 0; i < finalCount; i++) {
+                        const id = Date.now() + i;
+                        this.horses.push({
+                            id: id,
+                            char: this.currentMode === 'red' ? '0101' : (this.currentMode === 'purple' ? '🥴' : '🐎'),
+                            style: {
+                                left: Math.random() * 90 + '%',
+                                top: Math.random() * 90 + '%',
+                                transform: `rotate(${Math.random() * 360}deg)`,
+                                animation: `float ${1 + Math.random() * 2}s infinite`
+                            }
+                        });
+                        setTimeout(() => {
+                            this.horses = this.horses.filter(h => h.id !== id);
+                        }, 2000);
+                    }
+                },
+                acceptPrescription() {
+                    this.accepted = true;
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: this.currentMode === 'red' ? ['#00ff00', '#000000'] : ['#ff00ff', '#ffff00']
+                    });
+                    this.spawnHorses(20);
+                },
+                initMatrix() {
+                    // Simple Matrix Rain
+                    const canvas = document.getElementById('matrix-canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+
+                    const letters = '01HORSE2026FIRE';
+                    // Larger font on mobile for readability/performance
+                    const fontSize = this.isMobile ? 20 : 16;
+                    const columns = canvas.width / fontSize;
+                    const drops = Array(Math.floor(columns)).fill(1);
+
+                    const draw = () => {
+                        if (this.currentMode !== 'red') return;
+                        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        ctx.fillStyle = '#0F0';
+                        ctx.font = fontSize + 'px monospace';
+
+                        for (let i = 0; i < drops.length; i++) {
+                            const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                            drops[i]++;
+                        }
+                        requestAnimationFrame(draw);
+                    };
+                    draw();
+                },
+                checkMobile() {
+                    this.isMobile = window.innerWidth <= 600;
+                }
+            },
+            mounted() {
+                this.checkMobile();
+                window.addEventListener('resize', this.checkMobile);
+                console.log("RX LOADED: VIBES OPTIMIZED");
+            },
+            beforeUnmount() {
+                window.removeEventListener('resize', this.checkMobile);
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

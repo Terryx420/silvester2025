@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐴 ARBEITSUNFÄHIGKEITSBESCHEINIGUNG - HORSE EDITION 💊</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&family=Orbitron:wght@400;900&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-green: #39ff14;
+            --chaos-yellow: #ffff00;
+            --matrix-green: #00ff41;
+            --rx-blue: #00ffff;
+            --au-red: #d32f2f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0a2e 0%, #0d0d0d 50%, #1a0a2e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* --- MARQUEE --- */
+        .marquee {
+            width: 100%;
+            background: linear-gradient(90deg, #000, var(--neon-pink), #000);
+            padding: 10px 0;
+            border-bottom: 2px dashed var(--chaos-yellow);
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 12s linear infinite;
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: var(--chaos-yellow);
+            text-shadow: 2px 2px 0 red;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100vw);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* --- AU CONTAINER WITH BACKGROUND IMAGE --- */
+        .au-container {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            min-height: 1000px;
+            margin: 0 auto;
+            background-image: url('676eb885df8b0e80a4debbf7_6536531ab812e0b776ccf0fa_6335aa4869e9bc3a1cee699f_AU-Bescheinigung.webp');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 30px var(--neon-pink), 0 0 60px rgba(255, 0, 255, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-0.5deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(0.5deg);
+            }
+        }
+
+        /* --- OVERLAY CONTENT --- */
+        .au-overlay {
+            position: relative;
+            z-index: 10;
+        }
+
+        .field-absolute {
+            position: absolute;
+            font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+            color: blue;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transform: rotate(-2deg);
+            text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: rotate(-2deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Krankenkasse */
+        .field-krankenkasse {
+            top: 55px;
+            left: 50px;
+        }
+
+        /* Name */
+        .field-name {
+            top: 100px;
+            left: 50px;
+            font-size: 1.3rem;
+        }
+
+        /* Geburtsdatum */
+        .field-geb {
+            top: 130px;
+            right: 400px;
+        }
+
+        /* Kostenträgerkennung */
+        .field-kost {
+            top: 175px;
+            left: 50px;
+            font-size: 0.9rem;
+        }
+
+        /* Versicherten-Nr */
+        .field-vers {
+            top: 175px;
+            left: 220px;
+        }
+
+        /* Status */
+        .field-status {
+            top: 175px;
+            right: 400px;
+        }
+
+        /* Betriebsstätten-Nr */
+        .field-betr {
+            top: 215px;
+            left: 50px;
+            font-size: 0.9rem;
+        }
+
+        /* Arzt-Nr */
+        .field-arzt {
+            top: 215px;
+            left: 180px;
+        }
+
+        /* Datum */
+        .field-datum {
+            top: 215px;
+            left: 320px;
+        }
+
+        /* Checkboxen - Arbeitsunfall */
+        .checkbox-arbeitsunfall {
+            top: 272px;
+            left: 45px;
+            font-size: 2rem;
+        }
+
+        /* Checkbox Durchgangsarzt */
+        .checkbox-durchgang {
+            top: 272px;
+            left: 340px;
+            font-size: 2rem;
+        }
+
+        /* AU seit */
+        .field-au-seit {
+            top: 330px;
+            left: 200px;
+            font-size: 1.2rem;
+            color: var(--au-red);
+        }
+
+        /* AU voraussichtlich bis */
+        .field-au-bis {
+            top: 375px;
+            left: 200px;
+            font-size: 1.2rem;
+            color: var(--au-red);
+        }
+
+        /* Festgestellt am */
+        .field-festgestellt {
+            top: 420px;
+            left: 200px;
+        }
+
+        /* Stempel Bereich */
+        .stempel-area {
+            position: absolute;
+            top: 310px;
+            right: 35px;
+            width: 200px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-15deg);
+        }
+
+        .stempel {
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            color: var(--au-red);
+            text-align: center;
+            border: 4px solid var(--au-red);
+            border-radius: 10px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.9);
+            transform: rotate(5deg);
+            text-shadow: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: rotate(5deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(5deg) scale(1.05);
+            }
+        }
+
+        /* --- UNTERER BEREICH (Diagnose) --- */
+        .diagnose-section {
+            position: absolute;
+            top: 520px;
+            left: 30px;
+            right: 30px;
+        }
+
+        .diagnose-title {
+            font-family: 'Bangers', cursive;
+            color: var(--au-red);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 0 white;
+        }
+
+        .icd-codes {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .icd-code {
+            font-family: 'Share Tech Mono', monospace;
+            color: blue;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border: 2px dashed var(--au-red);
+            border-radius: 5px;
+        }
+
+        .diagnose-text {
+            font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+            color: blue;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+
+        /* --- MASSNAHMEN --- */
+        .massnahmen-section {
+            position: absolute;
+            top: 720px;
+            left: 30px;
+            right: 30px;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .checkbox-row .check {
+            font-size: 1.5rem;
+        }
+
+        /* --- BUTTONS --- */
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 15px 30px;
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            border: 4px solid black;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .btn-primary {
+            background: var(--neon-green);
+            color: black;
+        }
+
+        .btn-secondary {
+            background: var(--neon-pink);
+            color: white;
+        }
+
+        .btn-danger {
+            background: red;
+            color: white;
+        }
+
+        /* --- FOOTER --- */
+        .footer-info {
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+            font-family: 'Bangers', cursive;
+        }
+
+        .footer-info h2 {
+            font-size: 2rem;
+            color: var(--chaos-yellow);
+            text-shadow: 3px 3px 0 var(--neon-pink);
+            margin-bottom: 10px;
+        }
+
+        .party-details {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--neon-pink);
+        }
+
+        .party-details p {
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+
+        /* --- FLOATING HORSES --- */
+        .horse-float {
+            position: fixed;
+            font-size: 4rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: horse-float 3s ease-in-out infinite;
+        }
+
+        @keyframes horse-float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+
+            75% {
+                transform: translateY(-10px) rotate(-10deg);
+            }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .au-container {
+                min-height: 800px;
+                padding: 15px;
+            }
+
+            .field-absolute {
+                font-size: 0.9rem;
+            }
+
+            .stempel {
+                font-size: 1.1rem;
+            }
+
+            .diagnose-section {
+                top: 420px;
+            }
+
+            .massnahmen-section {
+                top: 580px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .marquee span {
+                font-size: 1.2rem;
+            }
+
+            .au-container {
+                min-height: 600px;
+                background-size: 100% auto;
+            }
+
+            .field-absolute {
+                font-size: 0.7rem;
+            }
+
+            .action-btn {
+                font-size: 1.1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- MARQUEE -->
+        <div class="marquee">
+            <span>🏥 ARBEITSUNFÄHIGKEITSBESCHEINIGUNG 🐴 HORSE PARTY 2026 🏥 KRANKGESCHRIEBEN WEGEN AKUTER FEIERLAUNE 💊
+                SIE SIND VERPFLICHTET ZU ERSCHEINEN 🔥 KEINE BESSERUNG IN SICHT 💀</span>
+        </div>
+
+        <!-- AU BESCHEINIGUNG MIT BILD HINTERGRUND -->
+        <div class="au-container">
+            <div class="au-overlay">
+                <!-- Krankenkasse -->
+                <div class="field-absolute field-krankenkasse">PFERDEKASSE AOK 🐴</div>
+
+                <!-- Name -->
+                <div class="field-absolute field-name">DU & DEINE SQUAD 💀</div>
+
+                <!-- Geburtsdatum -->
+                <div class="field-absolute field-geb">EGAL LOL</div>
+
+                <!-- Kostenträgerkennung -->
+                <div class="field-absolute field-kost">420-69-1337</div>
+
+                <!-- Versicherten-Nr -->
+                <div class="field-absolute field-vers">BRUH-2026</div>
+
+                <!-- Status -->
+                <div class="field-absolute field-status">SLAY</div>
+
+                <!-- Betriebsstätten-Nr -->
+                <div class="field-absolute field-betr">STALL-01</div>
+
+                <!-- Arzt-Nr -->
+                <div class="field-absolute field-arzt">DR-🐴</div>
+
+                <!-- Datum -->
+                <div class="field-absolute field-datum">17.02.2026</div>
+
+                <!-- Checkboxen -->
+                <div class="field-absolute checkbox-arbeitsunfall">☑️</div>
+                <div class="field-absolute checkbox-durchgang">☑️</div>
+
+                <!-- AU Daten -->
+                <div class="field-absolute field-au-seit">17.02.2026 16:00 UHR 🔥</div>
+                <div class="field-absolute field-au-bis">18.02.2026 (ODER BIS BLACKOUT)</div>
+                <div class="field-absolute field-festgestellt">HEUTE, JETZT, SOFORT!</div>
+
+                <!-- Stempel -->
+                <div class="stempel-area">
+                    <div class="stempel">
+                        DR. HORSE MAD.<br>
+                        FACHARZT FÜR<br>
+                        VIBES & CHAOS<br>
+                        📞 0800-NEIGH
+                    </div>
+                </div>
+
+                <!-- Diagnose Bereich -->
+                <div class="diagnose-section">
+                    <div class="diagnose-title">AU-BEGRÜNDENDE DIAGNOSE(N) (ICD-10) 🤒</div>
+                    <div class="icd-codes">
+                        <div class="icd-code">F0M.0 - FOMO AKUT</div>
+                        <div class="icd-code">L1T.69 - LITERALLY CAN'T EVEN</div>
+                        <div class="icd-code">B4N.G3R - BANGER DEFICIENCY</div>
+                        <div class="icd-code">SK1.B1D1 - SKIBIDI SYNDROME</div>
+                        <div class="icd-code">N0.C4P - CHRONISCHE EHRLICHKEIT</div>
+                        <div class="icd-code">SL4.Y99 - TERMINAL SLAY</div>
+                    </div>
+                    <div class="diagnose-text">
+                        <strong>Anamnese:</strong> Patient zeigt Symptome von akutem Arbeitswillen-Mangel in Kombination
+                        mit schwerem FOMO. Einzige Therapie: 1x FIRE HORSE PARTY 🐴🔥<br><br>
+                        <strong>Nebenwirkungen:</strong> Unkontrollierbares Wiehern, Main Character Syndrome,
+                        Aufwachen im Stall, Spontanes Tanzen, Vergessen des eigenen Namens.
+                    </div>
+                </div>
+
+                <!-- Maßnahmen -->
+                <div class="massnahmen-section">
+                    <div class="checkbox-row">
+                        <span class="check">☑️</span>
+                        <span>Leistungen zur metaphysischen Rehabilitation (PARTY)</span>
+                    </div>
+                    <div class="checkbox-row">
+                        <span class="check">☑️</span>
+                        <span>Stufenweise Wiedereingliederung in die Realität (NÄCHSTE WOCHE)</span>
+                    </div>
+                    <div class="checkbox-row">
+                        <span class="check">☑️</span>
+                        <span>Sonstige: ERSCHEINEN IST PFLICHT 🐴</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARTY DETAILS -->
+        <div class="footer-info">
+            <h2>🐴 HORSE PARTY 2026 🐴</h2>
+            <div class="party-details">
+                <p>📅 <strong>DATUM:</strong> 17.02.2026 @ 16:00 UHR</p>
+                <p>📍 <strong>LOCATION:</strong> DER STALL (TBA)</p>
+                <p>💊 <strong>DOSIERUNG:</strong> UNBEGRENZT (BIS ZUM BLACKOUT)</p>
+                <p>⚠️ <strong>REZEPTPFLICHTIG:</strong> DIESE EINLADUNG VORZEIGEN!</p>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+            <a href="mailto:froschteichandfriends@gmail.com?subject=AU%20BEST%C3%84TIGT%20-%20ICH%20KOMME%20%F0%9F%90%B4&body=Sehr%20geehrter%20Dr.%20Horse%2C%0D%0A%0AIch%20akzeptiere%20meine%20Diagnose%20und%20erscheine%20pflichtbewusst%20zur%20Therapie.%0D%0A%0AIch%20bringe%20mit%3A%0D%0A%5B%20%5D%20Gute%20Vibes%0D%0A%5B%20%5D%20Snacks%0D%0A%5B%20%5D%20Meine%20letzte%20Gehirnzelle%0D%0A%0AMit%20freundlichem%20Wiehern%2C%0D%0ADer%20Patient"
+                class="action-btn btn-primary">
+                ✅ AU AKZEPTIERT - ICH KOMME!
+            </a>
+            <a href="mailto:froschteichandfriends@gmail.com?subject=ARBEITSVERWEIGERUNG%20-%20KEINE%20AU%20%F0%9F%92%80&body=Sehr%20geehrter%20Dr.%20Horse%2C%0D%0A%0AIch%20verweigere%20die%20Therapie.%0D%0A%0AGrund%3A%0D%0A%5BX%5D%20Ich%20bin%20ein%20NPC%0D%0A%5BX%5D%20Angst%20vor%20Pferden%0D%0A%5BX%5D%20Kein%20Rizz%0D%0A%0ABitte%20um%20Gnade.%0D%0A%0ATr%C3%A4nend%2C%0D%0ADer%20Verweigerer"
+                class="action-btn btn-danger">
+                ❌ ICH BIN LAME (ABSAGE)
+            </a>
+            <button class="action-btn btn-secondary" @click="downloadICS">
+                📅 IN KALENDER EINTRAGEN
+            </button>
+        </div>
+
+        <!-- FLOATING HORSES -->
+        <div v-for="h in horses" :key="h.id" class="horse-float" :style="h.style">
+            {{ h.char }}
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    horses: []
+                }
+            },
+            methods: {
+                downloadICS() {
+                    const c = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:20260217T150000Z
+DTEND:20260218T030000Z
+SUMMARY:🐴 HORSE PARTY 2026 - AU PFLICHTTERMIN
+DESCRIPTION:ARBEITSUNFÄHIGKEIT BESTÄTIGT. ERSCHEINEN IST PFLICHT.
+LOCATION:DER STALL (TBA)
+END:VEVENT
+END:VCALENDAR`;
+                    const b = new Blob([c], { type: 'text/calendar' });
+                    const l = document.createElement('a');
+                    l.href = URL.createObjectURL(b);
+                    l.download = 'horse_party_au_2026.ics';
+                    l.click();
+
+                    // Confetti!
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#ff00ff', '#ffff00', '#39ff14']
+                    });
+                },
+                spawnHorse() {
+                    const id = Date.now();
+                    const chars = ['🐴', '🐎', '💊', '🏥', '📋', '💀', '🔥'];
+                    this.horses.push({
+                        id: id,
+                        char: chars[Math.floor(Math.random() * chars.length)],
+                        style: {
+                            left: Math.random() * 90 + '%',
+                            top: Math.random() * 90 + '%',
+                            animationDelay: Math.random() * 2 + 's'
+                        }
+                    });
+                    setTimeout(() => {
+                        this.horses = this.horses.filter(h => h.id !== id);
+                    }, 3000);
+                }
+            },
+            mounted() {
+                // Spawn horses periodically
+                setInterval(() => this.spawnHorse(), 2000);
+                // Initial horses
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => this.spawnHorse(), i * 500);
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

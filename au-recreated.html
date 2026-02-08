@@ -767,58 +767,25 @@
             }
         }
 
+        @media (max-width: 900px) {
+            .au-paper {
+                transform: scale(0.85);
+                transform-origin: top center;
+            }
+        }
+
         @media (max-width: 700px) {
+            .au-paper {
+                transform: scale(0.6);
+                transform-origin: top center;
+            }
+
             .pill-rack {
                 gap: 10px;
             }
 
             .pill {
                 padding: 0.8rem 1.2rem;
-                font-size: 1rem;
-            }
-
-            .au-header {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .au-title {
-                text-align: left;
-            }
-
-            .form-row {
-                flex-direction: column;
-            }
-
-            .form-cell {
-                border-right: none;
-                border-bottom: 1px solid var(--au-red);
-            }
-
-            .icd-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .massnahmen-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stempel-bereich {
-                position: relative;
-                right: auto;
-                top: auto;
-                margin: 20px auto;
-                transform: rotate(-5deg);
-            }
-
-            .date-label {
-                min-width: 100px;
-                font-size: 0.75rem;
-            }
-
-            .date-box {
-                width: 25px;
-                height: 30px;
                 font-size: 1rem;
             }
 
@@ -834,6 +801,13 @@
             .horse-float {
                 font-size: 2.5rem;
                 opacity: 0.6;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .au-paper {
+                transform: scale(0.45);
+                transform-origin: top center;
             }
         }
     </style>
