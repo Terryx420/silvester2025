@@ -328,16 +328,13 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
         }
 
         .freigabe {
             font-family: 'Share Tech Mono', monospace;
             color: var(--au-red);
-            font-size: 0.75rem;
+            font-size: 1rem;
             font-style: italic;
-            flex-shrink: 0;
         }
 
         .au-title {
@@ -345,15 +342,14 @@
         }
 
         .au-title h1 {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             color: var(--au-red);
             font-weight: bold;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
+            letter-spacing: 1px;
         }
 
         .au-title .nummer {
-            font-size: 2rem;
+            font-size: 3rem;
             color: var(--au-red);
             font-weight: bold;
         }
@@ -468,15 +464,15 @@
 
         .stempel-bereich {
             position: absolute;
-            right: 10px;
-            top: 180px;
-            width: 120px;
+            right: 20px;
+            top: 250px;
+            width: 200px;
             text-align: center;
-            padding: 8px;
-            border: 2px solid var(--au-red);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.95);
-            transform: rotate(-8deg);
+            padding: 15px;
+            border: 3px solid var(--au-red);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            transform: rotate(-10deg);
             animation: stamp-pulse 2s infinite;
         }
 
@@ -497,16 +493,16 @@
         .stempel-text {
             font-family: 'Bangers', cursive;
             color: var(--au-red);
-            font-size: 0.6rem;
-            line-height: 1.2;
+            font-size: 1rem;
+            line-height: 1.4;
         }
 
         .stempel-unterschrift {
             font-family: 'Comic Neue', cursive;
-            font-size: 0.9rem;
+            font-size: 1.8rem;
             color: blue;
-            transform: rotate(-3deg);
-            margin-top: 5px;
+            transform: rotate(-5deg);
+            margin-top: 10px;
         }
 
         .ausfertigung-label {
@@ -771,25 +767,58 @@
             }
         }
 
-        @media (max-width: 900px) {
-            .au-paper {
-                transform: scale(0.85);
-                transform-origin: top center;
-            }
-        }
-
         @media (max-width: 700px) {
-            .au-paper {
-                transform: scale(0.6);
-                transform-origin: top center;
-            }
-
             .pill-rack {
                 gap: 10px;
             }
 
             .pill {
                 padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            .au-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .au-title {
+                text-align: left;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .form-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--au-red);
+            }
+
+            .icd-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .massnahmen-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stempel-bereich {
+                position: relative;
+                right: auto;
+                top: auto;
+                margin: 20px auto;
+                transform: rotate(-5deg);
+            }
+
+            .date-label {
+                min-width: 100px;
+                font-size: 0.75rem;
+            }
+
+            .date-box {
+                width: 25px;
+                height: 30px;
                 font-size: 1rem;
             }
 
@@ -805,13 +834,6 @@
             .horse-float {
                 font-size: 2.5rem;
                 opacity: 0.6;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .au-paper {
-                transform: scale(0.45);
-                transform-origin: top center;
             }
         }
     </style>
@@ -945,6 +967,7 @@
                         {{ stempelFach }}<br>
                         📞 {{ stempelTel }}
                     </div>
+                    <div class="stempel-unterschrift">{{ stempelSign }}</div>
                 </div>
 
                 <div class="ausfertigung-label">Ausfertigung zur Vorlage bei der Party</div>
@@ -1137,7 +1160,7 @@
                     if (this.currentMode === 'purple') {
                         return ["???.?? - UNDEFINED", "∞.∞ - INFINITE", "NULL.PTR - VOID", "DIM.ERR - SPACE", "TIME.0 - PARADOX", "EGO.X - DISSOLVED"];
                     }
-                    return ["F0M.0 - FOMO AKUT", "L1T.69 - LITERALLY", "B4N.G3R - BANGER DEF", "SK1.B1D1 - SKIBIDI", "L0.ST - LOST", "SL4.Y99 - SLAY"];
+                    return ["F0M.0 - FOMO AKUT", "L1T.69 - LITERALLY", "B4N.G3R - BANGER DEF", "SK1.B1D1 - SKIBIDI", "N0.C4P - NO CAP", "SL4.Y99 - SLAY"];
                 },
                 diagnoseText() {
                     if (this.currentMode === 'red') return "Patient zeigt CRITICAL REALITY FAILURE (ERR_SOBER_404). Execute PARTY.EXE to restore functionality.";
